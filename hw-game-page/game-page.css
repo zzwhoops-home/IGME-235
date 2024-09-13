@@ -1,0 +1,19 @@
+html {
+    font-family: 'Trebuchet MS', Arial, sans-serif;
+}
+blockquote {
+    color: rgb(50, 50, 50);
+    padding: 10px;
+    border: 1px black solid;
+    text-align: center;
+    font-style: italic;
+}
+#header {
+    
+}
+#header h1{
+    font-size: 2em;
+}
+#sources h2{
+    font-size: 1.3em;
+}
