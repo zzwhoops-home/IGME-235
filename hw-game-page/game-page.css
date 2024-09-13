@@ -1,6 +1,19 @@
+/* Changes default font for the entire document */
 html {
     font-family: 'Trebuchet MS', Arial, sans-serif;
+    background: black;
 }
+
+body {
+    background: white;
+    margin: 0% 10% 0% 10%;
+}
+main, footer {
+    padding: 1% 5% 1% 5%;
+    background-color: #dddddd;
+}
+
+/* Changes blockquotes to have a border, etc... */
 blockquote {
     color: rgb(50, 50, 50);
     padding: 10px;
@@ -8,12 +21,39 @@ blockquote {
     text-align: center;
     font-style: italic;
 }
+
 #header {
-    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #333333;
+    height: 35vh;
+    box-shadow: inset 0px -10px 10px darkgray;
+    padding-bottom: 2%;
+    padding-top: 1%;
 }
-#header h1{
-    font-size: 2em;
+#header img{
+    max-width: 35vw;
+    max-height: 35vh;
 }
+
+#scrolling-gallery {
+    background-color: #777777;
+    overflow: auto;
+    white-space: nowrap;
+    padding: 3%;
+    display: flex;
+}
+
+#scrolling-gallery img {
+    padding: 10px;
+    margin: 5px;
+    background-color: black;
+    max-height: 30vh;
+    height: auto;
+}
+
+/* Shrinks the heading for the "sources" section */
 #sources h2{
     font-size: 1.3em;
 }
