@@ -1,0 +1,64 @@
+/* universal selector: border */
+/* * {
+    border: 1px solid gray;
+} */
+
+/* applying font */
+html {
+    font-family: Arial, sans-serif;    
+}
+
+/* Background color of page */
+body {
+    background-color: #FAEDCE;
+}
+
+/* Header (title on top of page) */
+h1 { 
+    font-family: "Inria Sans", sans-serif;
+    color: red;
+    margin-left: 10px;
+}
+/* Section headings */
+h2 {
+    font-family: "Inria Sans", sans-serif;
+    color: darkviolet;
+    margin-left: 30px;
+}
+
+/* Indent paragraphs */
+p, blockquote, ul, ol {
+    margin-left: 100px;
+}
+/* Add padding and background to quotes */
+blockquote { 
+    background-color: lightgray;
+    padding: 1rem;
+}
+/* abbreviation emphasis */
+abbr {
+  font-style: italic;
+  color: salmon;
+}
+
+/* target images of class side */
+img.side {
+    float: right;
+    margin: 0 12px;
+}
+
+/* align header logo and small image */
+#logo-inflate {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#fygar-inflate {
+    margin-left: 2%;
+    width: 5%;
+}
+
+footer a {
+    font-family: "Inria Sans", sans-serif;
+}

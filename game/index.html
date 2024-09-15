@@ -2,32 +2,36 @@
 <html lang="en">
     <head>
 		<meta charset="UTF-8">
-        <title>Dig Dug Instructions</title>
-		<style>
-			h1 { 
-				color:red;
-				font-family: sans-serif;
-				border-bottom: 1px solid blue;
-				}
-			blockquote { 
-				background-color: lightgray;
-				padding: 1rem;
-				}
-			abbr {
-			  font-style: italic;
-			  color: salmon;
-			}
-		</style>
+
+		<title>Dig Dug Instructions</title>
+		<link rel="icon" type="image/x-icon" href="images/favicon.ico" />
+		<link rel="icon" type="image/png" href="images/favicon-32x32.png" sizes="32x32" />
+		<link rel="icon" type="image/png" href="images/favicon-16x16.png" sizes="16x16" />
+		
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+		
+		<link rel="stylesheet" href="styles/gamepage.css" />
     </head>
     <body>
 		<header>
-			<h1>Dig Dug</h1>        
-			<img src="images/fygar_inflate.png" alt="Our protagonist inflating Fygar to make it explode">
-			<img src="images/dig-dug-burnt.png" alt="What you see while playing Dig Dug"><br>
-			<a href="big/pic1.html">Big picture</a><br>
-			<a href="#dig-dug-source">Jump to source</a>
-			
-			<hr>
+			<div id="header">
+				<object id="logo" data="images/dig-dug.svg" alt="The logo of Dig Dug">
+					<img src="images/dig-dug.png" alt="The logo of Dig Dug - fallback image">
+				</object>
+
+				<div id="logo-inflate">	
+					<h1>Dig Dug</h1>
+					<img id="fygar-inflate" src="images/fygar_inflate.png" alt="Our protagonist inflating Fygar to make it explode">
+				</div>
+				<hr>
+
+				<img src="images/dig-dug-burnt.png" alt="What you see while playing Dig Dug" class="side">
+
+				<a href="big/pic1.html">Big picture</a><br>
+				<a href="#dig-dug-source">Jump to source</a>
+			</div>
 		</header>
 		<main>
 			<section id="publishing-info">
