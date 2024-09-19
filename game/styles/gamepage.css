@@ -10,7 +10,22 @@ html {
 
 /* Background color of page */
 body {
-    background-color: #FAEDCE;
+    background-color: #FBEDD0;
+}
+
+/* publishing info background color */
+footer {
+    background-color: #C5C8BB;
+}
+
+/* horizontal rule color */
+hr {
+    border-color: #28908C;
+}
+
+/* pad logo */
+#logo {
+    padding: 20px;
 }
 
 /* Header (title on top of page) */
@@ -22,7 +37,7 @@ h1 {
 /* Section headings */
 h2 {
     font-family: "Inria Sans", sans-serif;
-    color: darkviolet;
+    color: #28908C;
     margin-left: 30px;
 }
 
@@ -44,7 +59,7 @@ abbr {
 /* target images of class side */
 img.side {
     float: right;
-    margin: 0 12px;
+    margin: 32px 12px 0 0;
 }
 
 /* align header logo and small image */
@@ -57,6 +72,21 @@ img.side {
 #fygar-inflate {
     margin-left: 2%;
     width: 5%;
+}
+
+a:link {
+    color: #28908C;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #0A0603;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #97948e;
+    text-decoration: underline;
 }
 
 footer a {
