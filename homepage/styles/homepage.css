@@ -1,0 +1,27 @@
+/* applying font */
+html {
+    font-family: "Inria Sans", Arial, sans-serif;
+}
+
+/* Section with picture of me in header */
+#picture {
+    
+}
+
+/* Bio section */
+#bio {
+
+}
+
+/* any readable text will be this style */
+.page-text {
+}
+
+/* Project links section */
+#project-links {
+}
+
+/* all item lists should be this style */
+.item-list {
+
+}
