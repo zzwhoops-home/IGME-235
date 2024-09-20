@@ -1,27 +1,102 @@
+* {
+    color: #86b0f4;
+    margin: 5px;
+}
+
 /* applying font */
 html {
     font-family: "Inria Sans", Arial, sans-serif;
+    background-color: #0d1355;
+}
+
+/* Background color of page */
+body {
+    background-color: #050721;
+    margin: 0 10% 0 10%;
+    padding: 2%;
+}
+
+h1, h2 {
+    text-align: center;
+    color: #9154e3;
+}
+
+h1 {
+    padding: 1%;
+    font-size: 3.5em;
+}
+
+h2 {
+    padding: 1%;
+    font-size: 2.5em;
 }
 
 /* Section with picture of me in header */
 #picture {
-    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4%;
+    background: #131317
+}
+/* Mugshot of me on the home page */
+#picture img {
+    width: 50%;
+    box-shadow: 0px 0px 20px 20px #f7f5f956;  
 }
 
 /* Bio section */
-#bio {
-
+#bio p {
+    padding: 1%;
+    border: 10px solid #3b71c9;
 }
 
 /* any readable text will be this style */
 .page-text {
+    font-size: 1.3em;
 }
 
 /* Project links section */
 #project-links {
+    padding: 1%;
 }
 
-/* all item lists should be this style */
-.item-list {
+/* Make a nav-bar style thing */
+#project-links ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
+footer {
+    border: 5px #f7f5f9 solid;
+}
+footer h2 {
+    border-bottom: 3px #f7f5f9 dotted;
+}
+footer .spread-even {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1%;
+    padding: 5px;
+    justify-content: space-around;
+}
+
+footer .spread-even * {
+    font-size: 1.5em;
+}
+
+footer h2 {
+    font-size: 2em;
+}
+
+a:visited {
+    color: #b892ea;
+}
+a:hover {
+    color: #bcd4fc;
 }
