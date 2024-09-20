@@ -10,7 +10,15 @@ html {
 
 /* Background color of page */
 body {
+    background-color: #421707;
+}
+
+main, header, footer {
     background-color: #FBEDD0;
+    border: 1px solid black;
+    margin: 0 auto;
+    width: 80vw;
+    padding: 1.5rem;
 }
 
 /* publishing info background color */
@@ -43,7 +51,9 @@ h2 {
 
 /* Indent paragraphs */
 p, blockquote, ul, ol {
-    margin-left: 100px;
+    margin: 3vh;
+    padding: 0;
+    margin-left: 75px;
 }
 /* Add padding and background to quotes */
 blockquote { 
@@ -59,6 +69,7 @@ abbr {
 /* target images of class side */
 img.side {
     float: right;
+    padding: 10px;
     margin: 32px 12px 0 0;
 }
 
