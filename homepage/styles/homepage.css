@@ -1,5 +1,5 @@
 * {
-    color: #86b0f4;
+    color: #a9c3ee;
     margin: 5px;
 }
 
@@ -12,7 +12,7 @@ html {
 /* Background color of page */
 body {
     background-color: #050721;
-    margin: 0 10% 0 10%;
+    margin: 0 10vw 0 10vw;
     padding: 2%;
 }
 
@@ -23,11 +23,11 @@ h1, h2 {
 }
 
 h1 {
-    font-size: 3.5em;
+    font-size: 3.5vw;
 }
 
 h2 {
-    font-size: 2.5em;
+    font-size: 2.5vw;
 }
 
 /* Section with picture of me in header */
@@ -36,48 +36,58 @@ h2 {
     align-items: center;
     justify-content: center;
     padding: 4%;
+    margin: 2% 0 1% 0;
     background: #131317
 }
 /* Mugshot of me on the home page */
 #picture img {
     width: 50%;
-    box-shadow: 0px 0px 20px 20px #f7f5f956;  
+    box-shadow: 0px 0px 1vw 1vw #f7f5f956;  
 }
 
 /* Bio section */
 #bio p {
     padding: 1%;
-    border: 10px solid #3b71c9;
+    border: 0.5vw solid #3b71c9;
 }
 
 /* any readable text will be this style */
 .page-text {
-    font-size: 1.3em;
+    font-size: 1.3vw;
 }
 
 /* Project links section */
 #project-links {
     padding: 1%;
+    margin: 2%;
 }
 
 /* Make a nav-bar style thing */
 #project-links ul {
     list-style-type: none;
     margin: 0;
-    padding: 0;
+    padding: 0; 
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
+    padding: 1%;
+}
+
+#project-links li {
+    padding: 1%;
+    border: 1px solid white;
+    font-size: 1.5vw;
+    text-align: center;
+    width: 30%;
 }
 
 /* Border around footer (bottom) */
 footer {
-    border: 5px #f7f5f9 solid;
+    border: 0.3vw #f7f5f9 solid;
 }
 /* Separate header from the links below */
 footer h2 {
-    border-bottom: 3px #f7f5f9 dotted;
-    font-size: 2em;
+    border-bottom: 0.2vw #f7f5f9 dotted;
 }
 /* Spread content evenly in a column */
 footer .spread-even {
@@ -91,7 +101,7 @@ footer .spread-even {
 
 /* All elements in this "spread-even" section should have a big font size */
 footer .spread-even * {
-    font-size: 1.5em;
+    font-size: 1.5vw;
 }
 
 /* This is already specified with the universal selector at the beginning */
