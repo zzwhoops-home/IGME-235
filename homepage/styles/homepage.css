@@ -19,15 +19,14 @@ body {
 h1, h2 {
     text-align: center;
     color: #9154e3;
+    padding: 1%;
 }
 
 h1 {
-    padding: 1%;
     font-size: 3.5em;
 }
 
 h2 {
-    padding: 1%;
     font-size: 2.5em;
 }
 
@@ -71,12 +70,16 @@ h2 {
     justify-content: center;
 }
 
+/* Border around footer (bottom) */
 footer {
     border: 5px #f7f5f9 solid;
 }
+/* Separate header from the links below */
 footer h2 {
     border-bottom: 3px #f7f5f9 dotted;
+    font-size: 2em;
 }
+/* Spread content evenly in a column */
 footer .spread-even {
     display: flex;
     flex-direction: column;
@@ -86,17 +89,24 @@ footer .spread-even {
     justify-content: space-around;
 }
 
+/* All elements in this "spread-even" section should have a big font size */
 footer .spread-even * {
     font-size: 1.5em;
 }
 
-footer h2 {
-    font-size: 2em;
+/* This is already specified with the universal selector at the beginning */
+a:link {
+    color: #86b0f4;
 }
-
 a:visited {
     color: #b892ea;
 }
+a:focus {
+    color: #bcd4fc;
+}
 a:hover {
     color: #bcd4fc;
+}
+a:active {
+    color: #6ebbeb;
 }
