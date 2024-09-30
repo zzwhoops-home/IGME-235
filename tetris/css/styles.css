@@ -1,56 +1,48 @@
-/* Do everything in this file */
-
-/* faint background color */
-html {
-    background-color: aliceblue;
-}
-
-/* get content off edges */
-main, header, footer {
-    width: 80vw;
-    border: 1px solid black;
+header, main, footer {
+    width: 90vw;
     margin: 0 auto;
 }
 
-h1 {
-    margin-left: 10px;
-}
-
-/* thin red bottom border */
-h2, h3 {
-    border-bottom: 1px solid red;
-    margin-left: 10px;
-}
-
-/* clear floats */
-h2 {
-    clear: right;
-}
-
-/* float tetriminos  */
 figure {
-    float: right;
-    width: 40vw;
+    max-width: 650px;
+    margin: 0 auto;
 }
 
-/* only images within figures */
 figure img {
     width: 100%;
-    margin-left: 1vw;
 }
 
-/* float individual tetriminos */
-#tetlist div {
-    float: left;
-    width: 30vw;
+#tetlist {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.tet {
     border: 1px solid black;
-    padding: 1vw;
+    flex: 0 1 450px;
+    text-align: center;
 }
 
-footer {
-    clear: left;
-    position: fixed;
-    left: 50vw;
-    top: 0;
-    z-index: -1;
+.tet img {
+    width: 60%;
+}
+
+.tet span {
+    display: block;
+    margin: 10px 5px;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.tet .aliases {
+    text-align: left;
+    margin: 1em;
+}
+
+.long img {
+    width: 80%;
+}
+
+.square img {
+    width: 40%;
 }

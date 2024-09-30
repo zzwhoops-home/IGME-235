@@ -1,0 +1,56 @@
+/* Do everything in this file */
+
+/* faint background color */
+html {
+    background-color: aliceblue;
+}
+
+/* get content off edges */
+main, header, footer {
+    width: 80vw;
+    border: 1px solid black;
+    margin: 0 auto;
+}
+
+h1 {
+    margin-left: 10px;
+}
+
+/* thin red bottom border */
+h2, h3 {
+    border-bottom: 1px solid red;
+    margin-left: 10px;
+}
+
+/* clear floats */
+h2 {
+    clear: right;
+}
+
+/* float tetriminos  */
+figure {
+    float: right;
+    width: 40vw;
+}
+
+/* only images within figures */
+figure img {
+    width: 100%;
+    margin-left: 1vw;
+}
+
+/* float individual tetriminos */
+#tetlist div {
+    float: left;
+    width: 30vw;
+    border: 1px solid black;
+    padding: 1vw;
+}
+
+footer {
+    clear: left;
+    position: fixed;
+    left: 50vw;
+    top: 0;
+    z-index: -1;
+}
