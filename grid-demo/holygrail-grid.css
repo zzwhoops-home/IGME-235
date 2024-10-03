@@ -41,3 +41,51 @@ nav, aside {
 Grid Formatting  
 *****************/
 
+#wrapper {
+    display: grid;
+    height: 100vh;
+    grid-template-rows: 1fr 2fr 10fr 2fr 1fr;
+    grid-template-areas: "header"
+                         "navbar"
+                         "content"
+                         "sidebar"
+                         "footer";
+    max-width: 1200px;
+}
+
+@media screen and (min-width: 760px) {
+    #wrapper {
+        grid-template-rows: 1fr 10fr 1fr;
+        grid-template-columns: 20% minmax(1fr, auto) 20%;
+        grid-template-areas: "header header header"
+                             "navbar content sidebar"
+                             "footer footer footer";
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    #wrapper {
+        height: 100vh;
+        margin: 0 auto 0;
+    }
+}
+
+header {
+    grid-area: header;
+}
+
+nav {
+    grid-area: navbar;
+}
+
+article {
+    grid-area: content;
+}
+
+aside {
+    grid-area: sidebar;
+}
+
+footer {
+    grid-area: footer;
+}
