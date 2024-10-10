@@ -1,0 +1,7 @@
+/* Header section */
+body {
+    margin: 10px auto;
+    padding: 15px;
+    max-width: 60vw;
+    box-shadow: 0 0.5vw 0.5vw 0.5vw gray;
+}
