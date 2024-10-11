@@ -1,7 +1,157 @@
 /* Header section */
 body {
-    margin: 10px auto;
-    padding: 15px;
-    max-width: 60vw;
     box-shadow: 0 0.5vw 0.5vw 0.5vw gray;
+    margin: 10px auto;
+    padding: 1vw;
+    max-width: 960px;
+    font-family: "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans‑serif
+}
+
+#header-bg-container {
+    height: 400px;
+    margin-bottom: 20px;
+}
+
+/* Hack to make img element like a background */
+.img-as-bg img {
+    pointer-events: none;
+    position: absolute;
+    object-fit: cover;
+    height: 450px;
+    width: 100%;
+    z-index: -1;
+}
+
+.img-as-bg {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+}
+
+#logo-container {
+    position: relative;
+    right: 5px;
+    bottom: 40px;
+}
+
+#logo-container #main-logo {
+    position: relative;
+    bottom: 12px;
+    background-color: #d1512a;
+    color: white;
+    width: 180px;
+    font-weight: 700;
+    letter-spacing: -3px;
+}
+#logo-container #main-logo p {
+    position: relative;
+    top: 12px;
+    text-align: right;
+    font-size: 3rem;
+}
+#logo-container #slogan {
+    position: relative;
+    background-color: black;
+    color: rgb(209, 209, 209);
+    font-size: 0.9rem;
+    width: 160px;
+    left: 60px;
+    bottom: 60px;
+    text-align: center;
+}
+
+#title-container {
+    position: relative;
+    vertical-align: middle;
+    bottom: 20px;
+    padding-left: 15px;
+    font-size: 1.3em;
+    white-space: nowrap;
+}
+
+#title-container h1 {
+    font-weight: 800;
+    letter-spacing: -1px;
+    margin: 0;
+}
+
+#title-container #title-top {
+    color: white;
+}
+
+#title-container #title-bottom {
+    color: #d1512a;
+}
+
+#bottom-art img {
+    max-width: 100%;
+}
+
+/* Main section */
+#content {
+    display: flex;
+    margin: 0 0.5vw;
+    padding-left: 10px;
+}
+
+#content p {
+    margin: 0;
+}
+
+#content #main-text {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr;
+    gap: 10px;
+    max-width: 75%;
+}
+/* Make first letter large */
+#main-text .text:first-child::first-letter {
+    initial-letter: 3;
+}
+/* main text on page */
+.text {
+    font-size: 0.9em;
+    font-family: 'Times New Roman', Times, serif;
+}
+#side-elements {
+    display: block;
+    margin-left: auto;
+    margin-right: 0;
+    height: 100px;
+}
+#side-elements img {
+    max-width: 100%;
+}
+.image-diamond {
+    /* background-color: #d92b2b; Adjust to match the red shade */
+    color: white;
+    font-size: 12px;
+    margin-top: 10px;
+    margin-bottom: -140px;
+    position: relative;
+}
+.image-diamond:nth-child(2) {
+    color: black;
+}
+.img-text {
+    position: absolute;
+    width: 65%;
+    top: 3%;
+    right: 25%;
+}
+/* Bottom section */
+#bottom-art {
+    margin: 10px 0;
+    padding: 0.5vw;
+}
+#bottom-art img {
+    width: 100%;
+    object-fit: cover;
+}
+#bottom-art #page-number {
+    position: relative;
+    left: 40px;
+    bottom: 40px;
+    font-size: 0.7em;
 }
