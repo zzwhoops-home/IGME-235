@@ -1,0 +1,20 @@
+html {
+    background-color: rgb(70, 70, 70);
+}
+body {
+    background-color: rgb(248, 201, 162);
+    width: 960px;
+    margin: 10px auto;
+    padding: 5px 20px;
+    border: 1px solid black;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+h1, h2 {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+img {
+    width: 100%;
+    border: 1px dotted black;
+}
