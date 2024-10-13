@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* div {
+            box-sizing: border-box;
+            border: 1px solid black;
+            padding: 20px;
+            text-align: center;
+        }
+        #container {
+            display: grid;
+            grid-template-columns: 1fr 3fr 1fr;
+            grid-template-rows: 3fr 10fr 2fr;
+            grid-template-areas:
+                        "header header header"
+                        "left_sidebar main right_sidebar"
+                        "left_sidebar footer right_sidebar";                       
+        }
+        #header {
+            grid-area: header;
+        }
+        #left_sidebar {
+            grid-area: left_sidebar;
+        }
+        #right_sidebar {
+            grid-area: right_sidebar;
+        }
+        #main {
+            grid-area: main;
+        }
+        #footer {
+            grid-area: footer;
+        } */
+        #container {
+            border: 1px solid black;
+            padding: 30px;
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: space-around;
+        }
+
+        #container div {
+            border: 1px solid black;
+            background-color: #ddd;
+            margin: 5px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- <div id="container">
+        <div id="header">
+            Header
+        </div>
+        <div id="left_sidebar">
+            Left Sidebar
+        </div>
+        <div id="main">Main</div>
+        <div id="right_sidebar">Right Sidebar</div>
+        <div id="footer">Footer</div>
+   </div> -->
+   <div id="container">
+        <div>1</div> 
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+        <div>7</div>
+        <div>8</div>
+        <div>9</div>
+    </div>
+</body>
+</html>
