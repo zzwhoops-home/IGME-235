@@ -4,9 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zach's Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
+    <nav class="navbar">
+        <ul>
+            <li><a href="#title-container">Top</a></li>
+            <li><a href="#intro">Intro</a></li>
+            <li><a href="#content">Projects</a></li>
+            <li><a href="#bottom-art">Links</a></li>
+        </ul>
+    </nav>
     <header>
         <div id="header-bg-container">
             <div class="img-as-bg">
@@ -23,30 +32,51 @@
         </div>
     </header>
     <main>
-        <div id="content">
-            <div id="">
-
+        <div id="intro">
+            <div id="description">
+                <h2>Hi!<br><span>I'm Zach.</span></h2>
+                <p>I'm a double major in Game Design & Development and a custom major through RIT's School of Individualized Study (SOIS) program which I call "AI-powered social-emotional learning". I'm passionate about integrating games, AI, and technology into interdisciplinary educational environments to enhance student learning. I want to obtain a breadth of knowledge in many subject areas, even in those outside of technical contexts such as project management and leadership. By the time I graduate, I hope that I will have worked on innovative projects that blends AI and game development to promote effective academic and social-emotional learning.</p>
             </div>
+            <div id="photo">
+                <img src="media/portfolio/mugshot.jpg" alt="A photo of me">
+            </div>
+        </div>
+        <div id="projects-title">
+            <h2>Projects</h2>
+            <hr>
+        </div>
+        <div id="content">
             <div id="projects">
                 <div class="project">
-                    
+                    <div class="project-image"><img src="media/portfolio/mugshot.jpg" alt="Placeholder"></div>
+                    <div class="project-links"></div>
                 </div>
             </div>
             <div id="side-elements">
                 <div class="image-diamond">
-                    <div class="img-text"><strong>Athletic renovations</strong><br>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Optio sequi dolorum deserunt adipisci quam quisquam dolore laborum soluta nihil obcaecati!</div>
+                    <div class="img-text">Check out my high-school Maker Portfolio!</div>
                     <img src="media/image_diamond_orange.png" alt="diamond-shaped background">
                 </div>
                 <div class="image-diamond">
-                    <div class="img-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus impedit nesciunt dolorum maiores quam sunt veritatis! Id temporibus nobis suscipit vero totam!</div>
+                    <div class="img-text">Another cool item</div>
                     <img src="media/image_diamond_gray.png" alt="diamond-shaped background">
                 </div>
             </div>
         </div>
         <div id="bottom-art">
-            <img src="media/portfolio/sunrise.png" alt="A sunrise scene in Minecraft">
             <div id="links">
-                <i class="fa-brands fa-github">GitHub</i>
+                <div class="link">
+                    <a href="https://github.com/zzwhoops-home"><i class="fa-brands fa-github"></i></a>
+                    <p>GitHub</p>
+                </div>
+                <div class="link">
+                    <a href="https://www.linkedin.com/in/zacharydeng/"><i class="fa-brands fa-linkedin"></i></a>
+                    <p>Linkedin</p>
+                </div>
+                <div class="link">
+                    <a href="https://www.linkedin.com/in/zacharydeng/"><i class="fa-solid fa-file"></i></a>
+                    <p>Resume</p>
+                </div>
             </div>
         </div>
     </main>
