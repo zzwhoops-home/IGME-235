@@ -1,5 +1,11 @@
+/* Reset */
+* {
+    margin: 0;
+}
+
 html {
     background-color: rgb(29, 29, 29);
+    scroll-behavior: smooth;
 }
 
 /* Header section */
@@ -11,6 +17,11 @@ body {
     font-family: "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
     background-color: rgb(223, 223, 223);
 }
+
+#title-container, #intro, #projects-title, #bottom-art {
+    scroll-margin-top: 100px;
+}
+
 /* Navbar */
 .navbar {
     position: sticky; /* Fixed at the top */
@@ -18,7 +29,7 @@ body {
     width: 100%;
     background-color: #0f283a;
     color: white;
-    padding: 5px 0;
+    padding: 15px 0;
     z-index: 100; /* Make sure the navbar stays on top of other content */
 }
 
@@ -40,6 +51,12 @@ body {
 #header-bg-container {
     height: 450px;
     margin-bottom: 40px;
+    transition: transform 0.6s ease, font-size 0.6s ease;
+}
+
+#header-bg-container:hover {
+    transform: scale(1.01);
+    font-size: 1.2rem;
 }
 
 /* Hack to make img element like a background */
@@ -68,12 +85,10 @@ body {
     vertical-align: middle;
     font-size: 1.3em;
     white-space: nowrap;
-    box-shadow: 0 0 5px 10px gray;
 }
 
 #title-container h1 {
     font-weight: 800;
-    margin: 0;
 }
 
 #title-container #title-top {
@@ -93,8 +108,8 @@ body {
     margin: 0px 10px 30px 10px;
 }
 #projects-title h2 {
+    margin: 10px;
     font-size: 2rem;
-    margin: 0;
     display: flex;
     justify-content: center;
 }
@@ -105,9 +120,6 @@ body {
     padding-left: 10px;
 }
 
-#content p {
-    margin: 0;
-}
 #intro {
     display: grid;
     grid-template-columns: 2fr 1fr;
@@ -139,24 +151,37 @@ body {
     margin: 10px 0;
 }
 
+#content {
+    margin-bottom: 50px;
+}
 #content #projects {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 1fr 1fr 1fr;
-    gap: 10px;
+    grid-template-rows: 1fr 1fr;
     max-width: 75%;
 }
 .project {
     display: grid;
-    grid-template-rows: 5fr 1fr;
-    background-color: #000000;
+    grid-template-rows: 16fr 1fr 2fr;
+    border: 5px solid black;
+    background-color: #0f283a;
+    margin: 5px;
+    padding: 2px;
 }
 .project-links {
     display: flex;
-    justify-content: space-between;
+    gap: 10px;
+    font-size: 1.5em;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
 }
-.project-image {
-    width: 100%;
+.project-name {
+    font-size: 1em;
+    font-weight: 700;
+    color: #2ecc71;
+    text-align: center;
+    text-wrap: wrap;
 }
 .project-image img {
     width: 100%;
@@ -237,7 +262,6 @@ body {
 }
 
 .link p {
-    margin: 0;
     font-size: 1.5em;
     font-weight: 700;
     font-family: "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
