@@ -1,0 +1,134 @@
+html {
+    background-color: rgb(29, 29, 29);
+}
+
+/* Header section */
+body {
+    box-shadow: 0 0.5vw 0.5vw 0.5vw gray;
+    margin: 10px auto;
+    padding: 1vw;
+    max-width: 960px;
+    font-family: "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
+    background-color: rgb(223, 223, 223);
+}
+#header-bg-container {
+    height: 450px;
+    margin-bottom: 40px;
+}
+
+/* Hack to make img element like a background */
+.img-as-bg img {
+    pointer-events: none;
+    position: absolute;
+    object-fit: cover;
+    height: 450px;
+    width: 100%;
+}
+
+.img-as-bg {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    filter: brightness(60%);
+}
+
+#title-container {
+    display: flex;
+    height: 100%;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    vertical-align: middle;
+    font-size: 1.3em;
+    white-space: nowrap;
+    box-shadow: 0 0 5px 10px gray;
+}
+
+#title-container h1 {
+    font-weight: 800;
+    margin: 0;
+}
+
+#title-container #title-top {
+    color: white;
+}
+
+#title-container #title-bottom {
+    color: #d1512a;
+}
+
+#bottom-art img {
+    max-width: 100%;
+}
+
+/* Main section */
+#content {
+    display: flex;
+    margin: 0 0.5vw;
+    padding-left: 10px;
+}
+
+#content p {
+    margin: 0;
+}
+
+#content #projects {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 10px;
+    max-width: 75%;
+}
+/* Make first letter large */
+.text:first-child::first-letter {
+    initial-letter: 3;
+}
+/* main text on page */
+.text {
+    font-size: 0.9em;
+    font-family: 'Times New Roman', Times, serif;
+}
+#side-elements {
+    display: block;
+    margin-left: auto;
+    margin-right: 0;
+    height: 100px;
+}
+#side-elements img {
+    max-width: 100%;
+}
+.image-diamond {
+    /* background-color: #d92b2b; Adjust to match the red shade */
+    color: white;
+    font-size: 12px;
+    margin-top: 10px;
+    margin-bottom: -140px;
+    position: relative;
+}
+.image-diamond:nth-child(2) {
+    color: black;
+}
+.img-text {
+    position: absolute;
+    width: 65%;
+    top: 3%;
+    right: 25%;
+}
+/* Bottom section */
+#bottom-art {
+    margin: 10px 0;
+    padding: 0.5vw;
+    overflow: hidden;
+    height: 300px;
+}
+#bottom-art #links {
+    display: flex;
+    justify-content: space-around;
+}
+#bottom-art img {
+    width: 100%;
+    object-fit: cover;
+    filter: brightness(60%);
+    object-position: 0 -70px;
+}
