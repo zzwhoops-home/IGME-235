@@ -13,6 +13,32 @@
      let age2 = Math.floor(20.999);
 
      // add your new code here.
+     // 1 - append color
+     colors.push("purple");
+
+     // 2 - print out last element
+     console.log(`The last element of the colors array is ${colors[colors.length - 1]}`);
+
+     // 3 - loop through colors array
+     console.log("Printing out all colors in colors array");
+     for (let color of colors) {
+        console.log(color);
+     }
+
+     // 4 - add property
+     person["school"] = "RIT";
+
+     // 5 - number of seconds passed since 1970 (epoch time in ms / 1000)
+     console.log(`Number of seconds since 1970: ${Date.now() / 1000}`);
+
+     // 6 - pi
+     console.log(`The value of PI is: ${Math.PI}`);
+
+     // 7 - abs(999)
+     console.log(`The absolute value of -999 is ${Math.abs(-999)}`);
+
+     // 8 - all caps
+     console.log(`'Hello' in all caps is '${"Hello".toUpperCase()}'`);
       
 </script>
 </head>
