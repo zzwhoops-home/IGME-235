@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        p {
+            transition: color 2s ease;
+        }
+    </style>
+</head>
+<body>
+    <div id="decorations">
+        <p>1</p>
+        <p>2</p>
+        <p>3</p>
+        <p>4</p>
+        <ul>
+            <li>4.1</li>
+            <li>4.2</li>
+        </ul>
+        <p>5</p>
+    </div>
+
+    <script>
+        "use strict;"
+
+        // let nums = [1, 2, 3, 4, 5];
+
+        // for (let num of nums){
+        //     console.log(num);
+        // }
+
+        const thing = {
+            name: "Zach",
+            age: 56,
+            sayHi: () => {
+                console.log(`Hi ${thing.name}, age ${thing.age}`);
+            }
+        }
+
+        thing.sayHi();
+
+        const decor = document.querySelector("#decorations");
+
+        const addDecoration = () => {
+            const newDecoration = document.createElement('p');
+            newDecoration.textContent = 'Candles';
+            newDecoration.style.color = 'orange';
+
+            decor.appendChild(newDecoration);
+        };
+
+        const allPs = document.querySelectorAll("p");
+
+        const func = () => {
+            for (let p of allPs) {
+                p.style.color = "#" + ((1 << 24) * Math.random() | 0).toString(16).padStart(6, "0");
+                p.textContent = `${Math.random().toFixed(2)}`;
+            }
+            
+            setTimeout(func, 2000);
+        }
+
+        func();
+
+        const add5 = (x) => x + 5;
+        const callTwice = (func, arg) => {
+            return (arg) => func(func(arg));
+        }
+
+        console.log(callTwice(add5)(10));
+
+        const add = function (...nums) {
+            arr = nums[0];
+            return arr[0] + arr[2];
+        }
+
+        console.log(add([3, 4, 5]));
+
+        const addThreeNums = (x) => (y) => (z) => x + y + z;
+        console.log(addThreeNums(3)(2)(1));
+
+        setTimeout(() => {
+            addDecoration(); 
+        }, 2000);
+    </script>
+</body>
+</html>
