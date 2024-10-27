@@ -20,8 +20,35 @@
 <script>
 	"use strict"; 
   
-  // add your own code here.
+    // add your own code here.
+    // 1, 2, 3, 4
+    document.querySelector("h1").innerHTML = "My UFO Page";
+    document.querySelector("h2").innerHTML = "My UFO Info"
+    document.querySelector("h2:nth-of-type(2)").innerHTML = "My UFO Pictures";
+    document.querySelector("h2:nth-of-type(3)").innerHTML = "";
+
+    // 5 - body element
+    let body = document.body;
+    body.style.fontFamily = "sans-serif";
+    body.style.color = "#F02323";
+
+    // 6 - 1st paragraph link
+    let firstParagraph = document.querySelector("p");
+    firstParagraph.innerHTML = "Report your UFO sightings here: <a href='http://www.nuforc.org/'>link</a>"
+    firstParagraph.style.color = "green";
+    firstParagraph.style.fontWeight = "bold";
+    firstParagraph.style.fontSize= "2em";
+    firstParagraph.style.textTransform = "uppercase";
+    firstParagraph.style.textShadow = "3px 2px #A44";
+
+    // 7 - 2nd paragraph
+    document.querySelector("p:nth-of-type(2)").innerHTML = "";
+
+    // 8 - 3rd paragraph
+    document.querySelector("p:nth-of-type(3)").innerHTML = "<img src='https://media.newyorker.com/photos/64ca89f569af7f8649142d29/16:9/w_1717,h_966,c_limit/Wiley-UFO-03.jpg' alt='A picture of an UFO''>";
 	
-	</script>
+    // 9 - footer
+    document.querySelector("footer").innerHTML = "&copy; 2024 - Zachary Deng"
+    </script>
 </body>
 </html>
