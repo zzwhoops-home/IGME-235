@@ -56,7 +56,6 @@ body {
 
 #header-bg-container:hover {
     transform: scale(1.01);
-    font-size: 1.2rem;
 }
 
 /* Hack to make img element like a background */
@@ -79,16 +78,24 @@ body {
     display: flex;
     height: 100%;
     flex-flow: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-end;
+    align-items: flex-end;
     position: relative;
+    right: 20px;
+    bottom: 20px;
     vertical-align: middle;
-    font-size: 1.3em;
+    font-size: 1.3rem;
     white-space: nowrap;
+    transition: transform 0.6s ease, font-size 0.6s ease;
+}
+
+#title-container:hover {
+    font-size: 1.5rem;
 }
 
 #title-container h1 {
     font-weight: 800;
+    margin: 0;
 }
 
 #title-container #title-top {
@@ -229,29 +236,39 @@ body {
     background-image: url("../media/portfolio/sunrise.png");
     background-repeat: no-repeat;
     background-size: 100%;
-    background-position-y: -75px;
+    background-position-y: -200px;
     background-color: rgb(96, 96, 96);
     background-blend-mode: overlay;
     margin: 10px 0;
-    padding: 0.5vw;
+    padding: 0.5vw 0;
     overflow: hidden;
-    height: 300px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
 }
 #bottom-art #links {
     height: 100%;
-    display: flex;
+    display: grid;
+    grid-template-columns: 7fr repeat(3, 1fr);
+    grid-template-rows: 4fr 1fr;
     justify-content: space-around;
     align-items: center;
 }
 #bottom-art #links a {
-    font-size: 5em;
+    font-size: 2em;
     transition: transform 0.2s ease;
+}
+#bottom-art #link-text {
+    color: white;
+    padding: 10px 20px;
+    font-size: 2em;
+    font-family: "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
+    font-weight: 700;
 }
 #bottom-art img {
     width: 100%;
     object-fit: cover;
     filter: brightness(60%);
-    object-position: 0 -70px;
 }
 
 .link {
@@ -262,7 +279,7 @@ body {
 }
 
 .link p {
-    font-size: 1.5em;
+    font-size: 1.2rem;
     font-weight: 700;
     font-family: "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
     color: white;
