@@ -215,19 +215,21 @@ body {
 }
 
 @media screen and (max-width: 960px) {
-    
-#description p {
-    margin: 0;
-    font-size: 1.25rem;
-    line-height: 1.75rem;
+
+    #description p {
+        margin: 0;
+        font-size: 1.25rem;
+        line-height: 1.75rem;
+    }
 }
-}
+
 @media screen and (max-width: 600px) {
     #description p {
         font-size: 1rem;
         line-height: 1.5rem;
     }
 }
+
 #description h2 {
     font-size: 2rem;
     margin: 10px 0;
@@ -247,13 +249,13 @@ body {
     height: 50vh;
 }
 
+#maker-portfolio iframe {
+    border: none;
+}
+
 @media screen and (max-width: 960px) {
     #maker-portfolio {
-        text-align: center;
-        margin: 0 10px 10px 10px;
         padding: 10px 0;
-        font-size: 2em;
-        border-radius: 10px;
         height: 25vh;
     }
 }
