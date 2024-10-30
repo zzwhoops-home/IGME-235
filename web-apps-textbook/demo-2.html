@@ -10,26 +10,31 @@
 <body>
     <button id="the-button" type="button" data-username="zzwhoops">Click</button>
     <button id="the-button" type="button" data-username="zd8863">Click</button>
-    <button id="the-button" type="button" data-username="zdeng">Click</button>
+    <button id="the-button" data-username="zdeng"><span>Click</span></button>
 
     <script>
         const theButton = document.querySelector("#the-button");
+        const buttons = document.querySelectorAll('button');
 
         const fun_1 = (e) => {
-            console.log("Clicked 1");
+            console.log(`${e.currentTarget.dataset.username}`);
         }
 
         const fun_2 = (e) => {
             e.target.style.color = "red";
         }
 
-        theButton.addEventListener('click', fun_1);
-        theButton.addEventListener('mouseover', fun_2);
-        theButton.addEventListener('mouseleave', (e) => {
-            e.target.style.color = "orange";
-        })
+        const mouse_off = (e) => {
+            e.target.style.color = "black";
+        }
 
-        theButton.removeEventListener('mouseover', fun_2);
+        for (let button of buttons) {
+            button.addEventListener('click', fun_1);
+            button.addEventListener('mouseover', fun_2);
+            button.addEventListener('mouseleave', mouse_off);
+        }
+
+        // theButton.removeEventListener('mouseover', fun_2);
     </script>
 </body>
 
