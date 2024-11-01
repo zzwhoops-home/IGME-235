@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="the-button" type="button" data-username="zzwhoops">Click</button>
+    <button id="the-button" type="button" data-username="zd8863">Click</button>
+    <button id="the-button" data-username="zdeng"><span>Click</span></button>
+
+    <script>
+        const theButton = document.querySelector("#the-button");
+        const buttons = document.querySelectorAll('button');
+
+        const fun_1 = (e) => {
+            console.log(`${e.currentTarget.dataset.username}`);
+        }
+
+        const fun_2 = (e) => {
+            e.target.style.color = "red";
+        }
+
+        const mouse_off = (e) => {
+            e.target.style.color = "black";
+        }
+
+        for (let button of buttons) {
+            button.addEventListener('click', fun_1);
+            button.addEventListener('mouseover', fun_2);
+            button.addEventListener('mouseleave', mouse_off);
+        }
+
+        // theButton.removeEventListener('mouseover', fun_2);
+    </script>
+</body>
+
+</html>
