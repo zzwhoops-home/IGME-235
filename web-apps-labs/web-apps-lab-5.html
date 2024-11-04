@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Web Apps-5</title>
+    <style>
+        body {
+            font-family: sans-serif;
+        }
+
+        #colorform {
+            background-color: #dfecdf;
+            color: #111;
+            padding: 1em;
+            width: 400px;
+        }
+
+        #colorform p#info {
+            background-color: white;
+            color: black;
+            width: 300px;
+            height: 100px;
+            padding: .5em;
+        }
+
+        #colorform legend {
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="colorform">
+        <legend>Choose your favorite color!</legend>
+        <p><input type="radio" name="colorGroup" id="colorGroupRed" value="red" /> Red</p>
+        <p><input type="radio" name="colorGroup" id="colorGroupGreen" value="green" /> Green</p>
+        <p><input type="radio" name="colorGroup" id="colorGroupBlue" value="blue" /> Blue</p>
+        <p><button id="colorButton" type="button">Submit</button></p>
+        <p id="info"></p>
+    </div>
+
+    <script>
+        /* Write your code here! */
+        // get all required elements
+        const colorButton = document.querySelector("#colorButton");
+        const legend = document.querySelector("legend");
+        const legendPs = document.querySelectorAll("input[name='colorGroup']");
+        const infoBox = document.querySelector("#info");
+
+        // function run when the radio buttons are clicked
+        const updateBoxLegend = (e) => {
+            // get radio button that was clicked
+            let data = e.target.value;
+
+            // update info box
+            infoBox.innerHTML = `You have selected <span style="color: ${data}">${data}</span>!`;
+        };
+
+        // function runs when button is clicked to submit
+        const updateBoxSubmit = (e) => {
+            let data = "";
+
+            // iterate through buttons list to get currently selected button
+            for (let button of legendPs) {
+                if (button.checked) {
+                    data = button.value;
+                }
+            }
+
+            // terminate user if they do not select color first
+            if (!data) {
+                infoBox.innerHTML = "You did not select a color. Terminating you.";
+                return;
+            }
+
+            // set color of legend and tell user their choice
+            legend.style.color = `${data}`;
+            infoBox.innerHTML = `Your final choice is <span style="color: ${data}">${data}</span>!`;
+        };
+
+        // add event listener to all radio buttons
+        legendPs.forEach((element) => {
+            element.addEventListener("change", updateBoxLegend);
+        })
+
+        // add event listener to submission button
+        colorButton.addEventListener("click", updateBoxSubmit);
+    </script>
+</body>
+
+</html>
