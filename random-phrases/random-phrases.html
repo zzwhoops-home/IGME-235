@@ -1,25 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Random Phrases!</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Merienda:wght@300..900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Merienda:wght@300..900&display=swap"
+        rel="stylesheet">
     <link href="css/index.css" rel="stylesheet">
 </head>
+
 <body>
     <header>
         <h1>What did the composer say?</h1>
     </header>
     <main>
-        <div id="phrases"></div>
-        
+        <div id="phrase-box">
+            <div id="phrase-container">
+                <blockquote>Click the button to get a phrase!</blockquote>
+            </div>
+            <div id="phrase-button">
+                <button>What?</button>
+            </div>
+        </div>
     </main>
     <footer>
         <p>Made by Zachary Deng - 2024</p>
     </footer>
-    <script></script>
+    <script>
+        let quotes = [
+            "Works of art make rules; rules do not make works of art. - Claude Debussy",
+            "I should be sorry if I only entertained them. I wish to make them better. - Georg Frideric Handel",
+            "To achieve great things, two things are needed; a plan, and not quite enough time. - Leonard Bernstein",
+            "To copy the truth can be a good thing, but to invent the truth is better, much better. - Giuseppe Verdi",
+            "Competitions are for horses, not artists. - Bela Bartok",
+            "So long as the human spirit thrives on this planet, music in some living form will accompany and sustain it. - Aaron Copland",
+            "Mournful and yet grand is the destiny of the artist. - Franz Liszt",
+            "Music begins where the possibilities of language end. - Jean Sibelius",
+            "I am hitting my head against the walls, but the walls are giving way. - Gustav Mahler",
+            "I frequently hear music in the heart of noise. - George Gershwin",
+            "Lesser artists borrow, great artists steal. - Igor Stravinsky"
+        ];
+
+        let phraseContainer = document.querySelector("#phrase-container");
+        let phraseButton = document.querySelector("#phrase-button button");
+
+        const displayQuote = (e) => {
+            const quote = quotes[Math.floor(Math.random() * quotes.length)];
+            phraseContainer.children[0].textContent = quote;
+        }
+
+        phraseButton.addEventListener("click", displayQuote)
+    </script>
 </body>
+
 </html>
