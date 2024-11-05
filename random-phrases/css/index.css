@@ -1,0 +1,21 @@
+html {
+    background-color: beige;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    width: 1080px;
+    margin: 10px auto;
+    padding: 0 10px;
+    border: 1px solid black;
+}
+
+header, footer {
+    text-align: center;
+}
+
+main {
+    width: 100%;
+    background-image: url("../images/mozart.jpg");
+    background-repeat: no-repeat;
+}
