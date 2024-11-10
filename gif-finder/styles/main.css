@@ -63,6 +63,7 @@ h2 {
     padding: 0px 50px 0px 50px;
     display: grid;
     grid-template-columns: repeat(7, 1fr);
+    justify-content: center;
     gap: 20px;
 }
 

@@ -43,9 +43,12 @@ function searchButtonClicked() {
     // 10 - update the UI
     document.querySelector("#status").innerHTML = "<b>Searching for '" + displayTerm + "'</b>";
 
+    // 10b - loading spinner
+    document.querySelector("#content").innerHTML = "<img id='spinner' src='images/spinner.gif' alt='Loading spinner'>"
+    
     // 11 - see what the URL looks like
     console.log(url);
-
+    
     // 12 - request data!
     getData(url);
 }
