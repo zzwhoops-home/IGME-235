@@ -83,7 +83,7 @@ function dataLoaded(e) {
     // 9 - Start building an HTML string we will display to the user
     let results = obj.data;
     console.log("results.length = " + results.length);
-    let bigString = "<p><i>Here are " + results.length + " results for '" + displayTerm + "'</i></p>";
+    let bigString = "";
 
     // 10 - loop through the array of results
     for (let i = 0; i < results.length; i++) {
@@ -98,8 +98,8 @@ function dataLoaded(e) {
 
         // 13 - Build a <div> to hold each result
         // ES6 String Templating
-        let line = `<div class='result'><img src='${smallURL}' title='${result.id}' />`;
-        line += `<span><a target='_blank' href='${url}'>View on Giphy</a></span><p>Rating: ${result.rating.toUpperCase()}</p></div>`;
+        let line = `<div class='result'><a target='_blank' href='${url}'><img src='${smallURL}' title='${result.id}' /></a></div>`;
+        // line += `<span><a target='_blank' href='${url}'>View on Giphy</a></span><p>Rating: ${result.rating.toUpperCase()}</p></div>;
 
         // 14 - another way of doing the same thing above
         // Replaces this:
@@ -115,6 +115,9 @@ function dataLoaded(e) {
         bigString += line;
     }
 
+    // 15a - report results
+    document.querySelector("#results-text").innerHTML = "<p><i>Here are " + results.length + " results for '" + displayTerm + "'</i></p>";
+    
     // 16 - all done building the HTML - show it to the user!
     document.querySelector("#content").innerHTML = bigString;
 
