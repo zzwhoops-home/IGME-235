@@ -37,6 +37,7 @@ header h1 {
     margin: 20px;
     background-color: rgb(235, 235, 235);
 }
+
 #search button {
     background-color: greenyellow;
 }
@@ -80,10 +81,21 @@ h2 {
 }
 
 .result img:hover {
-    filter: brightness(1.2) drop-shadow(0 10px 10px rgb(163, 255, 255));
+    filter: brightness(0.5) drop-shadow(0 10px 10px rgb(163, 255, 255));
     transform: scale(1.1);
 }
 
+.result span {
+    display: none;
+    position: absolute;
+    color: red;
+    font-size: 1.5em;
+    pointer-events: none;
+}
+
+.result:hover span {
+    display: block;
+}
 
 .result audio {
     width: 130px;
