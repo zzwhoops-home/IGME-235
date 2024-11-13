@@ -20,3 +20,15 @@ img {
     width: 100%;
     border: 1px dotted black;
 }
+
+#sections {
+    display: flex;
+    justify-content: center;
+    border: 10px solid black;
+    margin: 15px;
+}
+
+#sections iframe {
+    width: 100%;
+    height: 760px;
+}
