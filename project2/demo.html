@@ -8,11 +8,21 @@
 </head>
 
 <body>
-    <div id="content"></div>
+    <div id="content">
+        <img src="https://www.artic.edu/iiif/2/6b1edb9c-0f3f-0ee3-47c7-ca25c39ee360/full/843,/0/default.jpg" alt="lion">
+    </div>
     <script>
         const getImages = async () => {
+            let searchURL = 'https://api.artic.edu/api/v1/artworks/search?q=cats';
+            let content = document.querySelector("#content");
 
+            let response = await fetch(searchURL);
+            let data = await response.json();
+
+            content.innerHTML += `<p>${JSON.stringify(data)}</p>`
         }
+
+        getImages();
     </script>
 </body>
 
