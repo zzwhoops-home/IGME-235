@@ -1,0 +1,18 @@
+* {
+    margin: 0;
+}
+
+html {
+    background-color: white;
+}
+
+body {
+    background-color: rgb(212, 235, 255);
+    border: 2px solid black;
+    width: 1080px;
+    margin: 10px auto;
+}
+
+h1 {
+    text-align: center;
+}
