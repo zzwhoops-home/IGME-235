@@ -3,17 +3,41 @@
 }
 
 html {
-    background-color: white;
+    background-color: #5F0A87;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #ffdada;
 }
 
 body {
-    background-color: rgb(212, 235, 255);
+    background-color: #A4508B;
     border: 2px solid black;
     width: 1080px;
     margin: 10px auto;
+    border-radius: 10px;
 }
 
 h1 {
     text-align: center;
+}
+
+header {
+    margin: 10px 0;
+}
+
+input {
+    border: none;
+    padding: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    width: 50%;
+    background-color: #FFDADA;
+}
+
+#searchbar {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+#searchbar input {
+    border-radius: 10px 0 0 10px;
 }
