@@ -5,14 +5,14 @@
 html {
     background-color: #5F0A87;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #ffdada;
+    color: #FFDADA;
 }
 
 body {
     background-color: #A4508B;
-    border: 2px solid black;
     width: 1080px;
     margin: 10px auto;
+    border: 2px solid black;
     border-radius: 10px;
 }
 
@@ -32,6 +32,14 @@ input {
     background-color: #FFDADA;
 }
 
+button {
+    background-color: rgb(185, 165, 165);
+    font-size: 1.25em;
+    padding: 10px 30px;
+    border: none;
+    border-radius: 0 10px 10px 0;
+}
+
 #searchbar {
     display: flex;
     justify-content: center;
@@ -40,4 +48,10 @@ input {
 
 #searchbar input {
     border-radius: 10px 0 0 10px;
+    font-size: 1.5em;
+}
+
+#results {
+    height: 300px;
+    background-color: #bd5b9f;
 }
