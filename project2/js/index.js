@@ -1,4 +1,4 @@
-import { getImagesBySearch } from "./modules/loadImages";
+import getImagesBySearch from "./modules/loadImages";
 
 window.onload = (e) => {
     loadContents();
@@ -10,6 +10,7 @@ const loadContents = () => {
 
     // get search button
     const search = document.querySelector("#searchbar button");
+    console.log(search);
 
     // add event listeners
     dropdown.addEventListener("click", dropdownShow);
@@ -40,5 +41,5 @@ const getSearch = (e) => {
 
     console.log(searchTerm);
 
-    const data = getImagesBySearch()
+    const data = getImagesBySearch(searchTerm);
 }
