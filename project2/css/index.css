@@ -21,6 +21,16 @@ h1 {
     text-align: center;
 }
 
+a {
+    text-decoration: none;
+    text-shadow: none;
+    color: #FFDADA;
+    font-size: 1em;
+    text-align: center;
+    padding: 10px;
+    transition: font-size 0.5s ease;
+}
+
 /* 
 header {
     margin-top: 10px 0;
@@ -81,7 +91,7 @@ input:focus {
     width: 720px;
     height: 400px;
     background-color: #bd5b9f;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.4);
     border-radius: 10px;
     z-index: 0;
 }
@@ -152,16 +162,30 @@ input:focus {
     position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
     height: 20vw;
     width: 20vw;
-    border: 1px solid black;
-    border-radius: 10px;
+    border-radius: 20px;
+    box-shadow: 5px 5px 10px 3px rgba(10, 10, 10, 0.4);
     color: black;
     margin: 10px;
     overflow: hidden;
     z-index: 2;
+}
+
+.result:hover {
+    font-size: 1.5em;
+    text-shadow: #FFDADA 0px 0px 4px;
+}
+
+.result a, .result i {
+    position: relative;
+    z-index: 1;
+}
+
+.result i {
+    color: #FFDADA;
 }
 
 .result:hover::before {
@@ -184,7 +208,21 @@ input:focus {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    z-index: -1;
+    z-index: -2;
     border-radius: inherit;
     transition: filter 0.7s ease;
+}
+
+/* gradient effect to allow text to be readable */
+.result::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 1), transparent);
+    pointer-events: none;
+    border-radius: inherit;
+    z-index: -1;
 }
