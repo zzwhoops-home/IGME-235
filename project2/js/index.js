@@ -34,9 +34,16 @@ const dropdownShow = (e) => {
     }
 };
 
-const getSearch = (e) => {
+const getSearch = async (e) => {
     const searchBar = document.querySelector("#searchbar input");
+    const resultPanel = document.querySelector("#results");
+
     const searchTerm = searchBar.value;
 
-    const data = getImagesBySearch(searchTerm);
+    const data = await getImagesBySearch(searchTerm);
+
+    const element = document.createElement("p");
+    element.innerHTML = data;
+
+    resultPanel.appendChild(element);
 }
