@@ -48,8 +48,11 @@ const getSearch = async (e) => {
     resultPanel.appendChild(element);
 }
 
-const createResultDiv = (asdf) => {
-    let data = asdf[0];
+const createResultDiv = (dataArr) => {
+    dataArr.array.forEach(data => {
+        
+    });
+    let data = dataArr[0];
 
     // create container div
     const resultDiv = document.createElement('div');
@@ -58,7 +61,7 @@ const createResultDiv = (asdf) => {
     resultDiv.title = data.alt_text;
 
     // set background image
-    resultDiv.style.setProperty('background-image', `url('${data.image_URL}')`);
+    resultDiv.style.setProperty('--result-bg-img', `url('${data.image_URL}')`);
 
     // create star icon
     const starIcon = document.createElement('i');
