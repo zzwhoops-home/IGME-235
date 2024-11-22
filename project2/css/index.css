@@ -80,6 +80,7 @@ input:focus {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-bottom: -20px;
 }
 
 /* Dropdown Content (Hidden by Default) */
@@ -149,7 +150,7 @@ input:focus {
     background-color: #bd5b9f;
     display: flex;
     flex-direction: column;
-    padding: 50px;
+    padding: 30px;
     margin: 0 auto;
 }
 
@@ -164,19 +165,21 @@ input:focus {
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
-    height: 20vw;
-    width: 20vw;
+    height: 18vw;
+    width: 18vw;
     border-radius: 20px;
     box-shadow: 5px 5px 10px 3px rgba(10, 10, 10, 0.4);
     color: black;
-    margin: 10px;
+    margin: 18px;
     overflow: hidden;
     z-index: 2;
+    transition: box-shadow 0.5s ease;
 }
 
 .result:hover {
     font-size: 1.5em;
     text-shadow: #FFDADA 0px 0px 4px;
+    box-shadow: 15px 15px 25px 5px rgba(10, 10, 10, 0.6);
 }
 
 .result a, .result i {
@@ -190,11 +193,11 @@ input:focus {
 
 .result:hover::before {
     cursor: grab;
-    filter: blur(1px) brightness(50%);
+    filter: blur(1px) brightness(70%);
 }
 
 .result:active::before {
-    filter: brightness(30%);
+    filter: brightness(50%);
 }
 
 .result::before {
