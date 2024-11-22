@@ -1,4 +1,4 @@
-const getImagesBySearch = async (searchTerm, minScore = 75, page = 1, results = 10) => {
+const getImagesBySearch = async (searchTerm, minScore = 50, page = 1, results = 12) => {
     const searchURL = `https://api.artic.edu/api/v1/artworks/search?q=${searchTerm}&page=${page}&limit=${results}`;
 
     // use data helper function
@@ -12,6 +12,30 @@ const getImagesBySearch = async (searchTerm, minScore = 75, page = 1, results = 
     return formattedData;
 }
 
+const testImageURL = async (imageId) => {
+    const baseURL = "https://www.artic.edu/iiif/2/";
+
+    // array of sizes
+    const sizes = [843, 400, 200];
+
+    // test each image size
+    for (let size of sizes) {
+        // format url
+        const url = `${baseURL}${imageId}/full/${size},/0/default.jpg`;
+
+        // test URL
+        try {
+            const response = await fetch(url, { method: "HEAD" });
+            if (response.ok) {
+                return url; // Return the first valid URL
+            }
+        } catch (error) {
+            console.error(`Failed to fetch: ${url}`, error);
+        }
+    }
+    return null; // No valid URL found
+};
+
 const getRawImages = async (apiURLS) => {
     // get image data for all links
     const formattedData = await Promise.all(
@@ -23,7 +47,7 @@ const getRawImages = async (apiURLS) => {
             const item = data.data;
 
             // return the result with formatted image URL
-            const imageURL = `https://www.artic.edu/iiif/2/${item.image_id}/full/843,/0/default.jpg`;
+            const validURL = await testImageURL(item.image_id);
 
             return {
                 "title": item.title,
@@ -32,7 +56,7 @@ const getRawImages = async (apiURLS) => {
                 "description": item.description,
                 "dimensions": item.dimensions,
                 "date_display": item.date_display,
-                "image_URL": imageURL
+                "image_URL": validURL
             };
         })
     );

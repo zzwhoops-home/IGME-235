@@ -42,10 +42,16 @@ const getSearch = async (e) => {
 
     const data = await getImagesBySearch(searchTerm);
 
-    createResultDiv(data);
+    updateResultDivs(data);
 }
 
-const createResultDiv = (dataArr) => {
+const updateResultDivs = (dataArr) => {
+    // get results
+    const results = document.querySelector("#results");
+
+    // clear content
+    results.innerHTML = ""
+
     dataArr.forEach(data => {
         // create container div
         const resultDiv = document.createElement('div');
@@ -68,7 +74,7 @@ const createResultDiv = (dataArr) => {
         // append to container
         resultDiv.appendChild(starIcon);
         resultDiv.appendChild(link);
-    
+
         // append to container
         const container = document.querySelectorAll('.result-block');
         const lastContainer = container[container.length - 1];
@@ -79,8 +85,7 @@ const createResultDiv = (dataArr) => {
             const resultBlockDiv = document.createElement('div');
             resultBlockDiv.classList.add('result-block');
 
-            // add result block 
-            const results = document.querySelector("#results");
+            // add result block
             results.appendChild(resultBlockDiv);
 
             // append first result div
