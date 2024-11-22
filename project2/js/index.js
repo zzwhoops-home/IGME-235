@@ -43,7 +43,37 @@ const getSearch = async (e) => {
     const data = await getImagesBySearch(searchTerm);
 
     const element = document.createElement("p");
-    element.innerHTML = data;
+    createResultDiv(data);
 
     resultPanel.appendChild(element);
+}
+
+const createResultDiv = (asdf) => {
+    let data = asdf[0];
+
+    // create container div
+    const resultDiv = document.createElement('div');
+    resultDiv.classList.add('result');
+    // set "alt" text for background
+    resultDiv.title = data.alt_text;
+
+    // set background image
+    resultDiv.style.setProperty('background-image', `url('${data.image_URL}')`);
+
+    // create star icon
+    const starIcon = document.createElement('i');
+    starIcon.classList.add('fa-regular', 'fa-star');
+
+    // create link element with title
+    const link = document.createElement('a');
+    link.href = data.image_URL;
+    link.innerHTML = data.title;
+
+    // append to container
+    resultDiv.appendChild(starIcon);
+    resultDiv.appendChild(link);
+
+    // append to container
+    const container = document.querySelector('.result-block');
+    container.appendChild(resultDiv);
 }

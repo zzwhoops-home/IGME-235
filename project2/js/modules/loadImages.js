@@ -8,7 +8,8 @@ const getImagesBySearch = async (searchTerm, minScore = 75, page = 1, results = 
     const arr = data.data.filter(item => Number(item._score) > minScore).map(item => item.api_link);
 
     // return data
-    return await getRawImages(arr);
+    const formattedData = await getRawImages(arr);
+    return formattedData;
 }
 
 const getRawImages = async (apiURLS) => {
@@ -25,7 +26,6 @@ const getRawImages = async (apiURLS) => {
             const imageURL = `https://www.artic.edu/iiif/2/${item.image_id}/full/843,/0/default.jpg`;
 
             return {
-                "api_link": item.api_link,
                 "title": item.title,
                 "artist_titles": item.artist_titles,
                 "alt_text": item.thumbnail.alt_text,
