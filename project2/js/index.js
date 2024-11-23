@@ -20,7 +20,11 @@ const dropdownShow = (e) => {
     const dropdown = document.querySelector(".dropbtn");
     const dropdownPanel = document.querySelector(".dropdown-content");
 
-    const isShown = dropdownPanel.classList.toggle("show");
+    if (dropdownPanel.style.height === "0px" || !dropdownPanel.style.height) {
+        dropdownPanel.style.height = "400px";
+    } else {
+        dropdownPanel.style.height = "0px";
+    }
 
     if (isShown) {
         dropdown.classList.add("fa-caret-up");
