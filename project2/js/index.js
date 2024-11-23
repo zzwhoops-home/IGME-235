@@ -21,17 +21,18 @@ const dropdownShow = (e) => {
     const dropdownPanel = document.querySelector(".dropdown-content");
 
     if (dropdownPanel.style.height === "0px" || !dropdownPanel.style.height) {
+        // change dropdown panel height
         dropdownPanel.style.height = "400px";
-    } else {
-        dropdownPanel.style.height = "0px";
-    }
 
-    if (isShown) {
+        // set dropdown arrow state
         dropdown.classList.add("fa-caret-up");
         dropdown.classList.remove("fa-caret-down");
         dropdown.style.bottom = "15px";
-    }
-    else {
+    } else {
+        // change dropdown panel height
+        dropdownPanel.style.height = "0px";
+        
+        // set dropdown arrow state
         dropdown.classList.add("fa-caret-down");
         dropdown.classList.remove("fa-caret-up");
         dropdown.style.bottom = "25px";
