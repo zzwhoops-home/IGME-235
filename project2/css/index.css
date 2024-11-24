@@ -2,33 +2,51 @@
     margin: 0;
 }
 
+:root {
+    --bg-gray: #5A5359;
+    --bg-light-gray: #B0B0B0;
+    --fg-gray: #d4d4d4;
+    --fg-red: #B50938;
+    --text-color: #333;
+}
+
 html {
-    background-color: #5F0A87;
+    background-color: white;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #FFDADA;
+    color: var(--text-color);
 }
 
 body {
-    background-color: #A4508B;
+    background-color: var(--bg-light-gray);
     width: 1080px;
     margin: 10px auto;
     padding: 15px;
     border: 2px solid black;
     border-radius: 10px;
+    box-shadow: 0px 0px 16px 5px rgba(0, 0, 0, 0.4);
 }
 
 h1 {
     text-align: center;
 }
 
-a {
+h1 a {
     text-decoration: none;
     text-shadow: none;
-    color: #FFDADA;
-    font-size: 1em;
-    text-align: center;
-    padding: 10px;
-    transition: font-size 0.5s ease;
+    color: var(--fg-red);
+    transition: font-size 0.4s ease;
+}
+
+h1 a:hover {
+    font-size: 1.02em;
+}
+
+a:hover {
+    color: #ffffff;
+}
+
+a:active {
+    color: #ffffff;
 }
 
 /* 
@@ -42,18 +60,28 @@ input {
     padding: 10px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     width: 50%;
-    background-color: #FFDADA;
+    background-color: #333;
+    color: white;
     transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+input::placeholder {
+    color: var(--fg-gray);
 }
 
 /* hover events for input */
 input:hover {
-    color: #5F0A87;
-    background-color: #f1cece;
+    color: #ff1e5a;
+    background-color: var(--fg-gray);
+}
+
+input:hover::placeholder, input:focus::placeholder {
+    color: var(--fg-red);
 }
 
 input:focus {
-    background-color: #f1cece;
+    color: var(--fg-red);
+    background-color: var(--fg-gray);
 }
 
 /* entire search panel section */
@@ -80,20 +108,21 @@ input:focus {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-bottom: -20px;
 }
 
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {
     display: flex;
     height: 0;
+    opacity: 0;
     overflow: hidden;
-    transition: height 0.3s ease-in-out;
+    margin-bottom: -60px;
+    transition: height 0.3s ease-in-out, opacity 0.3s ease-in-out, margin-bottom 0.3s ease-in-out;
     position: relative;
     bottom: 40px;
     justify-content: center;
     width: 720px;
-    background-color: #bd5b9f;
+    background-color: var(--fg-gray);
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.4);
     border-radius: 10px;
     z-index: 0;
@@ -109,7 +138,7 @@ input:focus {
     position: relative;
     bottom: 25px;
     font-size: 5em;
-    color: #3a092e;
+    color: var(--fg-gray);
     z-index: 1;
 }
 
@@ -124,7 +153,8 @@ input:focus {
 
 /* button next to searchbar */
 #searchbar button {
-    background-color: #d1bbbb;
+    background-color: var(--bg-gray);
+    color: white;
     font-size: 1.25em;
     padding: 10px 30px;
     border: none;
@@ -133,28 +163,23 @@ input:focus {
 }
 
 #searchbar button:hover {
-    background-color: #c7b2b2;
+    background-color: var(--bg-light-gray);
     cursor: grab;
 }
 
 #searchbar button:active {
-    color: white;
-    background-color: #948181;
+    background-color: var(--fg-gray);
+    color: black;
     cursor: grabbing;
-}
-
-.show {
-    display: flex;
-    height: 400px;
 }
 
 /* displaying of search results */
 #results {
-    background-color: #bd5b9f;
+    background-color: var(--fg-gray);
     display: flex;
     flex-direction: column;
     padding: 30px;
-    margin: 0 auto;
+    margin: -20px 0 auto 0;
 }
 
 .result-block {
@@ -164,7 +189,6 @@ input:focus {
 
 .result {
     position: relative;
-    display: flex;
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
@@ -179,10 +203,22 @@ input:focus {
     transition: box-shadow 0.5s ease;
 }
 
+/* result links as titles */
+#results a {
+    color: var(--fg-gray);
+    text-decoration: none;
+    text-shadow: none;
+    font-size: 1em;
+    text-align: left;
+    padding: 10px;
+    width: 85%;
+    transition: font-size 0.5s ease;
+}
+
 .result:hover {
-    font-size: 1.5em;
+    font-size: 1.4em;
     text-shadow: #FFDADA 0px 0px 4px;
-    box-shadow: 15px 15px 25px 5px rgba(10, 10, 10, 0.6);
+    box-shadow: 15px 15px 20px 5px rgba(10, 10, 10, 0.6);
 }
 
 .result a, .result i {
@@ -190,6 +226,12 @@ input:focus {
     z-index: 1;
 }
 
+.result a {
+    display: flex;
+    height: 90%;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
 .result i {
     color: #FFDADA;
 }

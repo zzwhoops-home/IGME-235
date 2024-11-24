@@ -21,16 +21,20 @@ const dropdownShow = (e) => {
     const dropdownPanel = document.querySelector(".dropdown-content");
 
     if (dropdownPanel.style.height === "0px" || !dropdownPanel.style.height) {
-        // change dropdown panel height
+        // change dropdown panel height and opacity
         dropdownPanel.style.height = "400px";
+        dropdownPanel.style.opacity = 1;
+        dropdownPanel.style.marginBottom = "0px";
 
         // set dropdown arrow state
         dropdown.classList.add("fa-caret-up");
         dropdown.classList.remove("fa-caret-down");
         dropdown.style.bottom = "15px";
     } else {
-        // change dropdown panel height
+        // change dropdown panel height and opacity
         dropdownPanel.style.height = "0px";
+        dropdownPanel.style.opacity = 0;
+        dropdownPanel.style.marginBottom = "-60px";
         
         // set dropdown arrow state
         dropdown.classList.add("fa-caret-down");
