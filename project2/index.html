@@ -25,17 +25,47 @@
             <div id="dropdown">
                 <i class="fa-solid fa-caret-down dropbtn"></i>
                 <div id="dropdown-panel" class="dropdown-content">
-                    <div class="filter"><button type="button">Test button one</button></div>
-                    <div class="filter"><button type="button">Test button two</button></div>
-                    <div class="filter"><button type="button">Test button three</button></div>
+                    <div class="filter">
+                        <p>Relevance filter</p>
+                        <select name="relevance">
+                            <option value="NONE">None</option>
+                            <option value="LENIENT">Lenient</option>
+                            <option value="NORMAL" selected="selected">Normal</option>
+                            <option value="STRICT">Strict</option>
+                        </select>
+                    </div>
+                    <div class="filter">
+                        <p>Max # of results</p>
+                        <select name="result-count">
+                            <option value="6">6</option>
+                            <option value="12" selected="selected">12</option>
+                            <option value="24">24</option>
+                            <option value="36">36</option>
+                        </select>
+                    </div>
+                    <div class="filter">
+                        <p>Sort</p>
+                        <select name="sort">
+                            <option value="az">A-Z</option>
+                            <option value="date">Date</option>
+                        </select>
+                        <p>Ascending</p>
+                        <input type="checkbox">
+                    </div>
                 </div>
             </div>
         </div>
         <div id="results">
             <div class="result-block">
-                <div class="result" title="A bronze lion, deep green and muscular, looks out in the distance from its pedestal in front of the Art Institute of Chicago." style="--result-bg-img: url('https://www.artic.edu/iiif/2/6b1edb9c-0f3f-0ee3-47c7-ca25c39ee360/full/843,/0/default.jpg');">
+                <div class="result"
+                    title="A bronze lion, deep green and muscular, looks out in the distance from its pedestal in front of the Art Institute of Chicago."
+                    style="--result-bg-img: url('https://www.artic.edu/iiif/2/6b1edb9c-0f3f-0ee3-47c7-ca25c39ee360/full/843,/0/default.jpg');">
                     <i class="fa-regular fa-star"></i>
-                    <a href="https://www.artic.edu/iiif/2/6b1edb9c-0f3f-0ee3-47c7-ca25c39ee360/full/843,/0/default.jpg">Lion (One of a Pair, South Pedestal)</a>
+                    <div class="result-wrapper">
+                        <a
+                            href="https://www.artic.edu/iiif/2/6b1edb9c-0f3f-0ee3-47c7-ca25c39ee360/full/843,/0/default.jpg">Lion
+                            (One of a Pair, South Pedestal)</a>
+                    </div>
                 </div>
             </div>
         </div>

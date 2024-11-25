@@ -1,5 +1,12 @@
+export const Relevance = {
+    NONE: 0,
+    LENIENT: 25,
+    NORMAL: 50,
+    STRICT: 75
+}
+
 const getImagesBySearch = async (searchTerm, minScore = 50, page = 1, results = 12) => {
-    const searchURL = `https://api.artic.edu/api/v1/artworks/search?q=${searchTerm}&page=${page}&limit=${results}`;
+    const searchURL = `https://api.artic.edu/api/v1/artworks/search?q=${searchTerm}&page=${page}&limit=${results}&fields=title,thumbnail,artist_titles,description,dimensions,date_display,api_link`;
 
     // use data helper function
     const data = await getData(searchURL);
@@ -30,6 +37,7 @@ const testImageURL = async (imageId) => {
                 return url; // Return the first valid URL
             }
         } catch (error) {
+            console.log("oops");
             console.error(`Failed to fetch: ${url}`, error);
         }
     }
@@ -55,6 +63,8 @@ const getRawImages = async (apiURLS) => {
                 "alt_text": item.thumbnail.alt_text,
                 "description": item.description,
                 "dimensions": item.dimensions,
+                "date_start": item.date_start,
+                "date_end": item.date_end,
                 "date_display": item.date_display,
                 "image_URL": validURL
             };

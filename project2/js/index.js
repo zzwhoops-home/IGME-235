@@ -1,4 +1,5 @@
 import getImagesBySearch from "./modules/loadImages.js";
+import Relevance from "./modules/loadImages.js";
 
 window.onload = (e) => {
     loadContents();
@@ -11,9 +12,33 @@ const loadContents = () => {
     // get search button
     const search = document.querySelector("#searchbar button");
 
+    // load relevance filter
+    const relevanceFilter = document.querySelector('select[name="relevance"]');
+    // load max # results
+    const resultCountFilter = document.querySelector('select[name="result-count"]');
+    // load sort and ascending
+    const sortFilter = document.querySelector('select[name="sort"]');
+    const ascendingCheckbox = document.querySelector('input[type="checkbox"]');
+
+    // get values from localstorage
+    const relevanceValue = localStorage.getItem('relevanceFilter');
+    const resultCountValue = localStorage.getItem('resultCountFilter');
+    const sortValue = localStorage.getItem('sortFilter');
+    const ascendingValue = localStorage.getItem('ascendingFilter');
+
+    // set values, if they already exist/have been set
+    if (relevanceValue) relevanceFilter.value = relevanceValue;
+    if (resultCountValue) resultCountFilter.value = resultCountValue;
+    if (sortValue) sortFilter.value = sortValue;
+    if (ascendingValue) ascendingCheckbox.checked = ascendingValue === 'true';
+
     // add event listeners
     dropdown.addEventListener("click", dropdownShow);
     search.addEventListener("click", getSearch);
+    relevanceFilter.addEventListener("change", updateRelevanceFilter);
+    resultCountFilter.addEventListener("change", updateResCountFilter);
+    sortFilter.addEventListener("change", updateSort);
+    ascendingCheckbox.addEventListener("change", updateAscendingFilter);
 };
 
 const dropdownShow = (e) => {
@@ -22,7 +47,7 @@ const dropdownShow = (e) => {
 
     if (dropdownPanel.style.height === "0px" || !dropdownPanel.style.height) {
         // change dropdown panel height and opacity
-        dropdownPanel.style.height = "400px";
+        dropdownPanel.style.height = "200px";
         dropdownPanel.style.opacity = 1;
         dropdownPanel.style.marginBottom = "0px";
 
@@ -44,13 +69,17 @@ const dropdownShow = (e) => {
 };
 
 const getSearch = async (e) => {
+    // get searchbar term
     const searchBar = document.querySelector("#searchbar input");
-    const resultPanel = document.querySelector("#results");
-
     const searchTerm = searchBar.value;
 
+    // get data
     const data = await getImagesBySearch(searchTerm);
 
+    // store in localstorage
+    localStorage.setItem('curSearch', JSON.stringify(data));
+
+    // update divs
     updateResultDivs(data);
 }
 
@@ -67,22 +96,31 @@ const updateResultDivs = (dataArr) => {
         resultDiv.classList.add('result');
         // set "alt" text for background
         resultDiv.title = data.alt_text;
-    
+
+        // add result div data tags
+        resultDiv.setAttribute('data-year', data.date_end);
+        resultDiv.setAttribute('data-title', data.title);
+        
         // set background image
         resultDiv.style.setProperty('--result-bg-img', `url('${data.image_URL}')`);
-    
+        
         // create star icon
         const starIcon = document.createElement('i');
         starIcon.classList.add('fa-regular', 'fa-star');
-    
+        
+        // create result wrapper (contains a element)
+        const resultWrapperDiv = document.createElement('div');
+        resultWrapperDiv.classList.add('result-wrapper');
+        
         // create link element with title
         const link = document.createElement('a');
         link.href = data.image_URL;
-        link.innerHTML = data.title;
+        link.innerHTML = `${data.title} - ${Number(data.date_end) < 0 ? `${Number(Math.abs(data.date_end))} B.C.` : `${data.date_end} A.D.`}`;
     
         // append to container
         resultDiv.appendChild(starIcon);
-        resultDiv.appendChild(link);
+        resultWrapperDiv.appendChild(link);
+        resultDiv.appendChild(resultWrapperDiv);
 
         // append to container
         const container = document.querySelectorAll('.result-block');
@@ -106,3 +144,23 @@ const updateResultDivs = (dataArr) => {
         }
     });
 }
+
+const updateRelevanceFilter = (e) => {
+    const relevanceValue = e.target.value;
+    localStorage.setItem('relevanceFilter', relevanceValue);
+};
+
+const updateResCountFilter = (e) => {
+    const resultCount = e.target.value;
+    localStorage.setItem('resultCountFilter', resultCount);
+};
+
+const updateSort = (e) => {
+    const sortValue = e.target.value;
+    localStorage.setItem('sortFilter', sortValue);
+};
+
+const updateAscendingFilter = (e) => {
+    const ascendingValue = e.target.checked;
+    localStorage.setItem('ascendingFilter', ascendingValue);
+};
