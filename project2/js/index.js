@@ -243,9 +243,51 @@ const updateResCountFilter = (e) => {
 const updateSort = (e) => {
     const sortValue = e.target.value;
     localStorage.setItem('sortFilter', sortValue);
+
+    // sort data
+    sortPageData();
 };
 
 const updateAscendingFilter = (e) => {
     const ascendingValue = e.target.checked;
     localStorage.setItem('ascendingFilter', ascendingValue);
+
+    // sort data
+    sortPageData();
 };
+
+const sortPageData = () => {
+        // get sort method
+        const sort = localStorage.getItem("sortFilter");
+        const ascending = localStorage.getItem("ascendingFilter") === "true" ? true : false;
+    
+        // sort data
+        if (sort === "az") {
+            dataArr.sort((a, b) => {
+                const aTitle = a.title.toLowerCase();
+                const bTitle = b.title.toLowerCase();
+    
+                let res = 0;
+    
+                if (aTitle < bTitle) {
+                    res = -1;
+                } else if (aTitle > bTitle) {
+                    res = 1;
+                }
+    
+                if (!ascending) {
+                    res *= -1;
+                }
+    
+                return res;
+            });
+        }
+        else if (sort === "date") {
+            dataArr.sort((a, b) => {
+                const aDate = Number(a.date_end);
+                const bDate = Number(b.date_end);
+    
+                return ascending ? aDate - bDate : bDate - aDate;
+            });
+        }    
+}
