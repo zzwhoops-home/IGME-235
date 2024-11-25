@@ -19,7 +19,7 @@ const loadContents = () => {
     // load sort and ascending
     const sortFilter = document.querySelector('select[name="sort"]');
     const ascendingCheckbox = document.querySelector('input[type="checkbox"]');
-    
+
     // get searchbar value
     const lastSearch = localStorage.getItem('lastSearch');
     const searchBar = document.querySelector("#searchbar input");
@@ -65,7 +65,7 @@ const dropdownShow = (e) => {
         dropdownPanel.style.height = "0px";
         dropdownPanel.style.opacity = 0;
         dropdownPanel.style.marginBottom = "-60px";
-        
+
         // set dropdown arrow state
         dropdown.classList.add("fa-caret-down");
         dropdown.classList.remove("fa-caret-up");
@@ -99,6 +99,40 @@ const updateResultDivs = (dataArr) => {
     // get results
     const results = document.querySelector("#results");
 
+    // get sort method
+    const sort = localStorage.getItem("sortFilter");
+    const ascending = localStorage.getItem("ascendingFilter") === "true" ? true : false;
+
+    // sort data
+    if (sort === "az") {
+        dataArr.sort((a, b) => {
+            const aTitle = a.title.toLowerCase();
+            const bTitle = b.title.toLowerCase();
+
+            let res = 0;
+
+            if (aTitle < bTitle) {
+                res = -1;
+            } else if (aTitle > bTitle) {
+                res = 1;
+            }
+
+            if (!ascending) {
+                res *= -1;
+            }
+
+            return res;
+        });
+    }
+    else if (sort === "date") {
+        dataArr.sort((a, b) => {
+            const aDate = Number(a.date_end);
+            const bDate = Number(b.date_end);
+
+            return ascending ? aDate - bDate : bDate - aDate;
+        });
+    }
+
     // clear content
     results.innerHTML = ""
 
@@ -106,31 +140,32 @@ const updateResultDivs = (dataArr) => {
         // create container div
         const resultDiv = document.createElement('div');
         resultDiv.classList.add('result');
+
         // set "alt" text for background
         resultDiv.title = data.alt_text;
 
         // add result div data tags
         resultDiv.setAttribute('data-year', data.date_end);
         resultDiv.setAttribute('data-title', data.title);
-        
+
         // set background image
         resultDiv.style.setProperty('--result-bg-img', `url('${data.image_URL}')`);
-        
+
         // create star icon
         const starIcon = document.createElement('i');
         starIcon.classList.add('fa-regular', 'fa-star');
-        
+
         // create result wrapper (contains a element)
         const resultWrapperDiv = document.createElement('div');
         resultWrapperDiv.classList.add('result-wrapper');
-        
+
         // create link element with title
         const link = document.createElement('a');
         link.href = data.image_URL;
         // format year with bc/ad
         const yearString = Number(data.date_end) < 0 ? `${Number(Math.abs(data.date_end))} B.C.` : `${data.date_end} A.D.`;
         link.innerHTML = `${data.title} - ${yearString}`;
-    
+
         // append to container
         resultDiv.appendChild(starIcon);
         resultWrapperDiv.appendChild(link);

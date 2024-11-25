@@ -54,6 +54,7 @@ const getRawImages = async (apiURLS) => {
 
             // image is under data.data object
             const item = data.data;
+
             if (item.image_id) {
                 // return the result with formatted image URL
                 const validURL = await testImageURL(item.image_id);
@@ -61,7 +62,7 @@ const getRawImages = async (apiURLS) => {
                 return {
                     "title": item.title,
                     "artist_titles": item.artist_titles,
-                    "alt_text": item.thumbnail.alt_text,
+                    "alt_text": item.thumbnail.alt_text ? item.thumbnail.alt_text : "No alt-text provided for this artwork.",
                     "description": item.description,
                     "dimensions": item.dimensions,
                     "date_start": item.date_start,
@@ -70,11 +71,12 @@ const getRawImages = async (apiURLS) => {
                     "image_URL": validURL
                 };
             }
-
         })
     );
 
-    return formattedData;
+    const nullFiltered = formattedData.filter(data => data != null);
+
+    return nullFiltered;
 }
 
 const getData = async (url) => {
