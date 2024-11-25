@@ -47,7 +47,7 @@ const dropdownShow = (e) => {
 
     if (dropdownPanel.style.height === "0px" || !dropdownPanel.style.height) {
         // change dropdown panel height and opacity
-        dropdownPanel.style.height = "200px";
+        dropdownPanel.style.height = "180px";
         dropdownPanel.style.opacity = 1;
         dropdownPanel.style.marginBottom = "0px";
 
@@ -115,7 +115,9 @@ const updateResultDivs = (dataArr) => {
         // create link element with title
         const link = document.createElement('a');
         link.href = data.image_URL;
-        link.innerHTML = `${data.title} - ${Number(data.date_end) < 0 ? `${Number(Math.abs(data.date_end))} B.C.` : `${data.date_end} A.D.`}`;
+        // format year with bc/ad
+        const yearString = Number(data.date_end) < 0 ? `${Number(Math.abs(data.date_end))} B.C.` : `${data.date_end} A.D.`;
+        link.innerHTML = `${data.title} - ${yearString}`;
     
         // append to container
         resultDiv.appendChild(starIcon);
