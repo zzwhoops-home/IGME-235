@@ -78,6 +78,9 @@ const getSearch = async (e) => {
     const searchBar = document.querySelector("#searchbar input");
     const searchTerm = searchBar.value;
 
+    // get results div
+    const results = document.querySelector("#results");
+
     // save last search term
     localStorage.setItem('lastSearch', searchTerm);
 
@@ -96,6 +99,13 @@ const getSearch = async (e) => {
 
     // update divs
     updateResultDivs(data);
+
+    // let the user know if there are less search results because of filters
+    if (data.length != resCount) {
+        const pInfo = document.createElement("p");
+        pInfo.innerHTML = `Only ${data.length} results returned of ${resCount}. Check that your relevance filter is not omitting results.`;
+        results.prepend(pInfo);
+    }
 }
 
 const updateResultDivs = (dataArr) => {
