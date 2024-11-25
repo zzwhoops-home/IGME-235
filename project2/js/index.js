@@ -85,6 +85,10 @@ const getSearch = async (e) => {
     const relevance = localStorage.getItem('relevanceFilter');
     const resCount = localStorage.getItem('resultCountFilter');
 
+    // loading screen
+    loading();
+    return;
+
     // get data
     const data = await getImagesBySearch(searchTerm, Relevance[relevance], resCount);
 
@@ -192,6 +196,29 @@ const updateResultDivs = (dataArr) => {
             lastContainer.appendChild(resultDiv);
         }
     });
+}
+
+const loading = () => {
+    // get results container
+    const results = document.querySelector('#results');
+    results.innerHTML = "";
+
+    // create a single result block with one result element
+    const resultBlockDiv = document.createElement('div');
+    resultBlockDiv.classList.add('result-block');
+
+    // create the result div
+    const resultDiv = document.createElement('div');
+    resultDiv.classList.add('result');
+
+    // set background image
+    resultDiv.style.setProperty('--result-bg-img', 'url("../images/loading-gif.gif")');
+
+    // append the result block to the container
+    results.appendChild(resultBlockDiv);
+
+    // append the result div inside the result block
+    resultBlockDiv.appendChild(resultDiv);
 }
 
 const updateRelevanceFilter = (e) => {
