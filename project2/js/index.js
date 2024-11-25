@@ -1,5 +1,5 @@
 import getImagesBySearch from "./modules/loadImages.js";
-import Relevance from "./modules/loadImages.js";
+import { Relevance } from "./modules/loadImages.js";
 
 window.onload = (e) => {
     loadContents();
@@ -19,8 +19,13 @@ const loadContents = () => {
     // load sort and ascending
     const sortFilter = document.querySelector('select[name="sort"]');
     const ascendingCheckbox = document.querySelector('input[type="checkbox"]');
+    
+    // get searchbar value
+    const lastSearch = localStorage.getItem('lastSearch');
+    const searchBar = document.querySelector("#searchbar input");
+    searchBar.value = lastSearch;
 
-    // get values from localstorage
+    // get filtering values from localstorage
     const relevanceValue = localStorage.getItem('relevanceFilter');
     const resultCountValue = localStorage.getItem('resultCountFilter');
     const sortValue = localStorage.getItem('sortFilter');
@@ -73,8 +78,15 @@ const getSearch = async (e) => {
     const searchBar = document.querySelector("#searchbar input");
     const searchTerm = searchBar.value;
 
+    // save last search term
+    localStorage.setItem('lastSearch', searchTerm);
+
+    // get local storage filters
+    const relevance = localStorage.getItem('relevanceFilter');
+    const resCount = localStorage.getItem('resultCountFilter');
+
     // get data
-    const data = await getImagesBySearch(searchTerm);
+    const data = await getImagesBySearch(searchTerm, Relevance[relevance], resCount);
 
     // store in localstorage
     localStorage.setItem('curSearch', JSON.stringify(data));
