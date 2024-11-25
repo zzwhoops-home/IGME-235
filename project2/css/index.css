@@ -253,7 +253,7 @@ select:focus {
 }
 
 .result:hover {
-    font-size: 1.3em;
+    font-size: 1.2em;
     cursor: help;
     text-shadow: #FFDADA 0px 0px 4px;
     box-shadow: 15px 15px 20px 5px rgba(10, 10, 10, 0.6);
@@ -283,11 +283,11 @@ select:focus {
 
 .result:hover::before {
     cursor: pointer;
-    filter: blur(1px) brightness(70%);
+    filter: blur(1px) brightness(80%);
 }
 
 .result:active::before {
-    filter: brightness(50%);
+    filter: blur(0px) brightness(50%);
 }
 
 .result::before {
@@ -303,7 +303,7 @@ select:focus {
     background-position: center;
     z-index: -2;
     border-radius: inherit;
-    transition: filter 0.7s ease;
+    transition: filter 0.5s ease;
 }
 
 /* gradient effect to allow text to be readable */
@@ -320,17 +320,18 @@ select:focus {
     z-index: -1;
 }
 
-/* Define the fade-in animation */
+/* Fade in animation */
 @keyframes fadeIn {
     0% {
-        opacity: 0; /* Start as invisible */
+        opacity: 0;
+        margin: 10px;
+        box-shadow: var(--fg-red) 0px 3px 8px;
     }
-    100% {
-        opacity: 1; /* Fade in to full visibility */
+    80% {
+        opacity: 1;
     }
 }
 
-/* Apply the animation to elements */
 .fade-in {
-    animation: fadeIn 1s ease-in-out; /* 1s duration, ease-in-out timing */
+    animation: fadeIn 1.5s ease-in-out;
 }

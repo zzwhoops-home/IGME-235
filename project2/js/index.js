@@ -122,6 +122,7 @@ const updateResultDivs = (dataArr) => {
         // create container div
         const resultDiv = document.createElement('div');
         resultDiv.classList.add('result');
+        resultDiv.classList.add('fade-in');
 
         // set "alt" text for background
         resultDiv.title = data.alt_text;
