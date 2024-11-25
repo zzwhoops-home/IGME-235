@@ -100,6 +100,13 @@ const getSearch = async (e) => {
     // update divs
     updateResultDivs(data);
 
+    
+    // tell the user if they are searching a blank
+    if (!searchTerm) {
+        const pInfo = document.createElement("p");
+        pInfo.innerHTML = "You are searching with an empty search term. That is okay, but results may be unexpected.";
+        results.prepend(pInfo);
+    }
     // let the user know if there are less search results because of filters
     if (data.length != resCount) {
         const pInfo = document.createElement("p");
