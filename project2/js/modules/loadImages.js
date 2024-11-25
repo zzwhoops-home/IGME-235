@@ -2,10 +2,11 @@ export const Relevance = {
     NONE: 0,
     LENIENT: 25,
     NORMAL: 50,
-    STRICT: 75
+    STRICT: 75,
+    VERY_STRICT: 100
 }
 
-const getImagesBySearch = async (searchTerm, minScore = 50, page = 1, results = 12) => {
+const getImagesBySearch = async (searchTerm, minScore = 50, results = 12, page = 1) => {
     const searchURL = `https://api.artic.edu/api/v1/artworks/search?q=${searchTerm}&page=${page}&limit=${results}&fields=title,thumbnail,artist_titles,description,dimensions,date_display,api_link`;
 
     // use data helper function
@@ -53,21 +54,23 @@ const getRawImages = async (apiURLS) => {
 
             // image is under data.data object
             const item = data.data;
+            if (item.image_id) {
+                // return the result with formatted image URL
+                const validURL = await testImageURL(item.image_id);
 
-            // return the result with formatted image URL
-            const validURL = await testImageURL(item.image_id);
+                return {
+                    "title": item.title,
+                    "artist_titles": item.artist_titles,
+                    "alt_text": item.thumbnail.alt_text,
+                    "description": item.description,
+                    "dimensions": item.dimensions,
+                    "date_start": item.date_start,
+                    "date_end": item.date_end,
+                    "date_display": item.date_display,
+                    "image_URL": validURL
+                };
+            }
 
-            return {
-                "title": item.title,
-                "artist_titles": item.artist_titles,
-                "alt_text": item.thumbnail.alt_text,
-                "description": item.description,
-                "dimensions": item.dimensions,
-                "date_start": item.date_start,
-                "date_end": item.date_end,
-                "date_display": item.date_display,
-                "image_URL": validURL
-            };
         })
     );
 
