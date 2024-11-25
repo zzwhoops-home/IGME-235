@@ -112,44 +112,13 @@ const updateResultDivs = (dataArr) => {
     // get results
     const results = document.querySelector("#results");
 
-    // get sort method
-    const sort = localStorage.getItem("sortFilter");
-    const ascending = localStorage.getItem("ascendingFilter") === "true" ? true : false;
-
     // sort data
-    if (sort === "az") {
-        dataArr.sort((a, b) => {
-            const aTitle = a.title.toLowerCase();
-            const bTitle = b.title.toLowerCase();
-
-            let res = 0;
-
-            if (aTitle < bTitle) {
-                res = -1;
-            } else if (aTitle > bTitle) {
-                res = 1;
-            }
-
-            if (!ascending) {
-                res *= -1;
-            }
-
-            return res;
-        });
-    }
-    else if (sort === "date") {
-        dataArr.sort((a, b) => {
-            const aDate = Number(a.date_end);
-            const bDate = Number(b.date_end);
-
-            return ascending ? aDate - bDate : bDate - aDate;
-        });
-    }
+    const sortedDataArr = handleSort(dataArr);
 
     // clear content
     results.innerHTML = ""
 
-    dataArr.forEach(data => {
+    sortedDataArr.forEach(data => {
         // create container div
         const resultDiv = document.createElement('div');
         resultDiv.classList.add('result');
@@ -257,37 +226,49 @@ const updateAscendingFilter = (e) => {
 };
 
 const sortPageData = () => {
-        // get sort method
-        const sort = localStorage.getItem("sortFilter");
-        const ascending = localStorage.getItem("ascendingFilter") === "true" ? true : false;
-    
-        // sort data
-        if (sort === "az") {
-            dataArr.sort((a, b) => {
-                const aTitle = a.title.toLowerCase();
-                const bTitle = b.title.toLowerCase();
-    
-                let res = 0;
-    
-                if (aTitle < bTitle) {
-                    res = -1;
-                } else if (aTitle > bTitle) {
-                    res = 1;
-                }
-    
-                if (!ascending) {
-                    res *= -1;
-                }
-    
-                return res;
-            });
-        }
-        else if (sort === "date") {
-            dataArr.sort((a, b) => {
-                const aDate = Number(a.date_end);
-                const bDate = Number(b.date_end);
-    
-                return ascending ? aDate - bDate : bDate - aDate;
-            });
-        }    
+    // get sort method
+    const sort = localStorage.getItem("sortFilter");
+    const ascending = localStorage.getItem("ascendingFilter") === "true" ? true : false;
+
+    // get search data
+    const curSearchData = handleSort(JSON.parse(localStorage.getItem("curSearch")));
+
+    updateResultDivs(curSearchData);
+}
+
+const handleSort = (dataArr) => {
+    // get sort method
+    const sort = localStorage.getItem("sortFilter");
+    const ascending = localStorage.getItem("ascendingFilter") === "true" ? true : false;
+
+    // sort data
+    if (sort === "az") {
+        dataArr.sort((a, b) => {
+            const aTitle = a.title.toLowerCase();
+            const bTitle = b.title.toLowerCase();
+
+            let res = 0;
+
+            if (aTitle < bTitle) {
+                res = -1;
+            } else if (aTitle > bTitle) {
+                res = 1;
+            }
+
+            if (!ascending) {
+                res *= -1;
+            }
+
+            return res;
+        });
+    }
+    else if (sort === "date") {
+        dataArr.sort((a, b) => {
+            const aDate = Number(a.date_end);
+            const bDate = Number(b.date_end);
+
+            return ascending ? aDate - bDate : bDate - aDate;
+        });
+    }
+    return dataArr
 }
