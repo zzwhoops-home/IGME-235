@@ -87,7 +87,6 @@ const getSearch = async (e) => {
 
     // loading screen
     loading();
-    return;
 
     // get data
     const data = await getImagesBySearch(searchTerm, Relevance[relevance], resCount);
