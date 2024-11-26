@@ -20,6 +20,28 @@ const loadContents = () => {
     const sortFilter = document.querySelector('select[name="sort"]');
     const ascendingCheckbox = document.querySelector('input[type="checkbox"]');
 
+    // Get the popup container and close button
+    const popupContainer = document.querySelector('.popup-container');
+    const closePopupButton = document.querySelector('.close-popup');
+
+    // add event listeners
+    dropdown.addEventListener("click", dropdownShow);
+    search.addEventListener("click", getSearch);
+    relevanceFilter.addEventListener("change", updateRelevanceFilter);
+    resultCountFilter.addEventListener("change", updateResCountFilter);
+    sortFilter.addEventListener("change", updateSort);
+    ascendingCheckbox.addEventListener("change", updateAscendingFilter);
+    // close popup
+    closePopupButton.addEventListener('click', () => {
+        closePopup(popupContainer);
+    });
+    // close popup when clicking outside of container
+    popupContainer.addEventListener('click', (e) => {
+        if (e.target === popupContainer) {
+            closePopup(popupContainer);
+        }
+    });
+
     // get searchbar value
     const lastSearch = localStorage.getItem('lastSearch');
     const searchBar = document.querySelector("#searchbar input");
@@ -36,14 +58,6 @@ const loadContents = () => {
     if (resultCountValue) resultCountFilter.value = resultCountValue;
     if (sortValue) sortFilter.value = sortValue;
     if (ascendingValue) ascendingCheckbox.checked = ascendingValue === 'true';
-
-    // add event listeners
-    dropdown.addEventListener("click", dropdownShow);
-    search.addEventListener("click", getSearch);
-    relevanceFilter.addEventListener("change", updateRelevanceFilter);
-    resultCountFilter.addEventListener("change", updateResCountFilter);
-    sortFilter.addEventListener("change", updateSort);
-    ascendingCheckbox.addEventListener("change", updateAscendingFilter);
 };
 
 const dropdownShow = (e) => {
@@ -100,7 +114,6 @@ const getSearch = async (e) => {
     // update divs
     updateResultDivs(data);
 
-    
     // tell the user if they are searching a blank
     if (!searchTerm) {
         const pInfo = document.createElement("p");
@@ -115,6 +128,14 @@ const getSearch = async (e) => {
     }
 }
 
+const openResultDiv = (e) => {
+    console.log(e.currentTarget.image_URL);
+}
+
+const openContainer = () => {
+    
+}
+
 const updateResultDivs = (dataArr) => {
     // get results
     const results = document.querySelector("#results");
@@ -123,13 +144,17 @@ const updateResultDivs = (dataArr) => {
     const sortedDataArr = handleSort(dataArr);
 
     // clear content
-    results.innerHTML = ""
+    results.innerHTML = "";
 
     sortedDataArr.forEach(data => {
         // create container div
         const resultDiv = document.createElement('div');
         resultDiv.classList.add('result');
         resultDiv.classList.add('fade-in');
+
+        // add event listener
+        resultDiv.addEventListener('click', openResultDiv);
+        resultDiv.image_URL = data.image_URL;
 
         // set "alt" text for background
         resultDiv.title = data.alt_text;
@@ -279,4 +304,9 @@ const handleSort = (dataArr) => {
         });
     }
     return dataArr
+}
+
+const closePopup = (container) => {
+    container.style.opacity = 0;
+    container.style.pointerEvents = "none";
 }

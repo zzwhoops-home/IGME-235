@@ -330,8 +330,11 @@ select:focus {
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 10px;
+    backdrop-filter: blur(3px);
+    opacity: 1;
+    transition: opacity 0.3s;
     z-index: 100;
-    backdrop-filter: blur(10px);
 }
 
 .popup-content {
@@ -350,8 +353,7 @@ select:focus {
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 1);
     text-align: center;
-    max-width: 90%;
-    min-width: 400px;
+    width: 500px;
 }
 
 .popup-art::before {
@@ -371,6 +373,10 @@ select:focus {
     transition: filter 0.5s ease;
 }
 
+.popup-art:hover::before {
+    filter: brightness(80%);
+}
+
 .popup-info {
     display: block;
     position: relative;
@@ -379,6 +385,12 @@ select:focus {
     max-width: 400px;
     max-height: 400px;
     overflow-y: scroll;
+    -ms-overflow-style: none; /* Hides scrollbar for Internet Explorer/Edge */
+    scrollbar-width: none; /* Hides scrollbar for Firefox */
+}
+
+.popup-info::-webkit-scrollbar {
+    display: none; /* Hides scrollbar for Chrome, Safari, and Edge */
 }
 
 .popup-info h2 {
