@@ -254,8 +254,8 @@ const updateResultDivs = (dataArr) => {
         resultDiv.style.setProperty('--result-bg-img', `url('${data.image_URL}')`);
 
         // create star icon
-        const starIcon = document.createElement('i');
-        starIcon.classList.add('fa-regular', 'fa-star');
+        // const starIcon = document.createElement('i');
+        // starIcon.classList.add('fa-regular', 'fa-star');
 
         // create result wrapper (contains a element)
         const resultWrapperDiv = document.createElement('div');
@@ -274,7 +274,7 @@ const updateResultDivs = (dataArr) => {
         }
 
         // append to container
-        resultDiv.appendChild(starIcon);
+        // resultDiv.appendChild(starIcon);
         resultWrapperDiv.appendChild(link);
         resultDiv.appendChild(resultWrapperDiv);
 
