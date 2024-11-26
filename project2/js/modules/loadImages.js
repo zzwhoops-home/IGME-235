@@ -41,27 +41,33 @@ const getImagesBySearch = async (searchTerm, minScore = 50, results = 12, page =
 const testImageURL = async (imageId) => {
     const baseURL = "https://www.artic.edu/iiif/2/";
 
-    // array of sizes
+    // Array of sizes
     const sizes = [843, 400, 200];
 
-    // test each image size
-    for (let size of sizes) {
-        // format url
-        const url = `${baseURL}${imageId}/full/${size},/0/default.jpg`;
+    try {
+        // Test each image size
+        for (let size of sizes) {
+            // Format URL
+            const url = `${baseURL}${imageId}/full/${size},/0/default.jpg`;
 
-        // test URL
-        try {
+            // Test URL using async/await
             const response = await fetch(url, { method: "HEAD" });
+
+            // Check if the response is OK
             if (response.ok) {
                 return url; // Return the first valid URL
             }
-        } catch (error) {
-            console.log("oops");
-            console.error(`Failed to fetch: ${url}`, error);
         }
+
+        // No valid URL found
+        return null;
+    } catch (error) {
+        // Catch and log any errors
+        console.error(`Error occurred in testImageURL: ${error}`);
+        return null; // Handle errors gracefully by returning null
     }
-    return null; // No valid URL found
 };
+
 
 /**
  * Takes an array of URLs and formats data with the right image URL
