@@ -54,10 +54,26 @@ const loadContents = () => {
     const ascendingValue = localStorage.getItem('ascendingFilter');
 
     // set values, if they already exist/have been set
-    if (relevanceValue) relevanceFilter.value = relevanceValue;
-    if (resultCountValue) resultCountFilter.value = resultCountValue;
-    if (sortValue) sortFilter.value = sortValue;
-    if (ascendingValue) ascendingCheckbox.checked = ascendingValue === 'true';
+    if (relevanceValue) {
+        relevanceFilter.value = relevanceValue
+    } else {
+        localStorage.setItem('relevanceFilter', 'NORMAL');
+    }
+    if (resultCountValue) {
+        resultCountFilter.value = resultCountValue
+    } else {
+        localStorage.setItem('resultCountFilter', 12);
+    }
+    if (sortValue) {
+        sortFilter.value = sortValue;
+    } else {
+        localStorage.setItem('sortFilter', 'az');
+    }
+    if (ascendingValue) {
+        ascendingCheckbox.checked = ascendingValue === 'true'
+    } else {
+        localStorage.setItem('ascendingFilter', false);
+    }
 };
 
 const dropdownShow = (e) => {
