@@ -332,7 +332,8 @@ select:focus {
     align-items: center;
     border-radius: 10px;
     backdrop-filter: blur(3px);
-    opacity: 1;
+    opacity: 0;
+    pointer-events: none;
     transition: opacity 0.3s;
     z-index: 100;
 }
@@ -394,7 +395,13 @@ select:focus {
 }
 
 .popup-info h2 {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+}
+
+.popup-info h3 {
+    margin-bottom: 10px;
+    font-style: italic;
+    font-weight: 400;
 }
 
 .close-popup {

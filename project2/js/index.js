@@ -129,11 +129,44 @@ const getSearch = async (e) => {
 }
 
 const openResultDiv = (e) => {
-    console.log(e.currentTarget.image_URL);
-}
+    const data = e.currentTarget.data;
 
-const openContainer = () => {
-    
+    // Get the popup container
+    const popupContainer = document.querySelector('.popup-container');
+
+    // get popup art panel
+    const popupArt = document.querySelector('.popup-art');
+
+    // get popup content panel
+    const title = document.querySelector('#popup-title');
+    const facts = document.querySelector('#popup-facts');
+    const description = document.querySelector('#popup-description');
+    const medium = document.querySelector('#popup-medium');
+
+    // set background image
+    popupArt.style.setProperty("--popup-bg-img", `url('${data.image_URL}')` );
+    popupArt.href = data.image_URL;
+
+    // format facts string
+    const factsData = {
+        'artists': data.artist_titles.join(", "),
+        'date': data.date_display,
+        'dimensions': data.dimensions
+    }
+    let factsString = "";
+    factsString += factsData.artists ? `${factsData.artists}<br>` : "";
+    factsString += factsData.date ? `${factsData.date}<br>` : "No date<br>";
+    factsString += factsData.dimensions ? factsData.dimensions : "";
+
+    // set title and description
+    title.innerHTML = data.title;
+    facts.innerHTML = factsString;
+    description.innerHTML = data.description;
+    medium.innerHTML = data.alt_text;
+
+    // show container
+    popupContainer.style.opacity = 1;
+    popupContainer.style.pointerEvents = "auto";
 }
 
 const updateResultDivs = (dataArr) => {
@@ -154,7 +187,7 @@ const updateResultDivs = (dataArr) => {
 
         // add event listener
         resultDiv.addEventListener('click', openResultDiv);
-        resultDiv.image_URL = data.image_URL;
+        resultDiv.data = data;
 
         // set "alt" text for background
         resultDiv.title = data.alt_text;
@@ -177,9 +210,14 @@ const updateResultDivs = (dataArr) => {
         // create link element with title
         const link = document.createElement('a');
         link.href = data.image_URL;
-        // format year with bc/ad
-        const yearString = Number(data.date_end) < 0 ? `${Number(Math.abs(data.date_end))} B.C.` : `${data.date_end} A.D.`;
-        link.innerHTML = `${data.title} - ${yearString}`;
+        link.target = "_blank";
+        // format year with bc/ad, with null check
+        if (data.date_end) {
+            const yearString = Number(data.date_end) < 0 ? `${Number(Math.abs(data.date_end))} B.C.` : `${data.date_end} A.D.`;
+            link.innerHTML = `${data.title} - ${yearString}`;
+        } else {
+            link.innerHTML = `${data.title}`;
+        }
 
         // append to container
         resultDiv.appendChild(starIcon);
