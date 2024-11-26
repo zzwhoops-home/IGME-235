@@ -11,7 +11,7 @@
 }
 
 html {
-    background-color: #360d44;
+    background-color: #1b181b;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: var(--text-color);
 }
@@ -224,8 +224,8 @@ select:focus {
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
-    height: 18vw;
-    width: 18vw;
+    width: 33%;
+    aspect-ratio: 1 / 1;
     border-radius: 20px;
     box-shadow: 5px 5px 10px 3px rgba(10, 10, 10, 0.4);
     color: black;
