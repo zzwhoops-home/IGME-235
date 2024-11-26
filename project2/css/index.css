@@ -320,6 +320,46 @@ select:focus {
     z-index: -1;
 }
 
+.popup-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+}
+
+.popup-content {
+    background: white;
+    padding: 20px 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    max-width: 90%;
+    min-width: 300px;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.close-popup {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.close-popup:hover {
+    background-color: #2980b9;
+}
+
 /* Fade in animation */
 @keyframes fadeIn {
     0% {
@@ -327,6 +367,7 @@ select:focus {
         margin: 10px;
         box-shadow: var(--fg-red) 0px 3px 8px;
     }
+
     50% {
         opacity: 1;
     }
