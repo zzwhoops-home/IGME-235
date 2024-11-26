@@ -1,10 +1,18 @@
 import getImagesBySearch from "./modules/loadImages.js";
 import { Relevance } from "./modules/loadImages.js";
 
+/**
+ * Handles the window onload event and initializes the page contents.
+ *
+ * @param {Event} e - The event object triggered when the window loads.
+ */
 window.onload = (e) => {
     loadContents();
 }
 
+/**
+ * Loads the contents of the page on page load
+ */
 const loadContents = () => {
     // get dropdown button
     const dropdown = document.querySelector(".dropbtn");
@@ -76,6 +84,11 @@ const loadContents = () => {
     }
 };
 
+/**
+ * Shows the dropdown with filter and sort selectors
+ * 
+ * @param {Event} e 
+ */
 const dropdownShow = (e) => {
     const dropdown = document.querySelector(".dropbtn");
     const dropdownPanel = document.querySelector(".dropdown-content");
@@ -103,6 +116,11 @@ const dropdownShow = (e) => {
     }
 };
 
+/**
+ * Searches the Artic API based on what the user has entered in the searchbar
+ * 
+ * @param {Event} e 
+ */
 const getSearch = async (e) => {
     // get searchbar term
     const searchBar = document.querySelector("#searchbar input");
@@ -144,6 +162,11 @@ const getSearch = async (e) => {
     }
 }
 
+/**
+ * Opens, enables, and changes the information displayed on the popup which is otherwise invisible to the user
+ * 
+ * @param {Event} e 
+ */
 const openPopup = (e) => {
     const data = e.currentTarget.data;
 
@@ -160,7 +183,7 @@ const openPopup = (e) => {
     const medium = document.querySelector('#popup-medium');
 
     // set background image
-    popupArt.style.setProperty("--popup-bg-img", `url('${data.image_URL}')` );
+    popupArt.style.setProperty("--popup-bg-img", `url('${data.image_URL}')`);
     popupArt.href = data.image_URL;
 
     // format facts string
@@ -185,11 +208,21 @@ const openPopup = (e) => {
     popupContainer.style.pointerEvents = "auto";
 }
 
+/**
+ * Closes the popup by setting its opacity to 0 and disabling pointer events.
+ *
+ * @param {HTMLElement} container - The popup container to be closed.
+ */
 const closePopup = (container) => {
     container.style.opacity = 0;
     container.style.pointerEvents = "none";
 }
 
+/**
+ * Provided with an array, updates the result divs from the data returned from the Artic API
+ * 
+ * @param {Array} dataArr 
+ */
 const updateResultDivs = (dataArr) => {
     // get results
     const results = document.querySelector("#results");
@@ -268,6 +301,9 @@ const updateResultDivs = (dataArr) => {
     });
 }
 
+/**
+ * What is shown when waiting on the Artic API to return results
+ */
 const loading = () => {
     // get results container
     const results = document.querySelector('#results');
@@ -291,16 +327,31 @@ const loading = () => {
     resultBlockDiv.appendChild(resultDiv);
 }
 
+/**
+ * Handles updating the relevance filter
+ * 
+ * @param {Event} e 
+ */
 const updateRelevanceFilter = (e) => {
     const relevanceValue = e.target.value;
     localStorage.setItem('relevanceFilter', relevanceValue);
 };
 
+/**
+ * Handles updating the result count filter
+ * 
+ * @param {Event} e 
+ */
 const updateResCountFilter = (e) => {
     const resultCount = e.target.value;
     localStorage.setItem('resultCountFilter', resultCount);
 };
 
+/**
+ * Handles updating the type of sort, sorts data on change
+ * 
+ * @param {Event} e 
+ */
 const updateSort = (e) => {
     const sortValue = e.target.value;
     localStorage.setItem('sortFilter', sortValue);
@@ -309,6 +360,11 @@ const updateSort = (e) => {
     sortPageData();
 };
 
+/**
+ * Handles updating ascending sort, sorts data on change
+ * 
+ * @param {Event} e 
+ */
 const updateAscendingFilter = (e) => {
     const ascendingValue = e.target.checked;
     localStorage.setItem('ascendingFilter', ascendingValue);
@@ -317,6 +373,9 @@ const updateAscendingFilter = (e) => {
     sortPageData();
 };
 
+/**
+ * Handles sorting of data already on page
+ */
 const sortPageData = () => {
     // get sort method
     const sort = localStorage.getItem("sortFilter");
@@ -328,6 +387,12 @@ const sortPageData = () => {
     updateResultDivs(curSearchData);
 }
 
+/**
+ * Helper function to handle sorting of a data array
+ * 
+ * @param {Array} dataArr 
+ * @returns the sorted array based on the user-specified sorting method
+ */
 const handleSort = (dataArr) => {
     // get sort method
     const sort = localStorage.getItem("sortFilter");
