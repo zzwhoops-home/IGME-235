@@ -65,14 +65,28 @@
         </div>
         <div id="grading">
             <h2>Requirements & Self-grading</h2>
-            <p>A - Functional</p>
+            <h3>A - Functional</h3>
             <ol>
                 <li>I have used the Art Institute of Chicago API. It supports CORS and does not require an API key or
                     OAuth</li>
                 <li>The last search term is saved and reloading the page causes the term to persist</li>
                 <li>There is a search bar, relevance filter, # of results filter, and sorting by lexicographical or
                     chronological means</li>
-                <li></li>
+                <li>There's unfortunately one error that occurs, and that is when I test each link the API returns. I
+                    don't know what dimensions the API supports for an image, so I have to test three different sizes.
+                    The issue is that try/catch and .catch don't seem to stop a 403 from being thrown when I find an
+                    invalid image size for the Artic API. It doesn't affect functionality so unfortunately it will be
+                    left in.</li>
+            </ol>
+            <h3>B - Design & Interaction</h3>
+            <ol>
+                <li>The interface is completely different</li>
+                <li>You can figure out every filter and sort just by looking</li>
+                <li>Most people should understand what a searchbar does and will want to click the dropdown</li>
+                <li>User is informed if they are searching with an empty term or their relevance filter may be omitting
+                    results</li>
+                <li>There is a crude-looking loading spinner and the page results fade-in on load</li>
+                <li>App fits in a 960px </li>
             </ol>
         </div>
     </main>
