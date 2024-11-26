@@ -450,3 +450,12 @@ select:focus {
 .fade-in {
     animation: fadeIn 1.25s ease-in-out;
 }
+
+footer {
+    margin-top: 10px;
+    text-align: center;
+}
+
+footer a {
+    color: var(--fg-red);
+}
