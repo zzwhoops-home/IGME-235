@@ -386,12 +386,15 @@ select:focus {
     max-width: 400px;
     max-height: 400px;
     overflow-y: scroll;
-    -ms-overflow-style: none; /* Hides scrollbar for Internet Explorer/Edge */
-    scrollbar-width: none; /* Hides scrollbar for Firefox */
+    -ms-overflow-style: none;
+    /* Hides scrollbar for Internet Explorer/Edge */
+    scrollbar-width: none;
+    /* Hides scrollbar for Firefox */
 }
 
 .popup-info::-webkit-scrollbar {
-    display: none; /* Hides scrollbar for Chrome, Safari, and Edge */
+    display: none;
+    /* Hides scrollbar for Chrome, Safari, and Edge */
 }
 
 .popup-info h2 {
@@ -402,6 +405,11 @@ select:focus {
     margin-bottom: 10px;
     font-style: italic;
     font-weight: 400;
+}
+
+#popup-medium {
+    margin: 10px;
+    font-style: italic;
 }
 
 .close-popup {
@@ -419,6 +427,11 @@ select:focus {
 
 .close-popup:hover {
     color: var(--bg-light-gray);
+}
+
+.vertical-rule {
+    border-left: 1px solid black;
+    height: 80%
 }
 
 /* Fade in animation */
