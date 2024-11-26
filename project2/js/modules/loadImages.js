@@ -1,3 +1,6 @@
+/**
+ * An "enum" for Relevance filtering by API-returned relevance score
+ */
 export const Relevance = {
     NONE: 0,
     LENIENT: 25,
@@ -6,6 +9,15 @@ export const Relevance = {
     VERY_STRICT: 100
 }
 
+/**
+ * Fetches images based on a search term and filters results by minimum score.
+ *
+ * @param {string} searchTerm - The term to search for in the artwork database.
+ * @param {number} [minScore=50] - The minimum score to filter the results.
+ * @param {number} [results=12] - The number of results to fetch per page.
+ * @param {number} [page=1] - The page number of the results to fetch.
+ * @returns {Array} - The array of formatted image data.
+ */
 const getImagesBySearch = async (searchTerm, minScore = 50, results = 12, page = 1) => {
     const searchURL = `https://api.artic.edu/api/v1/artworks/search?q=${searchTerm}&page=${page}&limit=${results}&fields=title,thumbnail,artist_titles,description,dimensions,date_display,api_link`;
 
@@ -20,6 +32,12 @@ const getImagesBySearch = async (searchTerm, minScore = 50, results = 12, page =
     return formattedData;
 }
 
+/**
+ * Tests multiple image sizes until one is found that resolves to a valid link
+ * 
+ * @param {string} imageId 
+ * @returns the valid image URL
+ */
 const testImageURL = async (imageId) => {
     const baseURL = "https://www.artic.edu/iiif/2/";
 
@@ -45,6 +63,12 @@ const testImageURL = async (imageId) => {
     return null; // No valid URL found
 };
 
+/**
+ * Takes an array of URLs and formats data with the right image URL
+ * 
+ * @param {Array} apiURLS
+ * @returns {Array} an array of objects containing information on each image found
+ */
 const getRawImages = async (apiURLS) => {
     // get image data for all links
     const formattedData = await Promise.all(
@@ -79,6 +103,12 @@ const getRawImages = async (apiURLS) => {
     return nullFiltered;
 }
 
+/**
+ * Gets the data based on the URL provided, handling errors as needed
+ * 
+ * @param {string} url 
+ * @returns {object} a JSON object returned from the Artic API
+ */
 const getData = async (url) => {
     try {
         // get search by name
