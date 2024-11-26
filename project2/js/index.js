@@ -128,7 +128,7 @@ const getSearch = async (e) => {
     }
 }
 
-const openResultDiv = (e) => {
+const openPopup = (e) => {
     const data = e.currentTarget.data;
 
     // Get the popup container
@@ -169,6 +169,11 @@ const openResultDiv = (e) => {
     popupContainer.style.pointerEvents = "auto";
 }
 
+const closePopup = (container) => {
+    container.style.opacity = 0;
+    container.style.pointerEvents = "none";
+}
+
 const updateResultDivs = (dataArr) => {
     // get results
     const results = document.querySelector("#results");
@@ -186,7 +191,7 @@ const updateResultDivs = (dataArr) => {
         resultDiv.classList.add('fade-in');
 
         // add event listener
-        resultDiv.addEventListener('click', openResultDiv);
+        resultDiv.addEventListener('click', openPopup);
         resultDiv.data = data;
 
         // set "alt" text for background
@@ -342,9 +347,4 @@ const handleSort = (dataArr) => {
         });
     }
     return dataArr
-}
-
-const closePopup = (container) => {
-    container.style.opacity = 0;
-    container.style.pointerEvents = "none";
 }
