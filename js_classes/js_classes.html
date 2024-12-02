@@ -39,7 +39,7 @@
         }
 
         class Mage extends Player {
-            constructor(name, inventory, mana) {
+            constructor(name, inventory = [], mana = 10) {
                 super(name, [...inventory, 'wand']);
                 this.mana = mana;
             }
@@ -57,6 +57,8 @@
         dave.damage(99);
         console.log(`Name: ${dave.name}, HP: ${dave.hp}`);
 
+        const steve = new Mage('steve', [], 10);
+        steve.castSpell();
     </script>
 </body>
 
