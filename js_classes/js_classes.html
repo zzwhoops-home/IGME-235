@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class Player {
+            static all_players = [];
+
+            #secret_inventory = []; // private
+
+            constructor(name, inventory) {
+                this.hp = 100;
+                this.name = name;
+                this.#secret_inventory = inventory;
+
+                Player.all_players.push(this);
+            }
+
+            static kill_all_players() {
+                Player.all_players.forEach(player => {
+                    player.damage(10000);
+                })
+            }
+
+            damage(amount) {
+                this.hp = this.hp - amount;
+            }
+
+            randomItemFromInventory() {
+                const i = Math.floor(Math.random() * this.#secret_inventory.length);
+                return this.#secret_inventory[i];
+            }
+        }
+
+        class Mage extends Player {
+            constructor(name, inventory, mana) {
+                super(name, [...inventory, 'wand']);
+                this.mana = mana;
+            }
+
+            castSpell() {
+                console.log('pooof');
+                this.mana -= 1;
+            }
+        }
+
+        const dave = new Player('dave', ['stick', 'phone', 'angle grinder', 'torch', 'potato'])
+        console.log(dave.randomItemFromInventory());
+        Player.kill_all_players();
+        console.log(`Name: ${dave.name}, HP: ${dave.hp}`);
+        dave.damage(99);
+        console.log(`Name: ${dave.name}, HP: ${dave.hp}`);
+
+    </script>
+</body>
+
+</html>
