@@ -26,12 +26,13 @@
                 <section>
                     <h2>II. Genre</h2>
                     <p>I think this would be classified under the 'action' genre, but more generally it would be
-                        educational for people who want practice finding rref form</p>
+                        educational for people who want practice finding rref form, and I can extend this further to
+                        practice different techniques used in linear algebra.</p>
                 </section>
 
                 <section>
                     <h2>III. Platform</h2>
-                    <p>Desktop only</p>
+                    <p>This game will be desktop only.</p>
                 </section>
 
                 <section>
@@ -48,7 +49,7 @@
                         game is set in a mathematical world, I am dealing with matrices which have many 1s and 0s. I
                         will include sound, which is to have a couple of 8-bit sound effects whenever matrix rows are
                         swapped, pivoted, or scaled. I will try to animate the numbers if possible. I'll have a looping
-                        soundtrack in the background, likely some non-copyrighted 8-bit action music track</p>
+                        soundtrack in the background, likely some non-copyrighted 8-bit action music track.</p>
                 </section>
 
                 <section>
@@ -57,60 +58,48 @@
                     <p>At minimum, the player should be able to swap, pivot, and scale rows of a matrix. These are EROs
                         (elementary row operations) that can be applied to any matrix to reduce them. This will
                         correspond with "weakening the matrix", even if I don't end up adding a bit of strategy to the
-                        game (for example, the top-left entry of a matrix corresponds to the power of its attack)</p>
-                    <p>Here are some compilations of game mechanics you might find helpful:</p>
-                    <ul>
-                        <li><a href="http://www.squidi.net/three/">squidi.net/three/</a></li>
-
-                        <li><a href="http://techcrunch.com/2010/08/25/scvngr-game-mechanics/">SCVNGR game mechanics</a>
-                            or as <a href="http://www.cram.com/flashcards/game-mechanics-1447848">Flashcards</a></li>
-
-                        <li><a href="http://gamification.org/wiki/Game_Mechanics">gamification.org - Game Mechanics</a>
-                        </li>
-                    </ul>
-
+                        game (for example, the top-left entry of a matrix corresponds to the power of its attack). The
+                        player can make only a certain amount of moves in a set time frame, so the player has to work
+                        efficiently but also think quickly or risk spaghettification.</p>
 
                     <h3>Control</h3>
-                    <p>Be specific, here are many of the options:</p>
-                    <ul>
-                        <li>Keyboard and/or mouse</li>
-                        <li>Touch and/or gesture (Mobile only)</li>
-                        <li>Accelerometer (Mobile only)</li>
-                    </ul>
+                    <p>Keyboard and mouse only</p>
 
                     <h3>Teaching the game/New user experience aka "Onboarding"</h3>
-                    <p>How is the player taught how to play the game? Is this integrated into the gameplay, are there
-                        separate instructional scenes, a tutorial, or some combination? Is
-                        it obvious to the player how to play the game? See <a
-                            href="http://techcrunch.com/2010/08/25/scvngr-game-mechanics/"><cite>Cascading Information
-                                Theory</cite> on the SCVNGR game mechanics page.</a></p>
+                    <p>The player will be taught how to play a game in a "tutorial"-style format, in which they will be
+                        presented with several beginning levels, teaching them each of the possible operations. There
+                        will be one level each teaching players a pivot, a row swap, and scaling a row. Then, the levels
+                        will slowly ramp up in difficulty. The tutorial will only be displayed once.</p>
 
                     <h3>Player learning</h3>
-                    <p>Explain some of what the player needs to learn to beat the game. Be specific and cite actual
-                        powerups, combos, and strategies. Here we are talking about <i>depth</i> - which is simply
-                        (according to Extra Credits) "the number of emergent experientially different possibilities (or
-                        meaningful choices) that come out of one ruleset."</p>
-
+                    <p>To beat the game, the player has to learn how to reduce a matrix to its reduced row echelon form.
+                        They must do so efficiently and quickly, or they risk running out of moves or time. This means
+                        the player has to learn not just to click buttons, but to follow a procedure that will allow
+                        them to quickly reduce a row down to its rref. As the levels progress, they will become more and
+                        more familiar with this overall process and will be capable of tackling any matrix, even
+                        matrices which are bigger than 3x3 and 4x4.</p>
                 </section>
 
 
                 <section>
                     <h2>VII. Screenshots</h2>
-                    <p>Have at least 2 mockup screens of the game. They can be hand drawn and scanned, Photoshop
-                        mockups, or scanned <a href="http://gamestorm.tumblr.com">doodles</a> - use &lt;img&gt; tags.
-                        You can either display the images in this section, or somewhere else on the page.</p>
+                    <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://embed.figma.com/design/3UFD8Qi6DmZf75fwklnBjw/IGME-235-Project3?node-id=0-1&embed-host=share" allowfullscreen></iframe>
                 </section>
 
-                <section>
+                <section id="other">
                     <h2>VIII. Other</h2>
-                    <p>Something else you'd like to say that doesn't fit elsewhere. Also discuss any external libraries
-                        you might use. All libraries are subject to Professor approval.</p>
+                    <h3>Potential libraries to use</h3>
+                    <ol>
+                        <li><a href="https://pixijs.com/">PixiJS</a></li>
+                        <li><a href="https://mathjs.org/">MathJS</a></li>
+                    </ol>
                 </section>
 
                 <section>
                     <h2>IX. About the developer(s)</h2>
-                    <p>Your name/major/minor/year your, skill set and interests (ex. programming, game physics, graphic
-                        design, Maya, Photoshop, Illustrator, music, game sound, ...).</p>
+                    <h3>Zachary Deng</h3>
+                    <p>Game Design & Development + SOIS AI double major, Math + CS minor - graduating 2027</p>
+                    <p>Skills/Interests: Programming, AI/ML, Unity, music</p>
                 </section>
             </div>
         </div>
@@ -118,6 +107,7 @@
     <footer>
         <div id="sources">
             <h2>Sources</h2>
+            <p>Will update as sources are used. See <a href="#other">Potential libraries to use</a></p>
             <ol>
                 <li><a></a></li>
             </ol>
