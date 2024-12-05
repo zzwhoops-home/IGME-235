@@ -8,21 +8,50 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
         integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
         crossorigin="anonymous" referrerpolicy="no-referrer">
-    <script src="https://pixijs.download/release/pixi.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/mathjs/lib/browser/math.min.js"></script>
     <script type="module" src="js/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjs/lib/browser/math.min.js"></script>
     <title>Project 3</title>
 </head>
 
 <body>
-    <script type="module">
-        const app = new PIXI.Application();
-        await app.init({ width: 1080, height: 600 });
-
-        document.body.appendChild(app.canvas);
-    </script>
-    <section id="game">
-
+    <section id="panel">
+        <h1>A game of RREFs</h1>
+        <div id="gameplay">
+            <div id="matrix-panel">
+                <div id="matrix-container">
+                    <div class="matrix-element">1</div>
+                    <div class="matrix-element">0</div>
+                    <div class="matrix-element">0</div>
+                    <div class="matrix-element">0</div>
+                    <div class="matrix-element">1</div>
+                    <div class="matrix-element">0</div>
+                    <div class="matrix-element">0</div>
+                    <div class="matrix-element">0</div>
+                    <div class="matrix-element">1</div>
+                </div>
+            </div>
+            <div id="moves-panel">
+                <h2>Moves</h2>
+                <div id="moves-container">
+                    <div class="move">Swap</div>
+                    <div class="move">Scale</div>
+                    <div class="move">Pivot</div>
+                </div>
+            </div>
+            <div id="powerups-panel">
+                <h2>Powerups</h2>
+                <div id="powerups-container">
+                    <div class="powerup">2-move</div>
+                    <div class="powerup">A<sup>T</sup></div>
+                </div>
+            </div>
+        </div>
+        <div id="stats">
+            <p id="level">Level: Tutorial</p>
+            <p id="score">900pts</p>
+            <p id="moves">Moves: 5/9</p>
+            <p id="timer">Time left: 50s</p>
+        </div>
     </section>
 </body>
 
