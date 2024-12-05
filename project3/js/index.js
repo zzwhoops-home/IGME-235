@@ -1,4 +1,4 @@
-
+import { Game } from "./modules/Game";
 
 /**
  * Handles the window onload event and initializes the page contents.
