@@ -3,6 +3,14 @@
     padding: 0;
 }
 
+:root {
+    --bg-gray: #5c5c5c;
+    --bg-light-gray: #B0B0B0;
+    --fg-gray: #d4d4d4;
+    --fg-red: #B50938;
+    --text-color: #333;
+}
+
 html {
     background-color: #fff;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -18,9 +26,105 @@ h1 {
     text-align: center;
 }
 
+/* Grid setup for matrix-panel, moves-panel, and powerups-panel */
+#gameplay {
+    display: grid;
+    grid-template-areas:
+        "ma mv"
+        "ma mv"
+        "ma mv"
+        "ma pw"
+        "ma pw";
+    grid-template-rows: repeat(5, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+}
+
+#matrix-panel, #moves-panel, #powerups-panel {
+    margin: 20px;
+    padding: 20px;
+    background-color: var(--bg-gray);
+    text-align: center;
+}
+
+#matrix-panel {
+    grid-area: ma;
+}
+
+#moves-panel {
+    grid-area: mv;
+}
+
+#powerups-panel {
+    grid-area: pw;
+}
+
+#panel {
+    max-height: 600px;
+}
+
+#matrix-container {
+    margin: 50px;
+    display: grid;
+    font-size: 1.5em;
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.matrix-element {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5em;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border: 1px solid black;
+}
+
+#moves-container {
+    display: grid;
+    background-color: var(--bg-light-gray);
+    margin: 20px;
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    height: calc(100% - 60px);
+}
+
+.move {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px dotted black;
+}
+
+#powerups-container {
+    display: grid;
+    background-color: var(--bg-light-gray);
+    margin: 20px;
+    grid-template-columns: repeat(3, 1fr);
+    height: calc(100% - 60px);
+    box-sizing:border-box;
+}
+
+.powerup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px dotted black;
+}
+
 #stats {
+    margin: 20px 0 20px 0;
+    font-size: 1.3em;
+    padding: 0 20px;
     display: grid;
     text-align: center;
-    gap: 10px;
     grid-template-columns: 3fr 3fr 1fr 1fr;
 }
+
+#level {}
+
+#score {}
+
+#moves {}
+
+#timer {}
