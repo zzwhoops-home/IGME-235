@@ -163,6 +163,10 @@ h1 {
     gap: 10px;
 }
 
+#popup label {
+    font-size: 2em;
+}
+
 #popup p {
     font-size: 1.5em;
     font-weight: bold;

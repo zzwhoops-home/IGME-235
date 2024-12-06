@@ -82,8 +82,9 @@ const showPopup = (type, element) => {
     popup.innerHTML = "";
 
     // create new label
+    const typeCapitalized = type.charAt(0).toUpperCase() + type.slice(1);
     const popupLabel = document.createElement("p");
-    popupLabel.textContent = type.charAt(0).toUpperCase() + type.slice(1);
+    popupLabel.textContent = typeCapitalized;
     popup.appendChild(popupLabel);
 
     switch (type) {
