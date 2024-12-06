@@ -21,8 +21,15 @@ const loadContents = async () => {
     const scale = document.querySelector('#scale');
     const pivot = document.querySelector('#pivot');
 
+    // add event listeners for move buttons
+
     // get powerup buttons
     const powerups = document.querySelectorAll(".powerup");
+
+    // add event listeners for powerup buttons
+    powerups.forEach(element => {
+        element.addEventListener('click', handleSelected);
+    })
 
     // stats paragraphs
     const levelP = document.querySelector("#stats #level");
@@ -33,3 +40,25 @@ const loadContents = async () => {
     // create class instances
     game = new Game(levelP, scoreP, movesP, timerP);
 };
+
+const handleSelected = (e) => {
+    if (!e.target.classList.contains("selected")) {
+        e.target.classList.add("selected");
+    }
+    else {
+        e.target.classList.remove("selected");
+    }
+};
+
+document.addEventListener('click', (e) => {
+    // get all elements 'selected'
+    const selected = document.querySelectorAll(".selected");
+
+    // iterate through selected elements (should only be one)
+    selected.forEach(element => {
+        // clicked element should be selected element
+        if (!element.contains(e.target)) {
+            element.classList.remove("selected");
+        }
+    });
+});
