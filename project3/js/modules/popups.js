@@ -35,8 +35,15 @@ export const createSwapContent = (rows) => {
     });
     container.appendChild(swapSelect2);
 
-    // add event listeners
+    // start with row 1 and row 2 swap, disable others
+    swapSelect1.value = "Row 1";
+    swapSelect2.value = "Row 2";
+    swapSelect1.childNodes[1].disabled = true;
+    swapSelect2.childNodes[0].disabled = true;
+
+    // add event listener for left swap
     swapSelect1.addEventListener('change', swapChangeLeft);
+    swapSelect2.addEventListener('change', swapChangeRight);
 
     const submitButton = document.createElement("button");
     submitButton.addEventListener("click", submitSwap);
@@ -63,10 +70,28 @@ const swapChangeLeft = (e) => {
     // prevent the same row from being swapped
     for (let i = 0; i < options.length; i++) {
         if (i != index) {
-            swapSelect2[index].disabled = false;
+            swapSelect2[i].disabled = false;
         }
         else {
-            swapSelect2[index].disabled = true;
+            swapSelect2[i].disabled = true;
+        }
+    }
+}
+
+const swapChangeRight = (e) => {
+    const options = Array.from(e.target.childNodes);
+    const selected = options.filter(element => element.selected == true);
+
+    // get index by splitting
+    const index = selected[0].textContent.split(" ")[1] - 1;
+
+    // prevent the same row from being swapped
+    for (let i = 0; i < options.length; i++) {
+        if (i != index) {
+            swapSelect1[i].disabled = false;
+        }
+        else {
+            swapSelect1[i].disabled = true;
         }
     }
 }
