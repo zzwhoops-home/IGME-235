@@ -77,36 +77,42 @@ const handleSelected = (e) => {
 
 const showPopup = (type, element) => {
     const popup = document.querySelector("#popup");
-    
+
     // clear existing content
     popup.innerHTML = "";
+
+    // create new label
+    const popupLabel = document.createElement("p");
+    popupLabel.textContent = type.charAt(0).toUpperCase() + type.slice(1);
+    popup.appendChild(popupLabel);
+
+    switch (type) {
+        case "swap":
+            popup.appendChild(createSwapContent());
+            break;
+        case "scale":
+            popup.appendChild(createScaleContent());
+            break;
+        case "pivot":
+            popup.appendChild(createPivotContent());
+            break;
+    }
 
     // Position the popup
     const rect = element.getBoundingClientRect();
     popup.style.top = `${rect.bottom + window.scrollY}px`;
     popup.style.left = `${rect.left + window.scrollX}px`;
 
-    if (type === "swap") {
-        console.log(createSwapContent());
-        popup.appendChild(createSwapContent());
-    }
-    else if (type === "scale") {
-        popup.appendChild(createScaleContent());
-    }
-    else if (type === "pivot") {
-        popup.appendChild(createPivotContent());
-    }
-
     // show popup finally
-    popup.style.display = "inline-block";
+    popup.classList.remove('hidden');
 };
 
 /**
  * Closes the popup that opens when we prompt the user for an ERO
  */
 const closePopup = () => {
-    if (popup.style.display != "none") {
-        popup.style.display = "none";
+    if (!popup.classList.contains('hidden')) {
+        popup.classList.add('hidden');
     }
 }
 

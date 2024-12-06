@@ -148,8 +148,11 @@ h1 {
     box-shadow: 2px 2px 6px 4px rgba(0, 0, 0, 0.3);
     padding: 25px;
     border-radius: 5px;
-    display: none;
     z-index: 10;
+}
+
+.hidden {
+    display: none;
 }
 
 #popup-content {
@@ -161,14 +164,18 @@ h1 {
 }
 
 #popup p {
+    font-size: 1.5em;
+    font-weight: bold;
 }
 
 #popup select {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    padding: 10px 5px;
 }
 
 #popup button {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    padding: 10px;
 }
 
 .empty {
