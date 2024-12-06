@@ -1,7 +1,11 @@
 import { Game } from './modules/Game.js'
+import { createSwapContent, createScaleContent, createPivotContent } from './modules/popups.js';
 
 // current game instance
 let game;
+
+// popup panel
+let popup;
 
 /**
  * Handles the window onload event and initializes the page contents.
@@ -34,6 +38,16 @@ const loadContents = async () => {
         element.addEventListener('click', handleSelected);
     })
 
+    // get info popup
+    popup = document.querySelector("#popup");
+
+    // add event listener for clicking off the popup
+    // document.addEventListener('click', (e) => {
+    //     if (e.target != popup && popup.style.display != "none") {
+    //         closePopup();
+    //     }
+    // })
+
     // stats paragraphs
     const levelP = document.querySelector("#stats #level");
     const scoreP = document.querySelector("#stats #score");
@@ -44,15 +58,59 @@ const loadContents = async () => {
     game = new Game(levelP, scoreP, movesP, timerP);
 };
 
+/**
+ * Handles selecting and deselecting of moves/powerups
+ * 
+ * @param {Event} e 
+ */
 const handleSelected = (e) => {
     if (!e.target.classList.contains("selected")) {
         e.target.classList.add("selected");
     }
     else {
         e.target.classList.remove("selected");
+
+        // close popup
+        closePopup();
     }
 };
 
+const showPopup = (type, element) => {
+    const popupContent = document.querySelector("#popup-content");
+    
+    // clear existing content
+    popupContent.innerHTML = "Wahoowee";
+
+    // Position the popup
+    const rect = element.getBoundingClientRect();
+    popup.style.top = `${rect.bottom + window.scrollY}px`;
+    popup.style.left = `${rect.left + window.scrollX}px`;
+
+    if (type === "swap") {
+        console.log(createSwapContent());
+        popupContent.appendChild(createSwapContent());
+    }
+    else if (type === "scale") {
+        popupContent.appendChild(createScaleContent());
+    }
+    else if (type === "pivot") {
+        popupContent.appendChild(createPivotContent());
+    }
+
+    // show popup finally
+    popup.style.display = "block";
+};
+
+/**
+ * Closes the popup that opens when we prompt the user for an ERO
+ */
+const closePopup = () => {
+    if (popup.style.display != "none") {
+        popup.style.display = "none";
+    }
+}
+
+// add event listener for clicking off elements
 document.addEventListener('click', (e) => {
     // get all elements 'selected'
     const selected = document.querySelectorAll(".selected");
@@ -60,8 +118,20 @@ document.addEventListener('click', (e) => {
     // iterate through selected elements (should only be one)
     selected.forEach(element => {
         // clicked element should be selected element
-        if (!element.contains(e.target)) {
+        if (!element.contains(e.target) && !popup.contains(e.target)) {
             element.classList.remove("selected");
+
+            // close popup
+            closePopup();
         }
+    });
+});
+
+// event listener for clicking on moves
+document.querySelectorAll(".move").forEach(element => {
+    element.addEventListener('click', (e) => {
+        const type = element.id;
+
+        showPopup(type, e.target);
     });
 });
