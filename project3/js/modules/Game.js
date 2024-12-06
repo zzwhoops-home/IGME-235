@@ -21,14 +21,33 @@ export class Game {
         const level = new Level(3, 3, [[1, 0, 0], [0, 1, 0], [0, 0, 1]]);
         this.curLevel = level;
 
-        // get matrix element, update matrix
+        // get matrix element, initialize matrix
         this.matrix = document.querySelector("#matrix-container");
-        this.updateMatrix();
+        this.initializeMatrix();
     }
     
-    updateMatrix() {
+    /**
+     * Initializes the matrix when the Level is created
+     */
+    initializeMatrix() {
+        // set grid rows/cols
+        this.matrix.style.gridTemplateRows = `repeat(${this.rows}, 1fr)`;
+        this.matrix.style.gridTemplateColumns = `repeat(${this.columns}, 1fr)`;
+        
+        this.populateMatrix();
+    }
+
+    /**
+     * Populates the matrix with Game's entries only
+     */
+    populateMatrix() {
+        // clear elements
+        this.matrix.innerHTML = "";
+
+        // flatten 2D array
         const flat = Array.from(this.curLevel.entries.flat());
 
+        // create and add matrix entries
         flat.forEach(element => {
             const entry = document.createElement("div");
             entry.classList.add("matrix-element");
@@ -36,6 +55,22 @@ export class Game {
             
             this.matrix.appendChild(entry);
         })
+    }
+
+    /**
+     * Swaps the two specified row indices in the matrix
+     * 
+     * @param {Number} rowLeft 
+     * @param {Number} rowRight 
+     */
+    swapRows(rowLeft, rowRight) {
+        // swap rows
+        const temp = this.entries[rowLeft];
+        this.entries[rowLeft] = this.entries[rowRight];
+        this.entries[rowRight] = temp;
+
+        // update matrix
+        this.populateMatrix();
     }
 }
 

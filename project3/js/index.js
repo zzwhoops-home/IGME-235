@@ -100,8 +100,9 @@ const showPopup = (type, element) => {
     }
 
     // change button label
-    const button = document.querySelector("#popup-content button");
-    button.textContent = typeCapitalized + "!";
+    const submitButton = document.querySelector("#popup-content button");
+    submitButton.textContent = typeCapitalized + "!";
+    submitButton.addEventListener("click", submitSwap);
 
     // Position the popup
     const rect = element.getBoundingClientRect();
@@ -111,6 +112,10 @@ const showPopup = (type, element) => {
     // show popup finally
     popup.classList.remove('hidden');
 };
+
+const submitSwap = (e) => {
+    game.swapRows()
+}
 
 /**
  * Closes the popup that opens when we prompt the user for an ERO
