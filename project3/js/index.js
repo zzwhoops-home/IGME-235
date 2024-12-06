@@ -114,7 +114,7 @@ const showPopup = (type, element) => {
 };
 
 const submitSwap = (e) => {
-    game.swapRows()
+    
 }
 
 /**

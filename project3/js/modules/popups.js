@@ -8,7 +8,8 @@ export const createSwapContent = (rows) => {
 
     // first row selection
     swapSelect1 = document.createElement("select");
-
+    // assign id
+    swapSelect1.id = "dropdown-swap-left";
     // add options based on # of rows
     for (let i = 1; i <= rows; i++) {
         const option = document.createElement("option");
@@ -25,6 +26,8 @@ export const createSwapContent = (rows) => {
 
     // second row selection
     swapSelect2 = document.createElement("select");
+    // assign id
+    swapSelect2.id = "dropdown-swap-right";
     // add options based on # of rows
     for (let i = 1; i <= rows; i++) {
         const option = document.createElement("option");
