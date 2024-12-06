@@ -22,9 +22,12 @@ const loadContents = async () => {
     const pivot = document.querySelector('#pivot');
 
     // add event listeners for move buttons
+    swap.addEventListener('click', handleSelected);
+    scale.addEventListener('click', handleSelected);
+    pivot.addEventListener('click', handleSelected);
 
     // get powerup buttons
-    const powerups = document.querySelectorAll(".powerup");
+    const powerups = document.querySelectorAll(".powerup:not(.empty)");
 
     // add event listeners for powerup buttons
     powerups.forEach(element => {
