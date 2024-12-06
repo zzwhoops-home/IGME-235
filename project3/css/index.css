@@ -144,13 +144,31 @@ h1 {
 
 #popup {
     position: absolute;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 10px;
+    background-color: var(--fg-gray);
+    box-shadow: 2px 2px 6px 4px rgba(0, 0, 0, 0.3);
+    padding: 25px;
     border-radius: 5px;
     display: none;
     z-index: 10;
+}
+
+#popup-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    gap: 10px;
+}
+
+#popup p {
+}
+
+#popup select {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+#popup button {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .empty {

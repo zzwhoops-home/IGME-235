@@ -76,10 +76,10 @@ const handleSelected = (e) => {
 };
 
 const showPopup = (type, element) => {
-    const popupContent = document.querySelector("#popup-content");
+    const popup = document.querySelector("#popup");
     
     // clear existing content
-    popupContent.innerHTML = "Wahoowee";
+    popup.innerHTML = "";
 
     // Position the popup
     const rect = element.getBoundingClientRect();
@@ -88,17 +88,17 @@ const showPopup = (type, element) => {
 
     if (type === "swap") {
         console.log(createSwapContent());
-        popupContent.appendChild(createSwapContent());
+        popup.appendChild(createSwapContent());
     }
     else if (type === "scale") {
-        popupContent.appendChild(createScaleContent());
+        popup.appendChild(createScaleContent());
     }
     else if (type === "pivot") {
-        popupContent.appendChild(createPivotContent());
+        popup.appendChild(createPivotContent());
     }
 
     // show popup finally
-    popup.style.display = "block";
+    popup.style.display = "inline-block";
 };
 
 /**

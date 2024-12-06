@@ -1,9 +1,10 @@
 export const createSwapContent = () => {
     const container = document.createElement("div");
+    container.classList.add('popup-content');
 
-    const label = document.createElement("label");
-    label.textContent = "Swap:";
-    container.appendChild(label);
+    const header = document.createElement("p");
+    header.textContent = "Swap";
+    container.appendChild(header);
 
     const select1 = document.createElement("select");
     ["Row 1", "Row 2", "Row 3"].forEach(optionText => {
