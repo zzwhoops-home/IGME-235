@@ -21,8 +21,21 @@ export class Game {
         const level = new Level(3, 3, [[1, 0, 0], [0, 1, 0], [0, 0, 1]]);
         this.curLevel = level;
 
-        // get matrix element
+        // get matrix element, update matrix
         this.matrix = document.querySelector("#matrix-container");
+        this.updateMatrix();
+    }
+    
+    updateMatrix() {
+        const flat = Array.from(this.curLevel.entries.flat());
+
+        flat.forEach(element => {
+            const entry = document.createElement("div");
+            entry.classList.add("matrix-element");
+            entry.textContent = element;
+            
+            this.matrix.appendChild(entry);
+        })
     }
 }
 
@@ -31,9 +44,5 @@ export class Level {
         this.rows = rows;
         this.columns = columns;
         this.entries = entries;
-
-        // createMatrix();
     }
-
-    
 }
