@@ -89,7 +89,7 @@ const showPopup = (type, element) => {
 
     switch (type) {
         case "swap":
-            popup.appendChild(createSwapContent());
+            popup.appendChild(createSwapContent(game.curLevel.rows));
             break;
         case "scale":
             popup.appendChild(createScaleContent());
@@ -98,6 +98,10 @@ const showPopup = (type, element) => {
             popup.appendChild(createPivotContent());
             break;
     }
+
+    // change button label
+    const button = document.querySelector("#popup-content button");
+    button.textContent = typeCapitalized + "!";
 
     // Position the popup
     const rect = element.getBoundingClientRect();
