@@ -64,10 +64,15 @@ export class Game {
      * @param {Number} rowRight 
      */
     swapRows(rowLeft, rowRight) {
+        const entries = this.curLevel.entries;
+
+        const left = rowLeft - 1;
+        const right = rowRight - 1;
+
         // swap rows
-        const temp = this.entries[rowLeft];
-        this.entries[rowLeft] = this.entries[rowRight];
-        this.entries[rowRight] = temp;
+        const temp = entries[left];
+        entries[left] = entries[right];
+        entries[right] = temp;
 
         // update matrix
         this.populateMatrix();

@@ -114,7 +114,19 @@ const showPopup = (type, element) => {
 };
 
 const submitSwap = (e) => {
-    
+    // get swap dropdowns
+    const dropdownLeft = document.querySelector("#dropdown-swap-left");
+    const dropdownRight = document.querySelector("#dropdown-swap-right");
+
+    // get selected option
+    const selectedOptionLeft = dropdownLeft.options[dropdownLeft.selectedIndex];
+    const selectedOptionRight = dropdownRight.options[dropdownRight.selectedIndex];
+
+    // get left and right row
+    const rowLeft = selectedOptionLeft.dataset.row;
+    const rowRight = selectedOptionRight.dataset.row;
+
+    game.swapRows(rowLeft, rowRight);
 }
 
 /**
