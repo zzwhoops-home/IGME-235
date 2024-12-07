@@ -183,6 +183,11 @@ h1 {
     padding: 10px;
 }
 
+#popup input {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    padding: 10px;
+}
+
 .empty {
     color: #555;
     font-style: italic;
