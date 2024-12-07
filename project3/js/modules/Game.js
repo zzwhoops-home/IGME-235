@@ -58,7 +58,7 @@ export class Game {
         flat.forEach(element => {
             const entry = document.createElement("div");
             entry.classList.add("matrix-element");
-            entry.textContent = element;
+            entry.textContent = `${element % 1 === 0 ? element : element.toFixed(2)}`;
             
             this.matrix.appendChild(entry);
         })
@@ -85,11 +85,20 @@ export class Game {
         this.populateMatrix();
     }
 
-    scaleRow(rowIndex, factor) {
+    scaleRow(row, factor) {
         const entries = this.curLevel.entries;
+        const rowIndex = row - 1;
 
         // create new row, update entries
-        const newRow = entries[rowIndex].map(element => element * factor);
+        const newRow = entries[rowIndex].map((element) => {
+            const newEntry = element * factor;
+            if (newEntry < 0.001) {
+                return 0;
+            }
+            else {
+                return newEntry;
+            }
+        });
         entries[rowIndex] = newRow;
 
         // update matrix
