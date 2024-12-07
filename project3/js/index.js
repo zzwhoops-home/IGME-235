@@ -87,7 +87,6 @@ const showPopup = (type, element) => {
     popupLabel.textContent = typeCapitalized;
     popup.appendChild(popupLabel);
 
-
     switch (type) {
         case "swap":
             popup.appendChild(createSwapContent(game.curLevel.rows));
@@ -169,6 +168,7 @@ const handleScaleRows = () => {
     const expression = scaleEntry.value;
     const num = math.evaluate(expression);
 
+    // prevent * by undefined or 0 
     if (num && num != 0) {
         game.scaleRow(row, num);
     }
