@@ -1,5 +1,5 @@
 // current swap selects
-let swapSelect1, swapSelect2;
+let scaleSelect, swapSelect2;
 
 export const createSwapContent = (rows) => {
     // popup content div
@@ -7,17 +7,17 @@ export const createSwapContent = (rows) => {
     container.id = "popup-content";
 
     // first row selection
-    swapSelect1 = document.createElement("select");
+    scaleSelect = document.createElement("select");
     // assign id
-    swapSelect1.id = "dropdown-swap-left";
+    scaleSelect.id = "dropdown-swap-left";
     // add options based on # of rows
     for (let i = 1; i <= rows; i++) {
         const option = document.createElement("option");
         option.textContent = `Row ${i}`;
         option.dataset.row = i;
-        swapSelect1.appendChild(option);
+        scaleSelect.appendChild(option);
     }
-    container.appendChild(swapSelect1);
+    container.appendChild(scaleSelect);
 
     // creating <-> symbol
     const swapSymbol = document.createElement("label");
@@ -38,13 +38,13 @@ export const createSwapContent = (rows) => {
     container.appendChild(swapSelect2);
 
     // start with row 1 and row 2 swap, disable others
-    swapSelect1.value = swapSelect1[0].textContent;
-    swapSelect2.value = swapSelect1[1].textContent;
-    swapSelect1.childNodes[1].disabled = true;
+    scaleSelect.value = scaleSelect[0].textContent;
+    swapSelect2.value = scaleSelect[1].textContent;
+    scaleSelect.childNodes[1].disabled = true;
     swapSelect2.childNodes[0].disabled = true;
 
     // add event listener for left swap
-    swapSelect1.addEventListener('change', swapChangeLeft);
+    scaleSelect.addEventListener('change', swapChangeLeft);
     swapSelect2.addEventListener('change', swapChangeRight);
 
     const submitButton = document.createElement("button");
@@ -53,8 +53,46 @@ export const createSwapContent = (rows) => {
     return container;
 }
 
-export const createScaleContent = () => {
+export const createScaleContent = (rows) => {
+    // popup content div
+    const container = document.createElement("div");
+    container.id = "popup-content";
 
+    // first row selection
+    const scaleSelect = document.createElement("select");
+    // assign id
+    scaleSelect.id = "dropdown-scale-row";
+    // add options based on # of rows
+    for (let i = 1; i <= rows; i++) {
+        const option = document.createElement("option");
+        option.textContent = `Row ${i}`;
+        option.dataset.row = i;
+        scaleSelect.appendChild(option);
+    }
+    container.appendChild(scaleSelect);
+
+    // creating <-> symbol
+    const scaleSymbol = document.createElement("label");
+    scaleSymbol.textContent = " × ";
+    container.appendChild(scaleSymbol);
+
+    // second row selection
+    const scaleEntry = document.createElement("input");
+    // assign id
+    scaleEntry.id = "dropdown-scale-entry";
+    // required and placeholder
+    scaleEntry.required = true;
+    // add options based on # of rows
+    container.appendChild(scaleEntry);
+
+    // force default value
+    scaleSelect.value = scaleSelect[0].textContent;
+
+    // create submit button
+    const submitButton = document.createElement("button");
+    container.appendChild(submitButton);
+
+    return container;
 }
 
 export const createPivotContent = () => {
@@ -89,10 +127,10 @@ const swapChangeRight = (e) => {
     // prevent the same row from being swapped
     for (let i = 0; i < options.length; i++) {
         if (i != index) {
-            swapSelect1[i].disabled = false;
+            scaleSelect[i].disabled = false;
         }
         else {
-            swapSelect1[i].disabled = true;
+            scaleSelect[i].disabled = true;
         }
     }
 }

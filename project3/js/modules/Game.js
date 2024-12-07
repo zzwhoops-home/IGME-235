@@ -18,7 +18,13 @@ export class Game {
         this.timerInterval = null;
 
         // test creation of level
-        const level = new Level(3, 3, [[1, 0, 0], [0, 1, 0], [0, 0, 1]]);
+        const level = new Level(5, 5, [
+            [1, 0, 0, 0, 0],
+            [0, 1, 0, 0, 0],
+            [0, 0, 1, 0, 0],
+            [0, 0, 0, 1, 0],
+            [0, 0, 0, 0, 1],
+        ]);
         this.curLevel = level;
 
         // get matrix element, initialize matrix
@@ -31,9 +37,10 @@ export class Game {
      */
     initializeMatrix() {
         // set grid rows/cols
-        this.matrix.style.gridTemplateRows = `repeat(${this.rows}, 1fr)`;
-        this.matrix.style.gridTemplateColumns = `repeat(${this.columns}, 1fr)`;
+        this.matrix.style.gridTemplateRows = `repeat(${this.curLevel.rows}, 1fr)`;
+        this.matrix.style.gridTemplateColumns = `repeat(${this.curLevel.columns}, 1fr)`;
         
+        // populate matrix
         this.populateMatrix();
     }
 

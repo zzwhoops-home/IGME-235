@@ -87,22 +87,25 @@ const showPopup = (type, element) => {
     popupLabel.textContent = typeCapitalized;
     popup.appendChild(popupLabel);
 
+
     switch (type) {
         case "swap":
             popup.appendChild(createSwapContent(game.curLevel.rows));
             break;
         case "scale":
-            popup.appendChild(createScaleContent());
+            popup.appendChild(createScaleContent(game.curLevel.rows));
             break;
         case "pivot":
             popup.appendChild(createPivotContent());
             break;
     }
 
+    
     // change button label
-    const submitButton = document.querySelector("#popup-content button");
-    submitButton.textContent = typeCapitalized + "!";
-    submitButton.addEventListener("click", submitSwap);
+    const button = document.querySelector("#popup-content button");
+    button.textContent = typeCapitalized + "!";
+    // add event listener
+    button.addEventListener("click", (e) => submitERO(type, e));
 
     // Position the popup
     const rect = element.getBoundingClientRect();
@@ -113,19 +116,31 @@ const showPopup = (type, element) => {
     popup.classList.remove('hidden');
 };
 
-const submitSwap = (e) => {
+const submitERO = (type, e) => {
+    switch (type) {
+        case "swap":
+            handleSwapRows();
+            break;
+        case "scale":
+            break;
+        case "pivot":
+            break;
+    }
+}
+
+const handleSwapRows = () => {
     // get swap dropdowns
     const dropdownLeft = document.querySelector("#dropdown-swap-left");
     const dropdownRight = document.querySelector("#dropdown-swap-right");
-
+    
     // get selected option
     const selectedOptionLeft = dropdownLeft.options[dropdownLeft.selectedIndex];
     const selectedOptionRight = dropdownRight.options[dropdownRight.selectedIndex];
-
+    
     // get left and right row
     const rowLeft = selectedOptionLeft.dataset.row;
     const rowRight = selectedOptionRight.dataset.row;
-
+    
     game.swapRows(rowLeft, rowRight);
 }
 
