@@ -82,6 +82,7 @@ export const createScaleContent = (rows) => {
     scaleEntry.id = "dropdown-scale-entry";
     // required and placeholder
     scaleEntry.required = true;
+    scaleEntry.placeholder = "Enter math (e.g. (1 / 4))";
     // add options based on # of rows
     container.appendChild(scaleEntry);
 

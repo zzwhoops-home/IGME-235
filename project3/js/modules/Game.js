@@ -84,6 +84,17 @@ export class Game {
         // update matrix
         this.populateMatrix();
     }
+
+    scaleRow(rowIndex, factor) {
+        const entries = this.curLevel.entries;
+
+        // create new row, update entries
+        const newRow = entries[rowIndex].map(element => element * factor);
+        entries[rowIndex] = newRow;
+
+        // update matrix
+        this.populateMatrix();
+    }
 }
 
 export class Level {

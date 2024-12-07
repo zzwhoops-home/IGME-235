@@ -100,7 +100,7 @@ const showPopup = (type, element) => {
             break;
     }
 
-    
+
     // change button label
     const button = document.querySelector("#popup-content button");
     button.textContent = typeCapitalized + "!";
@@ -122,6 +122,7 @@ const submitERO = (type, e) => {
             handleSwapRows();
             break;
         case "scale":
+            handleScaleRows();
             break;
         case "pivot":
             break;
@@ -132,17 +133,46 @@ const handleSwapRows = () => {
     // get swap dropdowns
     const dropdownLeft = document.querySelector("#dropdown-swap-left");
     const dropdownRight = document.querySelector("#dropdown-swap-right");
-    
+
     // get selected option
     const selectedOptionLeft = dropdownLeft.options[dropdownLeft.selectedIndex];
     const selectedOptionRight = dropdownRight.options[dropdownRight.selectedIndex];
-    
+
     // get left and right row
     const rowLeft = selectedOptionLeft.dataset.row;
     const rowRight = selectedOptionRight.dataset.row;
-    
+
     game.swapRows(rowLeft, rowRight);
-}
+};
+
+const handleScaleRows = () => {
+    // get scaling entries
+    const scaleRow = document.querySelector("#dropdown-scale-row");
+    const scaleEntry = document.querySelector("#dropdown-scale-entry");
+
+    // scaleEntry.addEventListener('change', (e) => {
+    //     try {
+    //         console.log(math.evaluate(scaleEntry.value));
+    //     }
+    //     catch (e) {
+    //         console.log(e);
+    //     }
+    // });
+
+    // get selected option
+    const selectedOption = scaleRow.options[scaleRow.selectedIndex];
+
+    // get row
+    const row = selectedOption.dataset.row;
+
+    // get expression
+    const expression = scaleEntry.value;
+    const num = math.evaluate(expression);
+
+    if (num && num != 0) {
+        game.scaleRow(row, num);
+    }
+};
 
 /**
  * Closes the popup that opens when we prompt the user for an ERO
