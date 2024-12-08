@@ -18,12 +18,11 @@ export class Game {
         this.timerInterval = null;
 
         // test creation of level
-        const level = new Level(5, 5, [
-            [1, 0, 0, 0, 0],
-            [0, 1, 0, 0, 0],
-            [0, 0, 1, 0, 0],
-            [0, 0, 0, 1, 0],
-            [0, 0, 0, 0, 1],
+        const level = new Level(4, 4, [
+            [1, 0, 0, 0],
+            [0, 1, 0, 0],
+            [0, 0, 1, 0],
+            [0, 0, 0, 1],
         ]);
         this.curLevel = level;
 
@@ -58,7 +57,8 @@ export class Game {
         flat.forEach(element => {
             const entry = document.createElement("div");
             entry.classList.add("matrix-element");
-            entry.textContent = `${element % 1 === 0 ? element : element.toFixed(2)}`;
+            entry.textContent = element;
+            // entry.textContent = `${element % 1 === 0 ? element : element.toFixed(2)}`;
             
             this.matrix.appendChild(entry);
         })
@@ -91,15 +91,53 @@ export class Game {
 
         // create new row, update entries
         const newRow = entries[rowIndex].map((element) => {
-            const newEntry = element * factor;
+            // use precise Decimal.js to calculate
+            const newEntry = new Decimal(element).times(new Decimal(factor));
+
             if (newEntry < 0.001) {
                 return 0;
             }
             else {
-                return newEntry;
+                return parseFloat(newEntry.toPrecision(7));
             }
         });
         entries[rowIndex] = newRow;
+
+        // update matrix
+        this.populateMatrix();
+    }
+
+    /**
+     * The "left" row is added to the "right" row
+     * If add = false, the left row is negated first before addition
+     * 
+     * @param {*} rowLeft 
+     * @param {*} rowRight 
+     * @param {*} add
+     */
+    pivotRow(rowLeft, rowRight, add = true) {
+        const entries = this.curLevel.entries;
+
+        // get indices
+        const left = rowLeft - 1;
+        const right = rowRight - 1;
+
+        // get corresponding arrays
+        const leftEntries = entries[left];
+        const rightEntries = entries[right];
+
+        // negate if subtracting
+        if (!add) {
+            leftEntries.forEach(element => -element);
+        }
+
+        // perform pivot
+        for (let i = 0; i < this.level.columns; i++) {
+            rightEntries[i] += leftEntries[i];
+        }
+
+        // update entries with pivot
+        entries[right] = rightEntries;
 
         // update matrix
         this.populateMatrix();
