@@ -167,6 +167,7 @@ const handleScaleRows = () => {
     // get expression
     const expression = scaleEntry.value;
     const num = math.evaluate(expression);
+
     // prevent * by undefined or 0 
     if (num && num != 0) {
         game.scaleRow(row, num);

@@ -1,5 +1,5 @@
 // current swap selects
-let scaleSelect, swapSelect2;
+let swapSelect1, swapSelect2;
 
 export const createSwapContent = (rows) => {
     // popup content div
@@ -7,17 +7,17 @@ export const createSwapContent = (rows) => {
     container.id = "popup-content";
 
     // first row selection
-    scaleSelect = document.createElement("select");
+    swapSelect1 = document.createElement("select");
     // assign id
-    scaleSelect.id = "dropdown-swap-left";
+    swapSelect1.id = "dropdown-swap-left";
     // add options based on # of rows
     for (let i = 1; i <= rows; i++) {
         const option = document.createElement("option");
         option.textContent = `Row ${i}`;
         option.dataset.row = i;
-        scaleSelect.appendChild(option);
+        swapSelect1.appendChild(option);
     }
-    container.appendChild(scaleSelect);
+    container.appendChild(swapSelect1);
 
     // creating <-> symbol
     const swapSymbol = document.createElement("label");
@@ -38,14 +38,18 @@ export const createSwapContent = (rows) => {
     container.appendChild(swapSelect2);
 
     // start with row 1 and row 2 swap, disable others
-    scaleSelect.value = scaleSelect[0].textContent;
-    swapSelect2.value = scaleSelect[1].textContent;
-    scaleSelect.childNodes[1].disabled = true;
+    swapSelect1.value = swapSelect1[0].textContent;
+    swapSelect2.value = swapSelect1[1].textContent;
+    swapSelect1.childNodes[1].disabled = true;
     swapSelect2.childNodes[0].disabled = true;
 
     // add event listener for left swap
-    scaleSelect.addEventListener('change', swapChangeLeft);
-    swapSelect2.addEventListener('change', swapChangeRight);
+    swapSelect1.addEventListener('change', (e) => {
+        return changeLeft(e, swapSelect1, swapSelect2);
+    });
+    swapSelect2.addEventListener('change', (e) => {
+        return changeRight(e, swapSelect1, swapSelect2);
+    });
 
     const submitButton = document.createElement("button");
     container.appendChild(submitButton);
@@ -100,7 +104,7 @@ export const createPivotContent = () => {
 
 }
 
-const swapChangeLeft = (e) => {
+const changeLeft = (e, left, right) => {
     const options = Array.from(e.target.childNodes);
     const selected = options.filter(element => element.selected == true);
 
@@ -118,7 +122,7 @@ const swapChangeLeft = (e) => {
     }
 }
 
-const swapChangeRight = (e) => {
+const changeRight = (e, left, right) => {
     const options = Array.from(e.target.childNodes);
     const selected = options.filter(element => element.selected == true);
 
@@ -128,10 +132,10 @@ const swapChangeRight = (e) => {
     // prevent the same row from being swapped
     for (let i = 0; i < options.length; i++) {
         if (i != index) {
-            scaleSelect[i].disabled = false;
+            swapSelect1[i].disabled = false;
         }
         else {
-            scaleSelect[i].disabled = true;
+            swapSelect1[i].disabled = true;
         }
     }
 }
