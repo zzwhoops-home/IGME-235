@@ -36,7 +36,7 @@ export const createSwapContent = (rows) => {
 
     // start with row 1 and row 2 swap, disable others
     swapSelect1.value = swapSelect1[0].textContent;
-    swapSelect2.value = swapSelect1[1].textContent;
+    swapSelect2.value = swapSelect2[1].textContent;
     swapSelect1.childNodes[1].disabled = true;
     swapSelect2.childNodes[0].disabled = true;
 
@@ -97,11 +97,76 @@ export const createScaleContent = (rows) => {
     return container;
 }
 
-export const createPivotContent = () => {
+export const createPivotContent = (rows) => {
     // popup content div
     const container = document.createElement("div");
     container.id = "popup-content";
 
+    // create + or - selection
+    const operation = document.createElement("select");
+    operation.id = "dropdown-pivot-op";
+    
+    // create options and append
+    const addOption = document.createElement("option");
+    const subOption = document.createElement("option");
+
+    addOption.textContent = "+";
+    subOption.textContent = "-";
+
+    operation.appendChild(addOption);
+    operation.appendChild(subOption);
+    // append to div
+    container.appendChild(operation);
+
+    // first row selection
+    const pivotSelect1 = document.createElement("select");
+    // assign id
+    pivotSelect1.id = "dropdown-pivot-left";
+    // add options based on # of rows
+    for (let i = 1; i <= rows; i++) {
+        const option = document.createElement("option");
+        option.textContent = `Row ${i}`;
+        option.dataset.row = i;
+        pivotSelect1.appendChild(option);
+    }
+    container.appendChild(pivotSelect1);
+
+    // creating -> symbol
+    const pivotSymbol = document.createElement("label");
+    pivotSymbol.textContent = " → ";
+    container.appendChild(pivotSymbol);
+
+    // second row selection
+    const pivotSelect2 = document.createElement("select");
+    // assign id
+    pivotSelect2.id = "dropdown-pivot-right";
+    // add options based on # of rows
+    for (let i = 1; i <= rows; i++) {
+        const option = document.createElement("option");
+        option.textContent = `Row ${i}`;
+        option.dataset.row = i;
+        pivotSelect2.appendChild(option);
+    }
+    container.appendChild(pivotSelect2);
+
+    // start with row 1 and row 2 swap, disable others
+    pivotSelect1.value = pivotSelect1[0].textContent;
+    pivotSelect2.value = pivotSelect2[1].textContent;
+    pivotSelect1.childNodes[1].disabled = true;
+    pivotSelect2.childNodes[0].disabled = true;
+
+    // add event listener for left swap
+    pivotSelect1.addEventListener('change', (e) => {
+        return changeLeft(e, pivotSelect1, pivotSelect2);
+    });
+    pivotSelect2.addEventListener('change', (e) => {
+        return changeRight(e, pivotSelect1, pivotSelect2);
+    });
+
+    const submitButton = document.createElement("button");
+    container.appendChild(submitButton);
+
+    return container;
 }
 
 const changeLeft = (e, left, right) => {
@@ -114,10 +179,10 @@ const changeLeft = (e, left, right) => {
     // prevent the same row from being swapped
     for (let i = 0; i < options.length; i++) {
         if (i != index) {
-            swapSelect2[i].disabled = false;
+            right[i].disabled = false;
         }
         else {
-            swapSelect2[i].disabled = true;
+            right[i].disabled = true;
         }
     }
 }
@@ -132,10 +197,10 @@ const changeRight = (e, left, right) => {
     // prevent the same row from being swapped
     for (let i = 0; i < options.length; i++) {
         if (i != index) {
-            swapSelect1[i].disabled = false;
+            left[i].disabled = false;
         }
         else {
-            swapSelect1[i].disabled = true;
+            left[i].disabled = true;
         }
     }
 }

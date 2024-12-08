@@ -115,7 +115,7 @@ export class Game {
      * @param {*} rowRight 
      * @param {*} add
      */
-    pivotRow(rowLeft, rowRight, add = true) {
+    pivotRows(rowLeft, rowRight, add = true) {
         const entries = this.curLevel.entries;
 
         // get indices
@@ -123,16 +123,18 @@ export class Game {
         const right = rowRight - 1;
 
         // get corresponding arrays
-        const leftEntries = entries[left];
-        const rightEntries = entries[right];
+        let leftEntries = entries[left];
+        let rightEntries = entries[right];
 
         // negate if subtracting
         if (!add) {
-            leftEntries.forEach(element => -element);
+            leftEntries = leftEntries.map((element) => {
+                return element != 0 ? -element : element;
+            });
         }
 
         // perform pivot
-        for (let i = 0; i < this.level.columns; i++) {
+        for (let i = 0; i < this.curLevel.columns; i++) {
             rightEntries[i] += leftEntries[i];
         }
 

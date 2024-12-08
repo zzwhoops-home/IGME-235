@@ -95,10 +95,9 @@ const showPopup = (type, element) => {
             popup.appendChild(createScaleContent(game.curLevel.rows));
             break;
         case "pivot":
-            popup.appendChild(createPivotContent());
+            popup.appendChild(createPivotContent(game.curLevel.rows));
             break;
     }
-
 
     // change button label
     const button = document.querySelector("#popup-content button");
@@ -124,6 +123,7 @@ const submitERO = (type, e) => {
             handleScaleRows();
             break;
         case "pivot":
+            handlePivotRows();
             break;
     }
 }
@@ -141,6 +141,7 @@ const handleSwapRows = () => {
     const rowLeft = selectedOptionLeft.dataset.row;
     const rowRight = selectedOptionRight.dataset.row;
 
+    // call Game function
     game.swapRows(rowLeft, rowRight);
 };
 
@@ -173,6 +174,26 @@ const handleScaleRows = () => {
         game.scaleRow(row, num);
     }
 };
+
+const handlePivotRows = () => {
+    // get pivoting entries
+    const pivotOp = document.querySelector("#dropdown-pivot-op")
+    const pivotLeft = document.querySelector("#dropdown-pivot-left");
+    const pivotRight = document.querySelector("#dropdown-pivot-right");
+
+    // get selected option
+    const selectedOptionLeft = pivotLeft.options[pivotLeft.selectedIndex];
+    const selectedOptionRight = pivotRight.options[pivotRight.selectedIndex];
+    const selectedOptionOp = pivotOp.options[pivotOp.selectedIndex];
+
+    // get left and right row
+    const rowLeft = selectedOptionLeft.dataset.row;
+    const rowRight = selectedOptionRight.dataset.row;
+    const add = selectedOptionOp.textContent === "+" ? true : false;
+
+    // call Game function
+    game.pivotRows(rowLeft, rowRight, add);
+}
 
 /**
  * Closes the popup that opens when we prompt the user for an ERO
