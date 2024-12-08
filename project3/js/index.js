@@ -56,7 +56,6 @@ const loadContents = async () => {
 
     // create class instances
     game = new Game(levelP, scoreP, movesP, timerP);
-    debugger;
 };
 
 /**
