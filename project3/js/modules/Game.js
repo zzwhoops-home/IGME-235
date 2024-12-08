@@ -19,9 +19,9 @@ export class Game {
 
         // test creation of level
         const level = new Level(4, 4, [
-            [1, 0, 0, 0],
-            [0, 1, 0, 0],
-            [0, 0, 1, 0],
+            [1, 1, 2, 0],
+            [0, 1, 3, 0],
+            [0, 0, 1, 4],
             [0, 0, 0, 1],
         ]);
         this.curLevel = level;
@@ -141,6 +141,42 @@ export class Game {
 
         // update matrix
         this.populateMatrix();
+    }
+
+    /**
+     * Checks if the current matrix is in reduced row echelon form
+     * 
+     * @returns Boolean
+     */
+    checkRREF() {
+        const entries = this.curLevel.entries;
+        let leading = [];
+
+        // first nonzero entry in each row should be 1
+        for (let i = 0; i < this.curLevel.rows; i++) {
+            for (let j = 0; j < this.curLevel.columns; j++) {
+                const entry = entries[i][j];
+                
+                // if we found a leading 1
+                if (entry == 1) {
+                    // add leading 1 index
+                    leading.push([i, j]);
+                    break;
+                }
+
+                // not in rref if we find nonzero entry which != 1
+                if (entry != 0 && entry != 1) {
+                    return false;
+                }
+            }
+        }
+
+        for (let index of leading) {
+            console.log(index);
+        }
+
+        // if a column has a leading 1
+
     }
 }
 

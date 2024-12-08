@@ -76,6 +76,7 @@ const handleSelected = (e) => {
 };
 
 const showPopup = (type, element) => {
+    debugger;
     const popup = document.querySelector("#popup");
 
     // clear existing content
