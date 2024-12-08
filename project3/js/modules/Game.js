@@ -19,10 +19,10 @@ export class Game {
 
         // test creation of level
         const level = new Level(4, 4, [
-            [1, 0, 0, 0],
-            [0, 1, 0, 0],
-            [0, 0, 1, 0],
-            [0, 0, 0, 1],
+            [-2, 6, -1, 6],
+            [6, -18, 0, -30],
+            [3, -9, 1, -11],
+            [4, -12, 2, -12]
         ]);
         this.curLevel = level;
 
@@ -94,7 +94,7 @@ export class Game {
             // use precise Decimal.js to calculate
             const newEntry = new Decimal(element).times(new Decimal(factor));
 
-            if (newEntry < 0.001) {
+            if (Math.abs(newEntry) < 0.001) {
                 return 0;
             }
             else {
