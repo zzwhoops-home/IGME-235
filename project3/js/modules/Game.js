@@ -19,9 +19,9 @@ export class Game {
 
         // test creation of level
         const level = new Level(4, 4, [
-            [1, 1, 2, 0],
-            [0, 1, 3, 0],
-            [0, 0, 1, 4],
+            [1, 0, 0, 0],
+            [0, 1, 0, 0],
+            [0, 0, 1, 0],
             [0, 0, 0, 1],
         ]);
         this.curLevel = level;
@@ -151,9 +151,12 @@ export class Game {
     checkRREF() {
         const entries = this.curLevel.entries;
         let leading = [];
+        let emptyRows = [];
 
         // first nonzero entry in each row should be 1
         for (let i = 0; i < this.curLevel.rows; i++) {
+            let empty = true;
+
             for (let j = 0; j < this.curLevel.columns; j++) {
                 const entry = entries[i][j];
                 
@@ -161,22 +164,56 @@ export class Game {
                 if (entry == 1) {
                     // add leading 1 index
                     leading.push([i, j]);
+
+                    // row is not empty
+                    empty = false;
                     break;
                 }
 
                 // not in rref if we find nonzero entry which != 1
                 if (entry != 0 && entry != 1) {
+                    // row is not empty
+                    empty = false;
+
+                    return false;
+                }
+            }
+
+            // row is empty, add row to empty list
+            if (empty) {
+                emptyRows.push(i);
+            }
+        }
+        
+        // all empty rows must be on the bottom
+        if (emptyRows) {
+            const firstEmpty = emptyRows[0];
+            const lastNonEmpty = leading[leading.length - 1][0];
+            
+            if (firstEmpty < lastNonEmpty) {
+                console.log("nope");
+                return false;
+            }
+        }
+
+        // if a column has a leading 1, it must be to the right of
+        // leading 1s in rows above it
+        for (let i = 0; i < leading.length - 1; i++) {
+            if (leading[i][1] > leading[i + 1][1]) {
+                return false;
+            }
+        }
+
+        // if a column contains a leading 1, the rest of the entries must = 0
+        for (let index of leading) {
+            const row = index[0];
+            const col = index[1];
+            for (let i = 0; i < this.curLevel.rows; i++) {
+                if (i != row && entries[i][col] != 0) {
                     return false;
                 }
             }
         }
-
-        for (let index of leading) {
-            console.log(index);
-        }
-
-        // if a column has a leading 1
-
     }
 }
 

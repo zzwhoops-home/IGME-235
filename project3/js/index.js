@@ -56,6 +56,7 @@ const loadContents = async () => {
 
     // create class instances
     game = new Game(levelP, scoreP, movesP, timerP);
+    debugger;
 };
 
 /**
@@ -76,7 +77,6 @@ const handleSelected = (e) => {
 };
 
 const showPopup = (type, element) => {
-    debugger;
     const popup = document.querySelector("#popup");
 
     // clear existing content
