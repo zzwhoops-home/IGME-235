@@ -1,13 +1,10 @@
-// current swap selects
-let swapSelect1, swapSelect2;
-
 export const createSwapContent = (rows) => {
     // popup content div
     const container = document.createElement("div");
     container.id = "popup-content";
 
     // first row selection
-    swapSelect1 = document.createElement("select");
+    const swapSelect1 = document.createElement("select");
     // assign id
     swapSelect1.id = "dropdown-swap-left";
     // add options based on # of rows
@@ -25,7 +22,7 @@ export const createSwapContent = (rows) => {
     container.appendChild(swapSymbol);
 
     // second row selection
-    swapSelect2 = document.createElement("select");
+    const swapSelect2 = document.createElement("select");
     // assign id
     swapSelect2.id = "dropdown-swap-right";
     // add options based on # of rows
@@ -101,6 +98,9 @@ export const createScaleContent = (rows) => {
 }
 
 export const createPivotContent = () => {
+    // popup content div
+    const container = document.createElement("div");
+    container.id = "popup-content";
 
 }
 
