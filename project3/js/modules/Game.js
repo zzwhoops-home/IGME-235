@@ -18,25 +18,25 @@ export class Game {
         this.timerInterval = null;
 
         // test creation of level
-        // const level = new Level(4, 4, [
-        //     [-2, 6, -1, 6],
-        //     [6, -18, 0, -30],
-        //     [3, -9, 1, -11],
-        //     [4, -12, 2, -12]
-        // ]);
         const level = new Level(4, 4, [
-            [1, -3, 0, -5],
-            [0, 0, 1, 4],
-            [0, 0, 0, 0],
-            [0, 0, 0, 0]
+            [-2, 6, -1, 6],
+            [6, -18, 0, -30],
+            [3, -9, 1, -11],
+            [4, -12, 2, -12]
         ]);
+        // const level = new Level(4, 4, [
+        //     [1, -3, 0, -5],
+        //     [0, 0, 1, 4],
+        //     [0, 0, 0, 0],
+        //     [0, 0, 0, 0]
+        // ]);
         this.curLevel = level;
 
         // get matrix element, initialize matrix
         this.matrix = document.querySelector("#matrix-container");
         this.initializeMatrix();
     }
-    
+
     /**
      * Initializes the matrix when the Level is created
      */
@@ -44,7 +44,7 @@ export class Game {
         // set grid rows/cols
         this.matrix.style.gridTemplateRows = `repeat(${this.curLevel.rows}, 1fr)`;
         this.matrix.style.gridTemplateColumns = `repeat(${this.curLevel.columns}, 1fr)`;
-        
+
         // populate matrix
         this.populateMatrix();
     }
@@ -65,7 +65,7 @@ export class Game {
             entry.classList.add("matrix-element");
             entry.textContent = element;
             // entry.textContent = `${element % 1 === 0 ? element : element.toFixed(2)}`;
-            
+
             this.matrix.appendChild(entry);
         })
     }
@@ -167,7 +167,7 @@ export class Game {
 
             for (let j = 0; j < this.curLevel.columns; j++) {
                 const entry = entries[i][j];
-                
+
                 // if we found a leading 1
                 if (entry == 1) {
                     // add leading 1 index
@@ -192,12 +192,12 @@ export class Game {
                 emptyRows.push(i);
             }
         }
-        
+
         // all empty rows must be on the bottom
         if (emptyRows) {
             const firstEmpty = emptyRows[0];
             const lastNonEmpty = leading[leading.length - 1][0];
-            
+
             if (firstEmpty < lastNonEmpty) {
                 console.log("nope");
                 return false;
@@ -222,7 +222,7 @@ export class Game {
                 }
             }
         }
-        
+
         // if we reach the end, we are in rref
         return true;
     }

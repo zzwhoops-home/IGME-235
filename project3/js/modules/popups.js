@@ -94,6 +94,27 @@ export const createScaleContent = (rows) => {
     const submitButton = document.createElement("button");
     container.appendChild(submitButton);
 
+    // add event listener for continuous validation
+    scaleEntry.addEventListener("input", () => {
+        const expr = scaleEntry.value;
+        console.log(expr);
+
+        // try parsing expression, disable submit on fail
+        try {
+            math.parse(expr);
+            scaleEntry.style.border = "1px solid black";
+            scaleEntry.style.color = "black";
+            scaleEntry.style.fontStyle = "normal";
+            submitButton.disabled = false;
+        }
+        catch (ex) {
+            scaleEntry.style.border = "1px solid red";
+            scaleEntry.style.color = "#ff0000";
+            scaleEntry.style.fontStyle = "italic";
+            submitButton.disabled = true;
+        }
+    });
+
     return container;
 }
 
@@ -105,7 +126,7 @@ export const createPivotContent = (rows) => {
     // create + or - selection
     const operation = document.createElement("select");
     operation.id = "dropdown-pivot-op";
-    
+
     // create options and append
     const addOption = document.createElement("option");
     const subOption = document.createElement("option");

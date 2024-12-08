@@ -64,6 +64,9 @@ const loadContents = async () => {
  * @param {Event} e 
  */
 const handleSelected = (e) => {
+    document.querySelectorAll(".move").forEach(element => {
+        element.classList.remove("selected");
+    });
     if (!e.target.classList.contains("selected")) {
         e.target.classList.add("selected");
     }
@@ -206,25 +209,33 @@ const closePopup = () => {
 
 // add event listener for clicking off elements
 document.addEventListener('click', (e) => {
-    // get all elements 'selected'
-    const selected = document.querySelectorAll(".selected");
+    // only trigger if we aren't clicking on a move
+    if (!e.target.classList.contains("move")) {
+        // get all elements 'selected'
+        const selected = document.querySelectorAll(".selected");
 
-    // iterate through selected elements (should only be one)
-    selected.forEach(element => {
-        // clicked element should be selected element
-        if (!element.contains(e.target) && !popup.contains(e.target)) {
-            element.classList.remove("selected");
+        // console.log("clicked screen");
+        // console.log(selected);
+        // iterate through selected elements (should only be one)
+        selected.forEach(element => {
+            // clicked element should be selected element
+            if (!element.contains(e.target) && !popup.contains(e.target)) {
+                element.classList.remove("selected");
 
-            // close popup
-            closePopup();
-        }
-    });
+                // close popup
+                closePopup();
+            }
+        });
+    }
 });
 
 // event listener for clicking on moves
 document.querySelectorAll(".move").forEach(element => {
     element.addEventListener('click', (e) => {
         const type = element.id;
+
+        // close previous popup
+        closePopup();
 
         showPopup(type, e.target);
     });
