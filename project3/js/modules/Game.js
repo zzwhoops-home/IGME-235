@@ -63,8 +63,7 @@ export class Game {
         flat.forEach(element => {
             const entry = document.createElement("div");
             entry.classList.add("matrix-element");
-            entry.textContent = element;
-            // entry.textContent = `${element % 1 === 0 ? element : element.toFixed(2)}`;
+            entry.textContent = `${element % 1 === 0 ? element : element.toFixed(2)}`;
 
             this.matrix.appendChild(entry);
         })
