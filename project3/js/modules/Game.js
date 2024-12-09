@@ -198,7 +198,6 @@ export class Game {
             const lastNonEmpty = leading[leading.length - 1][0];
 
             if (firstEmpty < lastNonEmpty) {
-                console.log("nope");
                 return false;
             }
         }

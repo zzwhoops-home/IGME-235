@@ -97,7 +97,6 @@ export const createScaleContent = (rows) => {
     // add event listener for continuous validation
     scaleEntry.addEventListener("input", () => {
         const expr = scaleEntry.value;
-        console.log(expr);
 
         // try parsing expression, disable submit on fail
         try {
