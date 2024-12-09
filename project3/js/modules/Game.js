@@ -18,18 +18,18 @@ export class Game {
         this.timerInterval = null;
 
         // test creation of level
-        // const level = new Level(4, 4, [
-        //     [-2, 6, -1, 6],
-        //     [6, -18, 0, -30],
-        //     [3, -9, 1, -11],
-        //     [4, -12, 2, -12]
-        // ]);
         const level = new Level(4, 4, [
-            [1, -3, 0, -5],
-            [0, 0, 2, 8],
-            [0, 0, 1, 4],
-            [0, 0, 0, 0]
+            [-2, 6, -1, 6],
+            [6, -18, 0, -30],
+            [3, -9, 1, -11],
+            [4, -12, 2, -12]
         ]);
+        // const level = new Level(4, 4, [
+        //     [1, -3, 0, -5],
+        //     [0, 0, 2, 8],
+        //     [0, 0, 1, 4],
+        //     [0, 0, 0, 0]
+        // ]);
         this.curLevel = level;
 
         // get matrix element, initialize matrix
