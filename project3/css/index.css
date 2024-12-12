@@ -58,9 +58,20 @@ h1 {
     grid-area: mv;
 }
 
-#powerups-panel {
+/* #powerups-panel {
     grid-area: pw;
+} */
+
+#stats {
+    grid-area: pw;
+    margin: 20px 0 20px 0;
+    font-size: 1.3em;
+    padding: 0 20px;
+    display: grid;
+    text-align: center;
+    grid-template-columns: 3fr 3fr 1fr 1fr;
 }
+
 
 #panel {
     max-height: 600px;
@@ -202,15 +213,6 @@ h1 {
     color: #555;
     font-style: italic;
     cursor: not-allowed;
-}
-
-#stats {
-    margin: 20px 0 20px 0;
-    font-size: 1.3em;
-    padding: 0 20px;
-    display: grid;
-    text-align: center;
-    grid-template-columns: 3fr 3fr 1fr 1fr;
 }
 
 #level {}
