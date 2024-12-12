@@ -110,7 +110,7 @@ const showPopup = (type, element) => {
 
     // Position the popup
     const rect = element.getBoundingClientRect();
-    popup.style.top = `${rect.bottom + window.scrollY}px`;
+    popup.style.top = `${rect.bottom + window.scrollY - 5}px`;
     popup.style.left = `${rect.left + window.scrollX}px`;
 
     // show popup finally

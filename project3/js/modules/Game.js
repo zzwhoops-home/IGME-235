@@ -57,6 +57,7 @@ export class Game {
         this.matrix.innerHTML = "";
 
         // flatten 2D array
+        
         const flat = Array.from(this.curLevel.entries.flat());
 
         // create and add matrix entries
@@ -77,6 +78,9 @@ export class Game {
             const matrixContainer = document.querySelector("#matrix-container");
             matrixContainer.style.backgroundColor = "";
         }
+        
+        // spread rows
+        this.level.prevEntries = this.level.entries.map(row => [...row]);
     }
 
     /**
@@ -237,9 +241,13 @@ export class Game {
 }
 
 export class Level {
+    prevEntries = null;
+
     constructor(rows, columns, entries) {
         this.rows = rows;
         this.columns = columns;
         this.entries = entries;
+
+        this.prevEntries = entries.map(row => [...row]);
     }
 }
