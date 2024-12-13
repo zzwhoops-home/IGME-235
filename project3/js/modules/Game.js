@@ -69,6 +69,7 @@ export class Game {
 
             const curVal = flat[i];
             const prevVal = prev[i];
+
             // two decimal places for displayed elements
             elementCounter(prevVal, curVal, entry);
 
@@ -262,12 +263,14 @@ export class Game {
 
 export class Level {
     prevEntries = null;
+    startEntries = null;
 
     constructor(rows, columns, entries) {
         this.rows = rows;
         this.columns = columns;
         this.entries = entries;
 
+        this.startEntries = entries.map(row => [...row]);
         this.prevEntries = entries.map(row => [...row]);
     }
 }
