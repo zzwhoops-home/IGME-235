@@ -289,10 +289,18 @@ export class Game {
      * Automatically puts the matrix into RREF
      */
     autoRREF() {
+        // get matrix dim
         const rows = this.curLevel.rows;
         const cols = this.curLevel.columns;
 
-        
+        // each pivot
+        for (let pivot = 0; pivot < Math.min(rows, cols); pivot++) {
+            let largest = 0;
+
+            for (let col = pivot; col < cols; col++) {
+                
+            }
+        }
     }
 
     /**
