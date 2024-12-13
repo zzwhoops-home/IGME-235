@@ -248,7 +248,7 @@ document.querySelectorAll(".move").forEach(element => {
 
     element.addEventListener('mouseover', (e) => {
         // get message box
-        const messagePanel = document.querySelector("#message-panel");
+        const messagePanel = document.querySelector("#message-panel p");
 
         // get info message from data.js file
         const text = InfoMessages[element.id];
