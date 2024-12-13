@@ -57,8 +57,8 @@ export class Game {
         //     [0, 0, 0, 0]
         // ]);
 
-        const rows = Math.floor(Math.random() * 6) + 2;
-        const cols = Math.floor(Math.random() * 6) + 2;
+        const rows = Math.floor(Math.random() * 5) + 2;
+        const cols = Math.floor(Math.random() * 5) + 2;
 
         const level = new Level(rows, cols, randomMatrix(rows, cols));
         this.curLevel = level;
@@ -72,9 +72,22 @@ export class Game {
      * Initializes the matrix when the Level is created
      */
     initializeMatrix() {
+        // get rows/cols
+        const rows = this.curLevel.rows;
+        const cols = this.curLevel.columns;
+
         // set grid rows/cols
-        this.matrix.style.gridTemplateRows = `repeat(${this.curLevel.rows}, 1fr)`;
-        this.matrix.style.gridTemplateColumns = `repeat(${this.curLevel.columns}, 1fr)`;
+        this.matrix.style.gridTemplateRows = `repeat(${rows}, 1fr)`;
+        this.matrix.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
+
+        if (rows > cols) {
+            this.matrix.style.width = "auto";
+            this.matrix.style.height = "100%";
+        }
+        else if (rows <= cols) {
+            this.matrix.style.width = "100%";
+            this.matrix.style.height = "auto";
+        }
 
         // populate matrix
         this.populateMatrix();

@@ -51,6 +51,10 @@ h2 {
     grid-template-columns: repeat(2, 1fr);
 }
 
+#panel {
+    max-height: 600px;
+}
+
 #matrix-panel,
 #moves-panel,
 #powerups-panel,
@@ -65,6 +69,9 @@ h2 {
     grid-area: ma;
     width: 500px;
     height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #moves-panel {
@@ -94,25 +101,17 @@ h2 {
     grid-template-columns: 3fr 3fr 1fr 1fr;
 } */
 
-
-#panel {
-    max-height: 600px;
-}
-
 #matrix-container {
-    margin: 25px;
     display: grid;
-    font-size: 1.5em;
     grid-template-rows: repeat(3, 1fr);
     grid-template-columns: repeat(3, 1fr);
-    margin: 0 auto;
 }
 
 .matrix-element {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1em;
+    font-size: 1.6em;
     overflow-wrap: anywhere;
     width: 100%;
     aspect-ratio: 1;
@@ -126,7 +125,7 @@ h2 {
 
 .matrix-element.animate {
     color: #ffcc00;
-    font-size: 1.3em;
+    font-size: 2.5em;
     font-weight: bold;
     border: 1px solid var(--text-color);
 }
@@ -175,7 +174,8 @@ h2 {
     cursor: not-allowed;
 }
 
-#reset:active, #auto:active {
+#reset:active,
+#auto:active {
     box-shadow: 0px 0px 8px 6px rgba(0, 0, 0, 0.4) inset;
     transition: box-shadow 0.1s;
 }
