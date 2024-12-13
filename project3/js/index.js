@@ -237,6 +237,12 @@ document.querySelectorAll(".move").forEach(element => {
         // close previous popup
         closePopup();
 
-        showPopup(type, e.target);
+        if (type === "reset") {
+            game.reset();
+        }
+        else {
+            showPopup(type, e.target);
+        }
+
     });
 });

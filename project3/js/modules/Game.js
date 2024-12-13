@@ -55,6 +55,13 @@ export class Game {
      * Populates the matrix with Game's entries only
      */
     populateMatrix() {
+        if (this.matrix.innerHTML != "") {
+            // play audio
+            const audio = document.querySelector("#score-ticker-audio");
+            audio.currentTime = 0;
+            audio.play();
+        }
+
         // clear elements
         this.matrix.innerHTML = "";
 
@@ -83,11 +90,6 @@ export class Game {
             }
             this.matrix.appendChild(entry);
         }
-
-        // play audio
-        const audio = document.querySelector("#score-ticker-audio");
-        audio.currentTime = 0;
-        audio.play();
 
         // whenever matrix is updated, check rref
         if (this.checkRREF()) {
