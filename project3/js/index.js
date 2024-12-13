@@ -231,6 +231,9 @@ document.querySelectorAll(".move").forEach(element => {
         return;
     }
 
+    // get message box
+    const messagePanel = document.querySelector("#message-panel p");
+
     element.addEventListener('click', (e) => {
         const type = element.id;
 
@@ -247,13 +250,15 @@ document.querySelectorAll(".move").forEach(element => {
     });
 
     element.addEventListener('mouseover', (e) => {
-        // get message box
-        const messagePanel = document.querySelector("#message-panel p");
 
         // get info message from data.js file
         const text = InfoMessages[element.id];
 
         // set text content
         messagePanel.textContent = text;
+    })
+
+    element.addEventListener('mouseout', (e) => {
+        messagePanel.textContent = InfoMessages["default"];
     })
 });
