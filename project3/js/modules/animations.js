@@ -17,21 +17,36 @@ export function elementCounter(current, target, element) {
             nextValue = Math.round(nextValue);
         }
 
+
+        // scientific numbers
+        if (target.toString().length > 5) {
+            const str = Number(nextValue).toExponential(3).toString();
+            const split = str.split("e");
+            const formatted = `${split[0]}<br>e${split[1]}`;
+            element.innerHTML = formatted;
+        }
         // two decimal places for displayed elements
-        element.textContent = `${nextValue % 1 === 0 ? nextValue : nextValue.toFixed(2)}`;
+        else {
+            element.textContent = `${nextValue % 1 === 0 ? nextValue : nextValue.toFixed(2)}`;
+        }
 
         if (progress < 1) {
             // continue animation
             requestAnimationFrame(animate);
         }
         else {
-            // set target exactly
-            element.textContent = `${target % 1 === 0 ? target : target.toFixed(2)}`;
+            if (target.toString().length > 5) {
+                const str = Number(target).toExponential(3).toString();
+                const split = str.split("e");
+                const formatted = `${split[0]}<br>e${split[1]}`;
+                element.innerHTML = formatted;
+            }
+            else {
+                // set target exactly
+                element.textContent = `${target % 1 === 0 ? target : target.toFixed(2)}`;
+            }
         }
 
-        if (element.textContent.length > 4) {
-            element.textContent = Number(element.textContent).toExponential(2).toString();
-        }
     }
 
     // start animation
