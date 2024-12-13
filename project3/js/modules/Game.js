@@ -131,14 +131,14 @@ export class Game {
             // use precise Decimal.js to calculate
             const newEntry = new Decimal(element).times(new Decimal(factor));
 
-            if (Math.abs(newEntry) < 0.001) {
+            if (Math.abs(newEntry) < Number.EPSILON) {
                 return 0;
             }
             else if (Math.abs(Math.round(newEntry) - newEntry) < 0.001) {
-                return Math.round(parseFloat(newEntry.toPrecision(3)));
+                return Math.round(parseFloat(newEntry.toPrecision(7)));
             }
             else {
-                return parseFloat(newEntry.toPrecision(3));
+                return parseFloat(newEntry.toPrecision(7));
             }
         });
         entries[rowIndex] = newRow;
