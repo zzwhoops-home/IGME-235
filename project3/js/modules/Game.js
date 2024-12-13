@@ -1,3 +1,5 @@
+import { elementCounter } from "./animations.js";
+
 export class Game {
     curLevel = null;
     matrix = null;
@@ -57,17 +59,26 @@ export class Game {
         this.matrix.innerHTML = "";
 
         // flatten 2D array
-        
+        const prev = Array.from(this.curLevel.prevEntries.flat());
         const flat = Array.from(this.curLevel.entries.flat());
 
         // create and add matrix entries
-        flat.forEach(element => {
+        for (let i = 0; i < flat.length; i++) {
             const entry = document.createElement("div");
             entry.classList.add("matrix-element");
+
+            const element = flat[i];
+            const prevElement = prev[i];
+            // two decimal places for displayed elements
             entry.textContent = `${element % 1 === 0 ? element : element.toFixed(2)}`;
 
+            // if the previous element is different, change styling
+            if (prevElement != element) {
+                entry.style.color = "#ffcc00";
+                entry.style.fontWeight = "bold";
+            }
             this.matrix.appendChild(entry);
-        })
+        }
 
         // whenever matrix is updated, check rref
         if (this.checkRREF()) {
@@ -80,7 +91,7 @@ export class Game {
         }
         
         // spread rows
-        this.level.prevEntries = this.level.entries.map(row => [...row]);
+        this.curLevel.prevEntries = this.curLevel.entries.map(row => [...row]);
     }
 
     /**
