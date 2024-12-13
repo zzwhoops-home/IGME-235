@@ -63,6 +63,8 @@ h2 {
 
 #matrix-panel {
     grid-area: ma;
+    width: 500px;
+    height: 500px;
 }
 
 #moves-panel {
@@ -103,6 +105,7 @@ h2 {
     font-size: 1.5em;
     grid-template-rows: repeat(3, 1fr);
     grid-template-columns: repeat(3, 1fr);
+    margin: 0 auto;
 }
 
 .matrix-element {
@@ -112,7 +115,7 @@ h2 {
     font-size: 1em;
     overflow-wrap: anywhere;
     width: 100%;
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 1;
     border: 1px solid black;
     color: var(--text-color);
     min-width: 0;
@@ -170,6 +173,19 @@ h2 {
     background-color: #ccc;
     color: #666;
     cursor: not-allowed;
+}
+
+#reset:active, #auto:active {
+    box-shadow: 0px 0px 8px 6px rgba(0, 0, 0, 0.4) inset;
+    transition: box-shadow 0.1s;
+}
+
+#reset {
+    background-color: #ff4747;
+}
+
+#auto {
+    background-color: green;
 }
 
 #powerups-container {
@@ -249,11 +265,6 @@ h2 {
     color: #555;
     font-style: italic;
     cursor: not-allowed;
-}
-
-#reset:active {
-    box-shadow: 0px 0px 8px 6px rgba(0, 0, 0, 0.4) inset;
-    transition: box-shadow 0.1s;
 }
 
 /* #level {}

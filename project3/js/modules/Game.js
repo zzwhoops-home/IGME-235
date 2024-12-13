@@ -57,8 +57,8 @@ export class Game {
         //     [0, 0, 0, 0]
         // ]);
 
-        const rows = Math.floor(Math.random() * 3) + 3;
-        const cols = Math.floor(Math.random() * 3) + 3;
+        const rows = Math.floor(Math.random() * 6) + 2;
+        const cols = Math.floor(Math.random() * 6) + 2;
 
         const level = new Level(rows, cols, randomMatrix(rows, cols));
         this.curLevel = level;
@@ -182,11 +182,10 @@ export class Game {
             // use precise Decimal.js to calculate
             const newEntry = new Decimal(element).times(new Decimal(factor));
 
-
             if (Math.abs(newEntry) < Number.EPSILON) {
                 return 0;
             }
-            else if (Math.abs(Math.round(newEntry) - newEntry) < 0.001 && Math.round(newEntry) != 0) {
+            else if (Math.abs(Math.round(newEntry) - newEntry) < 0.01 && Math.round(newEntry) != 0) {
                 return Math.round(parseFloat(newEntry.toPrecision(7)));
             }
             else {
