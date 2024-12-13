@@ -57,8 +57,8 @@ export class Game {
         //     [0, 0, 0, 0]
         // ]);
 
-        const rows = Math.floor(Math.random() * 5) + 2;
-        const cols = Math.floor(Math.random() * 5) + 2;
+        const rows = Math.floor(Math.random() * 3) + 2;
+        const cols = Math.floor(Math.random() * 3) + 2;
 
         const level = new Level(rows, cols, randomMatrix(rows, cols));
         this.curLevel = level;
@@ -282,6 +282,17 @@ export class Game {
 
             this.populateMatrix();
         }
+        this.autoRREF();
+    }
+
+    /**
+     * Automatically puts the matrix into RREF
+     */
+    autoRREF() {
+        const rows = this.curLevel.rows;
+        const cols = this.curLevel.columns;
+
+        
     }
 
     /**
