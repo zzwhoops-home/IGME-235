@@ -90,14 +90,15 @@ export class Game {
             this.matrix.appendChild(entry);
         }
 
-        if (!firstLoad && changed) {
+        if (!firstLoad) {
             if (changed) {
-                // play audio
+                // play ticker audio
                 const audio = document.querySelector("#score-ticker-audio");
                 audio.currentTime = 0;
                 audio.play();
             }
             else {
+                // play fail audio
                 const audio = document.querySelector("#error-audio");
                 audio.currentTime = 0;
                 audio.play();
