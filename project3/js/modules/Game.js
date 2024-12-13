@@ -76,6 +76,12 @@ export class Game {
             if (prevVal != curVal) {
                 entry.style.color = "#ffcc00";
                 entry.style.fontWeight = "bold";
+
+                // add animation class, remove after animation ends
+                entry.classList.add("animate");
+                setTimeout(() => {
+                    entry.classList.remove("animate");
+                }, 500);
             }
             this.matrix.appendChild(entry);
         }
@@ -89,7 +95,7 @@ export class Game {
             const matrixContainer = document.querySelector("#matrix-container");
             matrixContainer.style.backgroundColor = "";
         }
-        
+
         // spread rows
         this.curLevel.prevEntries = this.curLevel.entries.map(row => [...row]);
     }
