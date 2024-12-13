@@ -21,7 +21,7 @@ html {
 body {
     margin: 10px auto;
     padding: 20px 5px;
-    width: 1080px;
+    width: 960px;
     border: 3px solid black;
     background-color: var(--fg-light);
     color: var(--text-color);
@@ -52,14 +52,14 @@ h2 {
 }
 
 #panel {
-    max-height: 700px;
+    max-height: 550px;
 }
 
 #matrix-panel,
 #moves-panel,
 #powerups-panel,
 #message-panel {
-    margin: 20px;
+    margin: 10px;
     padding: 20px;
     background-color: var(--bg-dark);
     text-align: center;
@@ -67,8 +67,8 @@ h2 {
 
 #matrix-panel {
     grid-area: ma;
-    width: 525px;
-    height: 525px;
+    width: 450px;
+    height: 450px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -88,7 +88,7 @@ h2 {
 
 #message-panel p {
     margin: 10px;
-    font-size: 1.5em;
+    font-size: 1.25em;
 }
 
 /* #stats {
