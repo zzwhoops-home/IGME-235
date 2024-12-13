@@ -98,14 +98,14 @@ export const createScaleContent = (rows) => {
     scaleEntry.addEventListener("input", () => {
         const expr = scaleEntry.value;
 
-        if (parseInt(expr) === 0) {
-            invalid();
-            return;
-        }
-
         // try parsing expression, disable submit on fail
         try {
             math.parse(expr);
+
+            if (math.evaluate(expr) === 0) {
+                invalid();
+                return;
+            }
             scaleEntry.style.border = "1px solid black";
             scaleEntry.style.color = "black";
             scaleEntry.style.fontStyle = "normal";
