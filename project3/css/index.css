@@ -108,7 +108,7 @@ h2 {
     min-width: 0;
     min-height: 0;
     color: white;
-    transition: transform 0.4s cubic-bezier(.13, .82, 0, .99), box-shadow 0.4s cubic-bezier(.13, .82, 0, .99), font-size 0.4s ease, color 1.25s ease, border 1.25s ease;
+    transition: font-size 0.4s ease, color 1.25s ease, border 1.25s ease;
 }
 
 .matrix-element.animate {
@@ -119,8 +119,8 @@ h2 {
 }
 
 .matrix-element:hover {
-    transform: scale(1.2);
-    box-shadow: 0px 0px 3px 6px #00000055;
+    border: 1px solid var(--text-color);
+    transition: border 0.3s cubic-bezier(.13, .82, 0, .99);
 }
 
 #moves-container {
