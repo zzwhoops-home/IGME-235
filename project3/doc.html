@@ -144,6 +144,51 @@
                         </ul>
                     </div>
                 </section>
+                <div id="process">
+                    <h2>Process</h2>
+                    <h3>Reflection</h3>
+                    <p>
+                        I had a lot of fun building this project. Although I originally had a lot more planned, it was
+                        still a blast learning how to build this website from scratch. I think I might pick this project
+                        back up during the break or another time. The original idea was to create a game, in which you
+                        would have to figure out how to reduce a matrix to its RREF as quickly and in as few moves as
+                        possible, but that is an extra feature that I may implement in the future. For now, it acts as a
+                        tool you can use to practice, containing several "levels" that progressively get more difficult.
+                    </p>
+                    <h3>Successes</h3>
+                    <p>I'd say there are a lot of things worth celebrating about this website.</p>
+                    <ol>
+                        <li>Simple, but it's so fun playing with the hover effect of matrix elements. It's like a trail
+                            that follows your mouse.</li>
+                        <li>When scaling a row, I use an event listener that detects a change in the input box. I then
+                            validate the input box using the math.js library, only allowing the user to scale the matrix
+                            with a valid number. I think it's a great UX addition.</li>
+                        <li>The algorithm used to check if a matrix is in RREF was written completely by me, as well as
+                            the auto RREF feature which solves the matrix for you. These were two things that started
+                            out as ideas but I implemented them when I realized that I could spend the time to slowly
+                            figure out how to do so.</li>
+                        <li>I implemented the text highlighting when they change, which shows the user what is being
+                            changed.</li>
+                        <li>I thought I would have to rely on libraries to perform matrix operations, but it was
+                            actually a blast to implement each of the elementary row operations (Swap, Scale, Pivot)
+                            myself.</li>
+                    </ol>
+                    <h3>Setbacks</h3>
+                    <ol>
+                        <li>I HATE floating point numbers with a passion. I tried to use the decimal.js library to solve
+                            some of the problems I had but they're not completely gone. I would say I was successful in
+                            adding a couple of workarounds. For example, if a number is really small, it gets set to 0,
+                            or if it is really close to a whole number, it gets rounded. Numbers which don't fit within
+                            the bounds of the element will become scientific notation.</li>
+                        <li>There's a weird CSS glitch where if you add a transition to the transform and also include a
+                            border, the border seems to "stay behind" for a moment when your mouse leaves the box. I'm
+                            not sure why, it's weird.</li>
+                        <li>It took me probably two hours to figure out how to fix all the matrix elements in the
+                            container without it overflowing, while keeping the matrix container square and not
+                            stretching all over the place. The solution? A flexbox and some javascript. Praise the Lord
+                            that flexboxes save lives.</li>
+                    </ol>
+                </div>
             </div>
         </div>
     </main>
