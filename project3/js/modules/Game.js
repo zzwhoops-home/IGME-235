@@ -1,5 +1,29 @@
 import { elementCounter } from "./animations.js";
 
+/**
+ * Returns a random matrix with the specified dimensions
+ * 
+ * @param {*} rows The # of rows in the matrix
+ * @param {*} cols The # of columns in the matrix
+ * @returns a 2D matrix that is rows x cols
+ */
+const randomMatrix = (rows, cols) => {
+    let matrix = [];
+    
+    for (let row = 0; row < rows; row++) {
+        let row = [];
+        for (let col = 0; col < cols; col++) {
+            const num = Math.floor(Math.random() * 10);
+
+            row.push(num);
+        }
+
+        matrix.push(row);
+    }
+
+    return matrix;
+}
+
 export class Game {
     curLevel = null;
     matrix = null;
@@ -26,12 +50,17 @@ export class Game {
         //     [3, -9, 1, -11],
         //     [4, -12, 2, -12]
         // ]);
-        const level = new Level(4, 4, [
-            [1, -3, 0, -5],
-            [0, 0, 0, 0],
-            [0, 0, 1, 4],
-            [0, 0, 0, 0]
-        ]);
+        // const level = new Level(4, 4, [
+        //     [1, -3, 0, -5],
+        //     [0, 0, 0, 0],
+        //     [0, 0, 1, 4],
+        //     [0, 0, 0, 0]
+        // ]);
+
+        const rows = Math.floor(Math.random() * 3) + 3;
+        const cols = Math.floor(Math.random() * 3) + 3;
+
+        const level = new Level(rows, cols, randomMatrix(rows, cols));
         this.curLevel = level;
 
         // get matrix element, initialize matrix
@@ -102,6 +131,10 @@ export class Game {
                 const audio = document.querySelector("#error-audio");
                 audio.currentTime = 0;
                 audio.play();
+
+                // update message box
+                const messageBox = document.querySelector("#message-panel p");
+                messageBox.textContent = "You can't do that.";
             }
         }
 

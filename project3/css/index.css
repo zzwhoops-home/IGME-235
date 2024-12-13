@@ -53,7 +53,8 @@ h2 {
 
 #matrix-panel,
 #moves-panel,
-#powerups-panel {
+#powerups-panel,
+#message-panel {
     margin: 20px;
     padding: 20px;
     background-color: var(--bg-dark);
@@ -72,7 +73,16 @@ h2 {
     grid-area: pw;
 } */
 
-#stats {
+#message-panel {
+    grid-area: pw;
+}
+
+#message-panel p {
+    margin: 10px;
+    font-size: 1.5em;
+}
+
+/* #stats {
     grid-area: pw;
     margin: 20px 0 20px 0;
     font-size: 1.3em;
@@ -80,7 +90,7 @@ h2 {
     display: grid;
     text-align: center;
     grid-template-columns: 3fr 3fr 1fr 1fr;
-}
+} */
 
 
 #panel {
