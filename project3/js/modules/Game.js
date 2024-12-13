@@ -218,6 +218,9 @@ export class Game {
 
         // only reset display if something was actually changed
         if (flag) {
+            const audio = document.querySelector("#whoosh-audio");
+            audio.play();
+
             this.populateMatrix();
         }
     }
