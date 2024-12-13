@@ -46,7 +46,6 @@ export function elementCounter(current, target, element) {
                 element.textContent = `${target % 1 === 0 ? target : target.toFixed(2)}`;
             }
         }
-
     }
 
     // start animation

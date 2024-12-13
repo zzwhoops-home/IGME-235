@@ -20,18 +20,18 @@ export class Game {
         this.timerInterval = null;
 
         // test creation of level
-        const level = new Level(4, 4, [
-            [-2, 6, -1, 6],
-            [6, -18, 0, -30],
-            [3, -9, 1, -11],
-            [4, -12, 2, -12]
-        ]);
         // const level = new Level(4, 4, [
-        //     [1, -3, 0, -5],
-        //     [0, 0, 2, 8],
-        //     [0, 0, 1, 4],
-        //     [0, 0, 0, 0]
+        //     [-2, 6, -1, 6],
+        //     [6, -18, 0, -30],
+        //     [3, -9, 1, -11],
+        //     [4, -12, 2, -12]
         // ]);
+        const level = new Level(4, 4, [
+            [1, -3, 0, -5],
+            [0, 0, 0, 0],
+            [0, 0, 1, 4],
+            [0, 0, 0, 0]
+        ]);
         this.curLevel = level;
 
         // get matrix element, initialize matrix
@@ -86,12 +86,13 @@ export class Game {
 
         // play audio
         const audio = document.querySelector("#score-ticker-audio");
+        audio.currentTime = 0;
         audio.play();
 
         // whenever matrix is updated, check rref
         if (this.checkRREF()) {
             const matrixContainer = document.querySelector("#matrix-container");
-            matrixContainer.style.backgroundColor = "#00cc00";
+            matrixContainer.style.backgroundColor = "#00aa33";
         }
         else {
             const matrixContainer = document.querySelector("#matrix-container");
@@ -261,6 +262,7 @@ export class Game {
         // if we reach the end, we are in rref
         // play success
         const audio = document.querySelector("#success-audio");
+        audio.currentTime = 0;
         audio.play();
 
         return true;
