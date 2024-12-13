@@ -28,6 +28,10 @@ export function elementCounter(current, target, element) {
             // set target exactly
             element.textContent = `${target % 1 === 0 ? target : target.toFixed(2)}`;
         }
+
+        if (element.textContent.length > 4) {
+            element.textContent = Number(element.textContent).toExponential(2).toString();
+        }
     }
 
     // start animation
