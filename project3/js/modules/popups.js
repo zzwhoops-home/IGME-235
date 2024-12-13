@@ -37,19 +37,17 @@ export const createSwapContent = (rows) => {
     // start with row 1 and row 2 swap, disable others
     swapSelect1.value = swapSelect1[0].textContent;
     swapSelect2.value = swapSelect2[1].textContent;
-    swapSelect1.childNodes[1].disabled = true;
-    swapSelect2.childNodes[0].disabled = true;
-
-    // add event listener for left swap
-    swapSelect1.addEventListener('change', (e) => {
-        return changeLeft(e, swapSelect1, swapSelect2);
-    });
-    swapSelect2.addEventListener('change', (e) => {
-        return changeRight(e, swapSelect1, swapSelect2);
-    });
 
     const submitButton = document.createElement("button");
     container.appendChild(submitButton);
+
+    // add event listener for swaps
+    swapSelect1.addEventListener('change', (e) => {
+        return change(swapSelect1, swapSelect2, submitButton);
+    });
+    swapSelect2.addEventListener('change', (e) => {
+        return change(swapSelect1, swapSelect2, submitButton);
+    });
 
     return container;
 }
@@ -181,15 +179,13 @@ export const createPivotContent = (rows) => {
     // start with row 1 and row 2 swap, disable others
     pivotSelect1.value = pivotSelect1[0].textContent;
     pivotSelect2.value = pivotSelect2[1].textContent;
-    pivotSelect1.childNodes[1].disabled = true;
-    pivotSelect2.childNodes[0].disabled = true;
 
     // add event listener for left swap
     pivotSelect1.addEventListener('change', (e) => {
-        return changeLeft(e, pivotSelect1, pivotSelect2);
+        return change(pivotSelect1, pivotSelect2, submitButton);
     });
     pivotSelect2.addEventListener('change', (e) => {
-        return changeRight(e, pivotSelect1, pivotSelect2);
+        return change(pivotSelect1, pivotSelect2, submitButton);
     });
 
     const submitButton = document.createElement("button");
@@ -198,38 +194,22 @@ export const createPivotContent = (rows) => {
     return container;
 }
 
-const changeLeft = (e, left, right) => {
-    const options = Array.from(e.target.childNodes);
-    const selected = options.filter(element => element.selected == true);
+const change = (left, right, button) => {
+    const optionsLeft = Array.from(left.childNodes);
+    const optionsRight = Array.from(right.childNodes);
+
+    const selectedLeft = optionsLeft.filter(element => element.selected == true);
+    const selectedRight = optionsRight.filter(element => element.selected == true);
 
     // get index by splitting
-    const index = selected[0].textContent.split(" ")[1] - 1;
+    const leftIndex = selectedLeft[0].textContent.split(" ")[1] - 1;
+    const rightIndex = selectedRight[0].textContent.split(" ")[1] - 1;
 
-    // prevent the same row from being swapped
-    for (let i = 0; i < options.length; i++) {
-        if (i != index) {
-            right[i].disabled = false;
-        }
-        else {
-            right[i].disabled = true;
-        }
+    // disable button if we're trying to operate on same row
+    if (leftIndex === rightIndex) {
+        button.disabled = true;
     }
-}
-
-const changeRight = (e, left, right) => {
-    const options = Array.from(e.target.childNodes);
-    const selected = options.filter(element => element.selected == true);
-
-    // get index by splitting
-    const index = selected[0].textContent.split(" ")[1] - 1;
-
-    // prevent the same row from being swapped
-    for (let i = 0; i < options.length; i++) {
-        if (i != index) {
-            left[i].disabled = false;
-        }
-        else {
-            left[i].disabled = true;
-        }
+    else {
+        button.disabled = false;
     }
 }
