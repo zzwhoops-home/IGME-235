@@ -98,6 +98,11 @@ export const createScaleContent = (rows) => {
     scaleEntry.addEventListener("input", () => {
         const expr = scaleEntry.value;
 
+        if (parseInt(expr) === 0) {
+            invalid();
+            return;
+        }
+
         // try parsing expression, disable submit on fail
         try {
             math.parse(expr);
@@ -107,12 +112,16 @@ export const createScaleContent = (rows) => {
             submitButton.disabled = false;
         }
         catch (ex) {
-            scaleEntry.style.border = "1px solid red";
-            scaleEntry.style.color = "#ff0000";
-            scaleEntry.style.fontStyle = "italic";
-            submitButton.disabled = true;
+            invalid();
         }
     });
+
+    const invalid = () => {
+        scaleEntry.style.border = "1px solid red";
+        scaleEntry.style.color = "#ff0000";
+        scaleEntry.style.fontStyle = "italic";
+        submitButton.disabled = true;
+    }
 
     return container;
 }
