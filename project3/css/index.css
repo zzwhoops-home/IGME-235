@@ -108,7 +108,7 @@ h2 {
     min-width: 0;
     min-height: 0;
     color: white;
-    transition: transform 0.4s cubic-bezier(.13, .82, 0, .99), box-shadow 0.4s cubic-bezier(.13, .82, 0, .99), font-size 0.4s ease, color 1.25s ease;
+    transition: transform 0.4s cubic-bezier(.13, .82, 0, .99), box-shadow 0.4s cubic-bezier(.13, .82, 0, .99), font-size 0.4s ease, color 1.25s ease, border 1.25s ease;
 }
 
 .matrix-element.animate {
