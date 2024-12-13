@@ -200,13 +200,25 @@ export class Game {
 
         // get rows and columns
         const rows = this.curLevel.rows;
-        const cols = this.curLevel.cols;
+        const cols = this.curLevel.columns;
+
+        // flag if anything was actually reset
+        let flag = false;
 
         // reset every entry
         for (let row = 0; row < rows; row++) {
             for (let col = 0; col < cols; col++) {
-                entries[row][col] = startEntries[row][col];
+                const startEntry = startEntries[row][col];
+                if (entries[row][col] != startEntry) {
+                    flag = true;
+                }
+                entries[row][col] = startEntry;
             }
+        }
+
+        // only reset display if something was actually changed
+        if (flag) {
+            this.populateMatrix();
         }
     }
 

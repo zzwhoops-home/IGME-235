@@ -152,6 +152,10 @@ h2 {
     background-color: inherit;
 }
 
+.move:active {
+    color: white;
+}
+
 .move.empty {
     background-color: #ccc;
     color: #666;
@@ -182,7 +186,7 @@ h2 {
 }
 
 .selected {
-    box-shadow: 0px 0px 8px 3px rgba(0, 0, 0, 0.4) inset;
+    box-shadow: 0px 0px 8px 6px rgba(0, 0, 0, 0.4) inset;
 }
 
 #popup {
@@ -235,6 +239,15 @@ h2 {
     color: #555;
     font-style: italic;
     cursor: not-allowed;
+}
+
+#reset {
+    
+}
+
+#reset:active {
+    box-shadow: 0px 0px 8px 6px rgba(0, 0, 0, 0.4) inset;
+    transition: box-shadow 0.1s;
 }
 
 #level {}
