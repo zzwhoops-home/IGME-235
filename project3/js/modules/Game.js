@@ -84,6 +84,10 @@ export class Game {
             this.matrix.appendChild(entry);
         }
 
+        // play audio
+        const audio = document.querySelector("#score-ticker");
+        audio.play();
+
         // whenever matrix is updated, check rref
         if (this.checkRREF()) {
             const matrixContainer = document.querySelector("#matrix-container");
