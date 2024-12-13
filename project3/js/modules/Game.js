@@ -75,9 +75,6 @@ export class Game {
 
             // if the previous element is different, change styling
             if (prevVal != curVal) {
-                entry.style.color = "#ffcc00";
-                entry.style.fontWeight = "bold";
-
                 // add animation class, remove after animation ends
                 entry.classList.add("animate");
                 setTimeout(() => {

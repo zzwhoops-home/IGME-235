@@ -107,11 +107,14 @@ h2 {
     color: var(--text-color);
     min-width: 0;
     min-height: 0;
-    transition: transform 0.4s cubic-bezier(.13, .82, 0, .99), box-shadow 0.4s cubic-bezier(.13, .82, 0, .99), font-size 0.4s ease;
+    color: white;
+    transition: transform 0.4s cubic-bezier(.13, .82, 0, .99), box-shadow 0.4s cubic-bezier(.13, .82, 0, .99), font-size 0.4s ease, color 1.25s ease;
 }
 
 .matrix-element.animate {
-    font-size: 1.2em;
+    color: #ffcc00;
+    font-size: 1.3em;
+    font-weight: bold;
     border: 1px solid var(--text-color);
 }
 
