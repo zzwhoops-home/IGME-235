@@ -104,6 +104,14 @@ export const createScaleContent = (rows) => {
                 invalid();
                 return;
             }
+            if (Math.abs(math.evaluate(expr)) > 100) {
+                invalid();
+                submitButton.textContent = "Too big";
+                return;
+            }
+            else {
+                submitButton.textContent = "Scale!";
+            }
             scaleEntry.style.border = "1px solid black";
             scaleEntry.style.color = "black";
             scaleEntry.style.fontStyle = "normal";

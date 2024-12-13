@@ -27,7 +27,7 @@ export function elementCounter(current, target, element) {
         }
         // two decimal places for displayed elements
         else {
-            element.textContent = `${nextValue % 1 === 0 ? nextValue : nextValue.toFixed(3)}`;
+            element.textContent = `${nextValue % 1 === 0 ? nextValue : nextValue.toFixed(4)}`;
         }
 
         if (progress < 1) {
@@ -43,7 +43,7 @@ export function elementCounter(current, target, element) {
             }
             else {
                 // set target exactly
-                element.textContent = `${target % 1 === 0 ? target : target.toFixed(3)}`;
+                element.textContent = `${target % 1 === 0 ? target : target.toFixed(4)}`;
             }
         }
     }

@@ -195,7 +195,7 @@ export class Game {
             // use precise Decimal.js to calculate
             const newEntry = new Decimal(element).times(new Decimal(factor));
 
-            if (Math.abs(newEntry) < Number.EPSILON) {
+            if (Math.abs(newEntry) < 0.0001) {
                 return 0;
             }
             else if (Math.abs(Math.round(newEntry) - newEntry) < 0.01 && Math.round(newEntry) != 0) {
