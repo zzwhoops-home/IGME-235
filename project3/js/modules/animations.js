@@ -1,6 +1,6 @@
 export function elementCounter(current, target, element) {
     // time in milliseconds
-    const duration = 1000;
+    const duration = 200;
     // get current timestamp
     const startTime = performance.now();
 
@@ -11,7 +11,11 @@ export function elementCounter(current, target, element) {
 
         // calculate current value
         const toAdd = (target - current) * progress;
-        const nextValue = current + toAdd;
+        let nextValue = current + toAdd;
+        
+        if (target % 1 === 0) {
+            nextValue = Math.round(nextValue);
+        }
 
         // two decimal places for displayed elements
         element.textContent = `${nextValue % 1 === 0 ? nextValue : nextValue.toFixed(2)}`;

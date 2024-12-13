@@ -67,13 +67,13 @@ export class Game {
             const entry = document.createElement("div");
             entry.classList.add("matrix-element");
 
-            const element = flat[i];
-            const prevElement = prev[i];
+            const curVal = flat[i];
+            const prevVal = prev[i];
             // two decimal places for displayed elements
-            entry.textContent = `${element % 1 === 0 ? element : element.toFixed(2)}`;
+            elementCounter(prevVal, curVal, entry);
 
             // if the previous element is different, change styling
-            if (prevElement != element) {
+            if (prevVal != curVal) {
                 entry.style.color = "#ffcc00";
                 entry.style.fontWeight = "bold";
             }
@@ -127,8 +127,11 @@ export class Game {
             if (Math.abs(newEntry) < 0.001) {
                 return 0;
             }
+            else if (Math.abs(Math.round(newEntry) - newEntry) < 0.001) {
+                return Math.round(parseFloat(newEntry.toPrecision(3)));
+            }
             else {
-                return parseFloat(newEntry.toPrecision(7));
+                return parseFloat(newEntry.toPrecision(3));
             }
         });
         entries[rowIndex] = newRow;
