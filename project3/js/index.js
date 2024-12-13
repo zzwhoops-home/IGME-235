@@ -1,5 +1,6 @@
 import { Game } from './modules/Game.js'
 import { createSwapContent, createScaleContent, createPivotContent } from './modules/popups.js';
+import { InfoMessages } from './modules/data.js';
 
 // current game instance
 let game;
@@ -21,32 +22,27 @@ window.onload = (e) => {
  */
 const loadContents = async () => {
     // get move buttons
-    const swap = document.querySelector('#swap');
-    const scale = document.querySelector('#scale');
-    const pivot = document.querySelector('#pivot');
+    const swap = document.querySelector("#swap");
+    const scale = document.querySelector("#scale");
+    const pivot = document.querySelector("#pivot");
+    const reset = document.querySelector("#reset");
+    const autoRREF = document.querySelector("#auto");
 
     // add event listeners for move buttons
     swap.addEventListener('click', handleSelected);
     scale.addEventListener('click', handleSelected);
     pivot.addEventListener('click', handleSelected);
 
-    // get powerup buttons
-    const powerups = document.querySelectorAll(".powerup:not(.empty)");
+    // // get powerup buttons
+    // const powerups = document.querySelectorAll(".powerup:not(.empty)");
 
-    // add event listeners for powerup buttons
-    powerups.forEach(element => {
-        element.addEventListener('click', handleSelected);
-    })
+    // // add event listeners for powerup buttons
+    // powerups.forEach(element => {
+    //     element.addEventListener('click', handleSelected);
+    // })
 
     // get info popup
     popup = document.querySelector("#popup");
-
-    // add event listener for clicking off the popup
-    // document.addEventListener('click', (e) => {
-    //     if (e.target != popup && popup.style.display != "none") {
-    //         closePopup();
-    //     }
-    // })
 
     // stats paragraphs
     const levelP = document.querySelector("#stats #level");
@@ -231,6 +227,10 @@ document.addEventListener('click', (e) => {
 
 // event listener for clicking on moves
 document.querySelectorAll(".move").forEach(element => {
+    if (element.classList.contains("empty")) {
+        return;
+    }
+
     element.addEventListener('click', (e) => {
         const type = element.id;
 
@@ -245,4 +245,15 @@ document.querySelectorAll(".move").forEach(element => {
         }
 
     });
+
+    element.addEventListener('mouseover', (e) => {
+        // get message box
+        const messagePanel = document.querySelector("#message-panel");
+
+        // get info message from data.js file
+        const text = InfoMessages[element.id];
+
+        // set text content
+        messagePanel.textContent = text;
+    })
 });
