@@ -55,12 +55,8 @@ export class Game {
      * Populates the matrix with Game's entries only
      */
     populateMatrix() {
-        if (this.matrix.innerHTML != "") {
-            // play audio
-            const audio = document.querySelector("#score-ticker-audio");
-            audio.currentTime = 0;
-            audio.play();
-        }
+        let firstLoad = this.matrix.innerHTML === "";
+        let changed = false;
 
         // clear elements
         this.matrix.innerHTML = "";
@@ -87,8 +83,25 @@ export class Game {
                 setTimeout(() => {
                     entry.classList.remove("animate");
                 }, 500);
+
+                // at least one element has changed
+                changed = true;
             }
             this.matrix.appendChild(entry);
+        }
+
+        if (!firstLoad && changed) {
+            if (changed) {
+                // play audio
+                const audio = document.querySelector("#score-ticker-audio");
+                audio.currentTime = 0;
+                audio.play();
+            }
+            else {
+                const audio = document.querySelector("#error-audio");
+                audio.currentTime = 0;
+                audio.play();
+            }
         }
 
         // whenever matrix is updated, check rref
