@@ -189,6 +189,26 @@ export class Game {
     }
 
     /**
+     * Resets the level's matrix to its starting state
+     */
+    reset() {
+        // get references to entries
+        const startEntries = this.curLevel.startEntries;
+        const entries = this.curLevel.entries;
+
+        // get rows and columns
+        const rows = this.curLevel.rows;
+        const cols = this.curLevel.cols;
+
+        // reset every entry
+        for (let row = 0; row < rows; row++) {
+            for (let col = 0; col < cols; col++) {
+                entries[row][col] = startEntries[row][col];
+            }
+        }
+    }
+
+    /**
      * Checks if the current matrix is in reduced row echelon form
      * 
      * @returns Boolean
