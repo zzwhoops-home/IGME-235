@@ -19,7 +19,7 @@ export function elementCounter(current, target, element) {
 
 
         // scientific numbers
-        if (target.toString().length > 5 && Math.abs(target) < 100) {
+        if (target.toString().length > 5 && Math.abs(target) > 100) {
             const str = Number(nextValue).toExponential(3).toString();
             const split = str.split("e");
             const formatted = `${split[0]}<br>e${split[1]}`;
@@ -35,7 +35,7 @@ export function elementCounter(current, target, element) {
             requestAnimationFrame(animate);
         }
         else {
-            if (target.toString().length > 5 && Math.abs(target) < 100) {
+            if (target.toString().length > 5 && Math.abs(target) > 100) {
                 const str = Number(target).toExponential(3).toString();
                 const split = str.split("e");
                 const formatted = `${split[0]}<br>e${split[1]}`;
