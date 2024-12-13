@@ -85,7 +85,7 @@ export class Game {
         }
 
         // play audio
-        const audio = document.querySelector("#score-ticker");
+        const audio = document.querySelector("#score-ticker-audio");
         audio.play();
 
         // whenever matrix is updated, check rref
@@ -259,6 +259,10 @@ export class Game {
         }
 
         // if we reach the end, we are in rref
+        // play success
+        const audio = document.querySelector("#success-audio");
+        audio.play();
+
         return true;
     }
 }
