@@ -287,7 +287,7 @@ export class Game {
     /**
      * Automatically puts the matrix into RREF
      */
-    autoRREF() {
+    async autoRREF() {
         // get matrix dim
         const rows = this.curLevel.rows;
         const cols = this.curLevel.columns;
@@ -305,15 +305,21 @@ export class Game {
                 Math.abs(current.value) > Math.abs(max.value) ? current : max
             );
             const largest = largestEntry.value;
+            // check for 0 largest entry
+            if (largest === 0) {
+                break;
+            }
             const pivotIndex = largestEntry.index;
 
             // bring pivot row to pivot position
             // swapRows is 1-indexed
             if (pivotIndex != pivot) {
                 this.swapRows(pivotIndex + 1, pivot + 1);
+                await this.sleep(500);
             }
             // scale pivot row
             this.scaleRow(pivot + 1, 1 / largest);
+            await this.sleep(500);
 
             // zero out the column except for pivot row
             for (let row = 0; row < rows; row++) {
@@ -322,7 +328,7 @@ export class Game {
 
                     // don't scale if 0
                     if (curNum === 0) {
-                        break;
+                        continue;
                     }
 
                     // scale row to match row to be eliminated
@@ -330,6 +336,7 @@ export class Game {
 
                     // eliminate row with pivot
                     this.pivotRows(pivot + 1, row + 1, false);
+                    await this.sleep(500);
 
                     // scale row back to 1
                     this.scaleRow(pivot + 1, 1 / curNum);
@@ -349,6 +356,10 @@ export class Game {
 
         // populate matrix again
         this.populateMatrix();
+    }
+    // Helper function to introduce delay
+    sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
     }
 
     /**
