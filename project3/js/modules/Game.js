@@ -1,5 +1,6 @@
 import { elementCounter } from "./animations.js";
 import { formatData } from "../../data/data.js";
+import { InfoMessages } from "../../data/data.js";
 
 export class Game {
     curLevel = null;
@@ -73,6 +74,28 @@ export class Game {
         for (let i = 0; i < flat.length; i++) {
             const entry = document.createElement("div");
             entry.classList.add("matrix-element");
+
+            // add event listener
+            // get message box
+            const messagePanel = document.querySelector("#message-panel p");
+
+            // add correct message when hovering over move
+            entry.addEventListener('mouseover', (e) => {
+                // get info message from data.js file
+                const rows = this.curLevel.rows;
+                const row = Math.floor(i / rows);
+                const col = i % rows;
+
+                const html = `Row: ${row}<br>Column: ${col}`;
+
+                // set text content
+                messagePanel.innerHTML = html;
+            })
+
+            // reset to default if leaving move element
+            entry.addEventListener('mouseout', (e) => {
+                messagePanel.textContent = InfoMessages["default"];
+            })
 
             const curVal = flat[i];
             const prevVal = prev[i];
