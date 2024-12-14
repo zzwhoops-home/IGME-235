@@ -51,11 +51,20 @@ const loadContents = async () => {
     const random = document.querySelector("#random");
     const prevLevel = document.querySelector("#prev-level");
     const nextLevel = document.querySelector("#next-level");
-    const levelNum = document.querySelector("#level-number");
 
     // random click
     random.addEventListener('click', () => game.randomLevel());
+
+    // prev and next level
+    prevLevel.addEventListener('click', handlePrevLevel);
+    nextLevel.addEventListener('click', handleNextLevel);
+    // disable since we are on level 1
+    prevLevel.classList.add("options-disabled");
+
+    // enable autoRREF
     random.addEventListener('click', () => game.enableAutoRREF());
+    prevLevel.addEventListener('click', () => game.enableAutoRREF());
+    nextLevel.addEventListener('click', () => game.enableAutoRREF());
 
     // // get powerup buttons
     // const powerups = document.querySelectorAll(".powerup:not(.empty)");
@@ -88,6 +97,48 @@ const handleSelected = (e) => {
         closePopup();
     }
 };
+
+const handlePrevLevel = (e) => {
+    const levelNum = document.querySelector("#level-number");
+    const messagePanel = document.querySelector("#message-panel p");
+    const prevLevel = document.querySelector("#prev-level");
+    const nextLevel = document.querySelector("#next-level");
+
+    nextLevel.classList.remove("options-disabled");
+
+    if (game.level > 1) {
+        game.prevLevel();
+        messagePanel.textContent = `You have selected: Level ${game.level}`;
+        levelNum.textContent = `Level ${game.level}`;
+    }
+    if (game.level === 1) {
+        prevLevel.classList.add("options-disabled");
+    }
+    else {
+        prevLevel.classList.remove("options-disabled");
+    }
+}
+
+const handleNextLevel = (e) => {
+    const levelNum = document.querySelector("#level-number");
+    const messagePanel = document.querySelector("#message-panel p");
+    const prevLevel = document.querySelector("#prev-level");
+    const nextLevel = document.querySelector("#next-level");
+
+    prevLevel.classList.remove("options-disabled");
+
+    if (game.level < game.totalLevels) {
+        game.nextLevel();
+        messagePanel.textContent = `You have selected: Level ${game.level}`;
+        levelNum.textContent = `Level ${game.level}`;
+    }
+    if (game.level === game.totalLevels) {
+        nextLevel.classList.add("options-disabled");
+    }
+    else {
+        nextLevel.classList.remove("options-disabled");
+    }
+}
 
 const showPopup = (type, element) => {
     const popup = document.querySelector("#popup");

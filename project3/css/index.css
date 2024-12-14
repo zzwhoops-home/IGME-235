@@ -186,7 +186,7 @@ h2 {
 
 .option {
     display: flex;
-    margin: 10px;
+    margin: 10px 20px;
     padding: 20px;
     width: 100px;
     justify-content: center;
@@ -293,6 +293,12 @@ h2 {
 
 /* Used for disabling moves when in Auto RREF mode */
 .disabled {
+    filter: brightness(50%);
+    background-color: gray;
+    pointer-events: none;
+}
+
+.options-disabled {
     filter: brightness(50%);
     background-color: gray;
     pointer-events: none;

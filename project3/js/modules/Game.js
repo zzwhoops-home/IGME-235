@@ -14,6 +14,7 @@ export class Game {
 
         // initialize game state
         this.level = 1;
+        this.totalLevels = 12; // hardcoded value
         this.score = 0;
         this.moves = 0;
         this.timer = 60;
@@ -550,7 +551,7 @@ export class Game {
     /**
      * Goes to the previous level
      */
-    previousLevel() {
+    prevLevel() {
         this.level -= 1;
         this.loadLevel(this.level)
     }
