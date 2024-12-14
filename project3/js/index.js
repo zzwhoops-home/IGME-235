@@ -1,6 +1,6 @@
 import { Game } from './modules/Game.js'
 import { createSwapContent, createScaleContent, createPivotContent } from './modules/popups.js';
-import { InfoMessages } from './modules/data.js';
+import { InfoMessages } from '../data/data.js';
 
 // current game instance
 let game;

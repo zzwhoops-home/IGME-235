@@ -9,3 +9,28 @@ export const InfoMessages = {
     "auto": "Automatically compute the reduced row echelon form (RREF).",
     "default": "Welcome! Your goal is to find RREF (reduced row echelon form)."
 }
+
+/**
+ * Formats incoming data from flat 1D array
+ * 
+ * @param {*} data 1D data to become matrix
+ * @param {*} rows Rows in matrix
+ * @param {*} cols Columns in matrix
+ * @returns {Object} 2D array
+ */
+export const formatData = (rows, cols, data) => {
+    let matrix = [];
+
+    let count = 0;
+    for (let row = 0; row < rows; row++) {
+        let row = [];
+        for (let col = 0; col < cols; col++) {
+            row.push(data[count]);
+            count++;
+        }
+
+        matrix.push(row);
+    }
+
+    return matrix;
+}

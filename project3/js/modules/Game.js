@@ -1,28 +1,5 @@
 import { elementCounter } from "./animations.js";
-
-/**
- * Returns a random matrix with the specified dimensions
- * 
- * @param {*} rows The # of rows in the matrix
- * @param {*} cols The # of columns in the matrix
- * @returns a 2D matrix that is rows x cols
- */
-const randomMatrix = (rows, cols) => {
-    let matrix = [];
-
-    for (let row = 0; row < rows; row++) {
-        let row = [];
-        for (let col = 0; col < cols; col++) {
-            const num = Math.floor(Math.random() * 10);
-
-            row.push(num);
-        }
-
-        matrix.push(row);
-    }
-
-    return matrix;
-}
+import { formatData } from "../../data/data.js";
 
 export class Game {
     curLevel = null;
@@ -57,15 +34,13 @@ export class Game {
         //     [0, 0, 0, 0]
         // ]);
 
-        const rows = Math.floor(Math.random() * 3) + 2;
-        const cols = Math.floor(Math.random() * 3) + 2;
+        // const level = new Level(rows, cols, randomMatrix(rows, cols));
+        // this.curLevel = level;
 
-        const level = new Level(rows, cols, randomMatrix(rows, cols));
-        this.curLevel = level;
-
-        // get matrix element, initialize matrix
+        // get matrix element
         this.matrix = document.querySelector("#matrix-container");
-        this.initializeMatrix();
+
+        this.loadLevel(2);
     }
 
     /**
@@ -466,6 +441,58 @@ export class Game {
                 }
             }
         }
+    }
+
+    /**
+     * Loads the specified level number
+     * 
+     * @param {*} level 
+     */
+    async loadLevel(level) {
+        await fetch("./data/matrices.json")
+            .then((res) => res.text())
+            .then((res) => {
+                const json = JSON.parse(res);
+                const levelJSON = json[level - 1];
+
+                // get data
+                const rows = levelJSON.rows;
+                const cols = levelJSON.columns;
+                const data = formatData(rows, cols, levelJSON.data);
+
+                console.log(data);
+                // create new level
+                this.curLevel = new Level(rows, cols, data);
+
+                // initialize matrix
+                this.initializeMatrix();
+            });
+    }
+
+    /**
+     * Creates a random level
+     */
+    randomLevel() {
+        const rows = Math.floor(Math.random() * 3) + 2;
+        const cols = Math.floor(Math.random() * 3) + 2;
+
+        let matrix = [];
+
+        for (let row = 0; row < rows; row++) {
+            let row = [];
+            for (let col = 0; col < cols; col++) {
+                const num = Math.floor(Math.random() * 10);
+
+                row.push(num);
+            }
+
+            matrix.push(row);
+        }
+
+        this.curLevel = new Level(rows, cols, matrix);
+
+        // initialize matrix
+        this.initializeMatrix();
     }
 }
 
