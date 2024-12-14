@@ -345,4 +345,6 @@ document.querySelectorAll(".option").forEach(element => {
     element.addEventListener('mouseout', (e) => {
         messagePanel.textContent = InfoMessages["default"];
     })
+
+    element.addEventListener
 })

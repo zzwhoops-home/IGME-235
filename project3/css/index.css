@@ -172,6 +172,10 @@ h2 {
     color: white;
 }
 
+.option:active {
+    color: var(--bg-light);
+}
+
 .move.empty {
     background-color: #ccc;
     color: #666;
