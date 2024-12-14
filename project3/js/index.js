@@ -44,6 +44,9 @@ const loadContents = async () => {
     reset.addEventListener('click', () => game.reset());
     autoRREF.addEventListener('click', () => game.autoRREF());
 
+    // reenable autoRREF if clicking reset
+    reset.addEventListener('click', () => autoRREF.classList.remove("disabled"));
+
     // // get powerup buttons
     // const powerups = document.querySelectorAll(".powerup:not(.empty)");
 

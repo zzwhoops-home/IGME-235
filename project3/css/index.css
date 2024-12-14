@@ -185,10 +185,13 @@ h2 {
 
 .option {
     display: flex;
-    margin: 10px 0;
+    margin: 10px;
+    padding: 20px;
+    width: 100px;
     justify-content: center;
     align-items: center;
-    border: 1px dotted black;
+    border-radius: 20px;
+    border: 1px solid white;
     transition: transform 0.2s, box-shadow 0.2s;
     cursor: pointer;
     pointer-events: auto;
@@ -286,6 +289,14 @@ h2 {
     font-style: italic;
     cursor: not-allowed;
 }
+
+/* Used for disabling moves when in Auto RREF mode */
+.disabled {
+    filter: brightness(50%);
+    background-color: gray;
+    pointer-events: none;
+}
+
 
 /* #level {}
 

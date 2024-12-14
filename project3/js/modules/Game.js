@@ -288,6 +288,11 @@ export class Game {
      * Automatically puts the matrix into RREF
      */
     async autoRREF() {
+        // disable click events on all moves
+        document.querySelectorAll(".move").forEach((element) => {
+            element.classList.add("disabled");
+        });
+
         // get matrix dim
         const rows = this.curLevel.rows;
         const cols = this.curLevel.columns;
@@ -349,7 +354,17 @@ export class Game {
 
         // populate matrix again
         this.populateMatrix();
+
+        // reenable click events on all moves
+        document.querySelectorAll(".move").forEach((element) => {
+            element.classList.remove("disabled");
+        });
+
+        // disable auto RREF until the matrix is reset
+        const autoRREF = document.querySelector("#auto");
+        autoRREF.classList.add("disabled");
     }
+
     // Helper function to introduce delay
     sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
@@ -445,7 +460,6 @@ export class Game {
         for (let row = 0; row < this.curLevel.rows; row++) {
             for (let col = 0; col < this.curLevel.columns; col++) {
                 const curVal = this.curLevel.entries[row][col];
-                console.log(curVal);
 
                 if (Math.abs(curVal) < 0.001) {
                     this.curLevel.entries[row][col] = 0;
