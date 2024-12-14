@@ -326,6 +326,14 @@ document.querySelectorAll(".move").forEach(element => {
     element.addEventListener('mouseout', (e) => {
         messagePanel.textContent = InfoMessages["default"];
     })
+
+    // add pop sound
+    element.addEventListener('click', () => {
+        const audio = document.querySelector("#pop-audio");
+        audio.pause();
+        audio.currentTime = 0;
+        audio.play();
+    })
 });
 
 document.querySelectorAll(".option").forEach(element => {
@@ -346,5 +354,11 @@ document.querySelectorAll(".option").forEach(element => {
         messagePanel.textContent = InfoMessages["default"];
     })
 
-    element.addEventListener
+    // add pop sound
+    element.addEventListener('click', () => {
+        const audio = document.querySelector("#pop-audio");
+        audio.pause();
+        audio.currentTime = 0;
+        audio.play();
+    })
 })
