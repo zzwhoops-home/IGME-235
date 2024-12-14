@@ -40,7 +40,7 @@ export class Game {
         // get matrix element
         this.matrix = document.querySelector("#matrix-container");
 
-        this.loadLevel(2);
+        this.loadLevel(1);
     }
 
     /**
@@ -114,20 +114,11 @@ export class Game {
                 audio.currentTime = 0;
                 audio.play();
             }
-            else {
-                // play fail audio
-                const audio = document.querySelector("#error-audio");
-                audio.currentTime = 0;
-                audio.play();
-
-                // update message box
-                const messageBox = document.querySelector("#message-panel p");
-                messageBox.textContent = "You can't do that.";
-            }
         }
 
         // whenever matrix is updated, check rref
-        if (this.checkRREF()) {
+        this.curLevel.isRREF = this.checkRREF();
+        if (this.curLevel.isRREF) {
             const matrixContainer = document.querySelector("#matrix-container");
             matrixContainer.style.backgroundColor = "#00aa33";
         }
@@ -157,6 +148,12 @@ export class Game {
         entries[left] = entries[right];
         entries[right] = temp;
 
+        // reset rref flag if needed
+        if (this.curLevel.isRREF) {
+            // reset rref value
+            this.curLevel.isRREF = false;
+        }
+
         // update matrix
         this.populateMatrix();
     }
@@ -164,6 +161,19 @@ export class Game {
     scaleRow(row, factor) {
         const entries = this.curLevel.entries;
         const rowIndex = row - 1;
+
+        if (entries[rowIndex].every(element => element === 0)) {
+            // play fail audio
+            const audio = document.querySelector("#error-audio");
+            audio.currentTime = 0;
+            audio.play();
+
+            // update message box
+            const messageBox = document.querySelector("#message-panel p");
+            messageBox.textContent = "You can't scale a row that's already 0s.";
+
+            return;
+        }
 
         // create new row, update entries
         const newRow = entries[rowIndex].map((element) => {
@@ -180,7 +190,26 @@ export class Game {
                 return parseFloat(newEntry.toPrecision(7));
             }
         });
+
+        if (newRow.every(element => element === 0)) {
+            // play fail audio
+            const audio = document.querySelector("#error-audio");
+            audio.currentTime = 0;
+            audio.play();
+
+            // update message box
+            const messageBox = document.querySelector("#message-panel p");
+            messageBox.textContent = "You can't scale a row to be 0s.";
+
+            return;
+        }
         entries[rowIndex] = newRow;
+
+        // reset rref flag if needed
+        if (this.curLevel.isRREF) {
+            // reset rref value
+            this.curLevel.isRREF = false;
+        }
 
         // update matrix
         this.populateMatrix();
@@ -220,6 +249,12 @@ export class Game {
         // update entries with pivot
         entries[right] = rightEntries;
 
+        // reset rref flag if needed
+        if (this.curLevel.isRREF) {
+            // reset rref value
+            this.curLevel.isRREF = false;
+        }
+
         // update matrix
         this.populateMatrix();
     }
@@ -255,8 +290,12 @@ export class Game {
             const audio = document.querySelector("#whoosh-audio");
             audio.play();
 
+            // reset rref value
+            this.curLevel.isRREF = false;
+
             this.populateMatrix();
         }
+
     }
 
     /**
@@ -276,6 +315,11 @@ export class Game {
 
         // each pivot
         for (let pivot = 0; pivot < maxPivot; pivot++) {
+            // don't iterate if we are in RREF
+            if (this.curLevel.isRREF) {
+                break;
+            }
+
             // get pivot index and value
             const filtered = this.curLevel.entries
                 .map((row, index) => ({ value: row[pivot], index }))
@@ -293,16 +337,22 @@ export class Game {
 
             // bring pivot row to pivot position
             // swapRows is 1-indexed
-            if (pivotIndex != pivot) {
+            if (pivotIndex != pivot && !this.curLevel.isRREF) {
                 this.swapRows(pivotIndex + 1, pivot + 1);
                 await this.sleep(500);
             }
+
             // scale pivot row
-            this.scaleRow(pivot + 1, 1 / largest);
-            await this.sleep(500);
+            if (!this.curLevel.isRREF) {
+                this.scaleRow(pivot + 1, 1 / largest);
+                await this.sleep(500);
+            }
 
             // zero out the column except for pivot row
             for (let row = 0; row < rows; row++) {
+                if (this.curLevel.isRREF) {
+                    break;
+                }
                 if (row != pivot) {
                     const curNum = this.curLevel.entries[row][pivot];
 
@@ -310,16 +360,22 @@ export class Game {
                     if (curNum === 0) {
                         continue;
                     }
+                    else if (curNum === 1) {
+                        // eliminate row with pivot
+                        this.pivotRows(pivot + 1, row + 1, false);
+                        await this.sleep(500);
+                    }
+                    else {
+                        // scale row to match row to be eliminated
+                        this.scaleRow(pivot + 1, curNum);
 
-                    // scale row to match row to be eliminated
-                    this.scaleRow(pivot + 1, curNum);
+                        // eliminate row with pivot
+                        this.pivotRows(pivot + 1, row + 1, false);
+                        await this.sleep(500);
 
-                    // eliminate row with pivot
-                    this.pivotRows(pivot + 1, row + 1, false);
-                    await this.sleep(500);
-
-                    // scale row back to 1
-                    this.scaleRow(pivot + 1, 1 / curNum);
+                        // scale row back to 1
+                        this.scaleRow(pivot + 1, 1 / curNum);
+                    }
                 }
             }
         }
@@ -351,6 +407,16 @@ export class Game {
      * @returns Boolean
      */
     checkRREF() {
+        // return if we're already in RREF
+        if (this.curLevel.isRREF) {
+            return true;
+        }
+        else {
+            // enable if the matrix is no longer in rref
+            const autoRREF = document.querySelector("#auto");
+            autoRREF.classList.remove("disabled");
+        }
+
         const entries = this.curLevel.entries;
         let leading = [];
         let emptyRows = [];
@@ -460,7 +526,6 @@ export class Game {
                 const cols = levelJSON.columns;
                 const data = formatData(rows, cols, levelJSON.data);
 
-                console.log(data);
                 // create new level
                 this.curLevel = new Level(rows, cols, data);
 
@@ -504,6 +569,7 @@ export class Level {
         this.rows = rows;
         this.columns = columns;
         this.entries = entries;
+        this.isRREF = false;
 
         this.startEntries = entries.map(row => [...row]);
         this.prevEntries = entries.map(row => [...row]);

@@ -92,7 +92,6 @@ h2 {
 
 #options-panel {
     grid-area: op;
-    height: 100px;
 }
 
 /* #stats {
@@ -162,7 +161,8 @@ h2 {
 
 /* Apply CSS effect as long as the div is not empty */
 .move:hover:not(.empty),
-.powerup:hover:not(.empty) {
+.powerup:hover:not(.empty),
+.option:hover {
     transform: scale(1.1);
     /* box-shadow: 0px 0px 16px 5px rgba(0, 0, 0, 0.4); */
     background-color: inherit;
@@ -181,6 +181,7 @@ h2 {
 #options-container {
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 .option {
