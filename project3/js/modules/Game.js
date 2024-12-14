@@ -344,15 +344,8 @@ export class Game {
             }
         }
 
-        for (let row = 0; row < rows; row++) {
-            for (let col = 0; col < cols; col++) {
-                const curVal = this.curLevel.entries[row][col];
-
-                if (Math.abs(curVal) < 0.001) {
-                    this.curLevel.entries[row][col] = 0;
-                }
-            }
-        }
+        // clean up things close to 0
+        this.cleanup();
 
         // populate matrix again
         this.populateMatrix();
@@ -433,6 +426,9 @@ export class Game {
             }
         }
 
+        // cleanup entries close to 0
+        this.cleanup();
+
         // if we reach the end, we are in rref
         // play success
         const audio = document.querySelector("#success-audio");
@@ -440,6 +436,22 @@ export class Game {
         audio.play();
 
         return true;
+    }
+
+    /**
+     * Does another cleanup of floating pointer numbers that may be very small
+     */
+    cleanup() {
+        for (let row = 0; row < this.curLevel.rows; row++) {
+            for (let col = 0; col < this.curLevel.columns; col++) {
+                const curVal = this.curLevel.entries[row][col];
+                console.log(curVal);
+
+                if (Math.abs(curVal) < 0.001) {
+                    this.curLevel.entries[row][col] = 0;
+                }
+            }
+        }
     }
 }
 

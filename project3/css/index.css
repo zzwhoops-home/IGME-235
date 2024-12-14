@@ -46,19 +46,18 @@ h2 {
         "ma mv"
         "ma mv"
         "ma pw"
-        "ma pw";
-    grid-template-rows: repeat(5, 1fr);
+        "ma pw"
+        "op op";
+    grid-template-rows: repeat(6, 1fr);
     grid-template-columns: repeat(2, 1fr);
-}
-
-#panel {
-    max-height: 550px;
+    max-height: 650px;
 }
 
 #matrix-panel,
 #moves-panel,
 #powerups-panel,
-#message-panel {
+#message-panel,
+#options-panel {
     margin: 10px;
     padding: 20px;
     background-color: var(--bg-dark);
@@ -89,6 +88,11 @@ h2 {
 #message-panel p {
     margin: 10px;
     font-size: 1.25em;
+}
+
+#options-panel {
+    grid-area: op;
+    height: 100px;
 }
 
 /* #stats {
@@ -172,6 +176,22 @@ h2 {
     background-color: #ccc;
     color: #666;
     cursor: not-allowed;
+}
+
+#options-container {
+    display: flex;
+    justify-content: center;
+}
+
+.option {
+    display: flex;
+    margin: 10px 0;
+    justify-content: center;
+    align-items: center;
+    border: 1px dotted black;
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+    pointer-events: auto;
 }
 
 #reset:active,
