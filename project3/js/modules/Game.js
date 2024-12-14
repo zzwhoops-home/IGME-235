@@ -20,27 +20,13 @@ export class Game {
         this.curTimer = this.timer;
         this.timerInterval = null;
 
-        // test creation of level
-        // const level = new Level(4, 4, [
-        //     [-2, 6, -1, 6],
-        //     [6, -18, 0, -30],
-        //     [3, -9, 1, -11],
-        //     [4, -12, 2, -12]
-        // ]);
-        // const level = new Level(4, 4, [
-        //     [1, -3, 0, -5],
-        //     [0, 0, 0, 0],
-        //     [0, 0, 1, 4],
-        //     [0, 0, 0, 0]
-        // ]);
-
-        // const level = new Level(rows, cols, randomMatrix(rows, cols));
-        // this.curLevel = level;
+        // set autoRREF delay (ms)
+        this.autoRREFDelay = 500;
 
         // get matrix element
         this.matrix = document.querySelector("#matrix-container");
 
-        this.loadLevel(1);
+        this.loadLevel(this.level);
     }
 
     /**
@@ -152,6 +138,8 @@ export class Game {
         if (this.curLevel.isRREF) {
             // reset rref value
             this.curLevel.isRREF = false;
+
+            this.enableAutoRREF();
         }
 
         // update matrix
@@ -209,6 +197,8 @@ export class Game {
         if (this.curLevel.isRREF) {
             // reset rref value
             this.curLevel.isRREF = false;
+
+            this.enableAutoRREF();
         }
 
         // update matrix
@@ -253,6 +243,8 @@ export class Game {
         if (this.curLevel.isRREF) {
             // reset rref value
             this.curLevel.isRREF = false;
+
+            this.enableAutoRREF();
         }
 
         // update matrix
@@ -306,6 +298,10 @@ export class Game {
         document.querySelectorAll(".move").forEach((element) => {
             element.classList.add("disabled");
         });
+        // disable click events on options
+        document.querySelectorAll(".option").forEach((element) => {
+            element.classList.add("disabled");
+        });
 
         // get matrix dim
         const rows = this.curLevel.rows;
@@ -339,13 +335,13 @@ export class Game {
             // swapRows is 1-indexed
             if (pivotIndex != pivot && !this.curLevel.isRREF) {
                 this.swapRows(pivotIndex + 1, pivot + 1);
-                await this.sleep(500);
+                await this.sleep(this.autoRREFDelay);
             }
 
             // scale pivot row
             if (!this.curLevel.isRREF) {
                 this.scaleRow(pivot + 1, 1 / largest);
-                await this.sleep(500);
+                await this.sleep(this.autoRREFDelay);
             }
 
             // zero out the column except for pivot row
@@ -363,7 +359,7 @@ export class Game {
                     else if (curNum === 1) {
                         // eliminate row with pivot
                         this.pivotRows(pivot + 1, row + 1, false);
-                        await this.sleep(500);
+                        await this.sleep(this.autoRREFDelay);
                     }
                     else {
                         // scale row to match row to be eliminated
@@ -371,7 +367,7 @@ export class Game {
 
                         // eliminate row with pivot
                         this.pivotRows(pivot + 1, row + 1, false);
-                        await this.sleep(500);
+                        await this.sleep(this.autoRREFDelay);
 
                         // scale row back to 1
                         this.scaleRow(pivot + 1, 1 / curNum);
@@ -390,15 +386,34 @@ export class Game {
         document.querySelectorAll(".move").forEach((element) => {
             element.classList.remove("disabled");
         });
+        // disable click events on options
+        document.querySelectorAll(".option").forEach((element) => {
+            element.classList.remove("disabled");
+        });
 
         // disable auto RREF until the matrix is reset
-        const autoRREF = document.querySelector("#auto");
-        autoRREF.classList.add("disabled");
+        this.disableAutoRREF();
     }
 
     // Helper function to introduce delay
     sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    /**
+     * Disables autoRREF from being pressed
+     */
+    disableAutoRREF() {
+        const autoRREF = document.querySelector("#auto");
+        autoRREF.classList.add("disabled");
+    }
+
+    /**
+     * Enables autoRREF to be clicked
+     */
+    enableAutoRREF() {
+        const autoRREF = document.querySelector("#auto");
+        autoRREF.classList.remove("disabled");
     }
 
     /**
@@ -410,11 +425,6 @@ export class Game {
         // return if we're already in RREF
         if (this.curLevel.isRREF) {
             return true;
-        }
-        else {
-            // enable if the matrix is no longer in rref
-            const autoRREF = document.querySelector("#auto");
-            autoRREF.classList.remove("disabled");
         }
 
         const entries = this.curLevel.entries;
@@ -482,10 +492,13 @@ export class Game {
             }
         }
 
+        // if we reach the end, we are in rref
         // cleanup entries close to 0
         this.cleanup();
 
-        // if we reach the end, we are in rref
+        // disable auto rref
+        this.disableAutoRREF();
+
         // play success
         const audio = document.querySelector("#success-audio");
         audio.currentTime = 0;
@@ -502,7 +515,7 @@ export class Game {
             for (let col = 0; col < this.curLevel.columns; col++) {
                 const curVal = this.curLevel.entries[row][col];
 
-                if (Math.abs(curVal) < 0.001) {
+                if (Math.abs(curVal) < 0.01) {
                     this.curLevel.entries[row][col] = 0;
                 }
             }
@@ -532,6 +545,22 @@ export class Game {
                 // initialize matrix
                 this.initializeMatrix();
             });
+    }
+
+    /**
+     * Goes to the previous level
+     */
+    previousLevel() {
+        this.level -= 1;
+        this.loadLevel(this.level)
+    }
+
+    /**
+     * Goes to the next level
+     */
+    nextLevel() {
+        this.level += 1;
+        this.loadLevel(this.level);
     }
 
     /**

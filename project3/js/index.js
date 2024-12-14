@@ -45,7 +45,7 @@ const loadContents = async () => {
     autoRREF.addEventListener('click', () => game.autoRREF());
 
     // reenable autoRREF if clicking reset
-    reset.addEventListener('click', () => autoRREF.classList.remove("disabled"));
+    reset.addEventListener('click', () => game.enableAutoRREF());
 
     // get option buttons
     const random = document.querySelector("#random");
@@ -55,6 +55,7 @@ const loadContents = async () => {
 
     // random click
     random.addEventListener('click', () => game.randomLevel());
+    random.addEventListener('click', () => game.enableAutoRREF());
 
     // // get powerup buttons
     // const powerups = document.querySelectorAll(".powerup:not(.empty)");
