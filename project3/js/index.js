@@ -327,3 +327,22 @@ document.querySelectorAll(".move").forEach(element => {
         messagePanel.textContent = InfoMessages["default"];
     })
 });
+
+document.querySelectorAll(".option").forEach(element => {
+    // get message box
+    const messagePanel = document.querySelector("#message-panel p");
+
+    // add correct message when hovering over move
+    element.addEventListener('mouseover', (e) => {
+        // get info message from data.js file
+        const text = InfoMessages[element.id];
+
+        // set text content
+        messagePanel.textContent = text;
+    })
+
+    // reset to default if leaving move element
+    element.addEventListener('mouseout', (e) => {
+        messagePanel.textContent = InfoMessages["default"];
+    })
+})

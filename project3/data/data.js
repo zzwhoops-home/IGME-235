@@ -7,6 +7,9 @@ export const InfoMessages = {
     "pivot": "Perform a row operation to add or subtract one row to/from another.",
     "reset": "Reset the matrix to its original state, undoing all previous operations.",
     "auto": "Automatically compute the reduced row echelon form (RREF).",
+    "random": "Generates a random matrix that contains between 2-4 rows and 2-4 columns.",
+    "prev-level": "Go to the previous level.",
+    "next-level": "Go to the next level.",
     "default": "Welcome! Your goal is to find RREF (reduced row echelon form)."
 }
 
