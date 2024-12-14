@@ -9,7 +9,7 @@ import { elementCounter } from "./animations.js";
  */
 const randomMatrix = (rows, cols) => {
     let matrix = [];
-    
+
     for (let row = 0; row < rows; row++) {
         let row = [];
         for (let col = 0; col < cols; col++) {
@@ -282,7 +282,6 @@ export class Game {
 
             this.populateMatrix();
         }
-        this.autoRREF();
     }
 
     /**
@@ -293,14 +292,63 @@ export class Game {
         const rows = this.curLevel.rows;
         const cols = this.curLevel.columns;
 
-        // each pivot
-        for (let pivot = 0; pivot < Math.min(rows, cols); pivot++) {
-            let largest = 0;
+        const maxPivot = Math.min(rows, cols);
 
-            for (let col = pivot; col < cols; col++) {
-                
+        // each pivot
+        for (let pivot = 0; pivot < maxPivot; pivot++) {
+            // get pivot index and value
+            const filtered = this.curLevel.entries
+                .map((row, index) => ({ value: row[pivot], index }))
+                .filter((_, index) => index >= pivot);
+
+            const largestEntry = filtered.reduce((max, current) =>
+                Math.abs(current.value) > Math.abs(max.value) ? current : max
+            );
+            const largest = largestEntry.value;
+            const pivotIndex = largestEntry.index;
+
+            // bring pivot row to pivot position
+            // swapRows is 1-indexed
+            if (pivotIndex != pivot) {
+                this.swapRows(pivotIndex + 1, pivot + 1);
+            }
+            // scale pivot row
+            this.scaleRow(pivot + 1, 1 / largest);
+
+            // zero out the column except for pivot row
+            for (let row = 0; row < rows; row++) {
+                if (row != pivot) {
+                    const curNum = this.curLevel.entries[row][pivot];
+
+                    // don't scale if 0
+                    if (curNum === 0) {
+                        break;
+                    }
+
+                    // scale row to match row to be eliminated
+                    this.scaleRow(pivot + 1, curNum);
+
+                    // eliminate row with pivot
+                    this.pivotRows(pivot + 1, row + 1, false);
+
+                    // scale row back to 1
+                    this.scaleRow(pivot + 1, 1 / curNum);
+                }
             }
         }
+
+        for (let row = 0; row < rows; row++) {
+            for (let col = 0; col < cols; col++) {
+                const curVal = this.curLevel.entries[row][col];
+
+                if (Math.abs(curVal) < 0.001) {
+                    this.curLevel.entries[row][col] = 0;
+                }
+            }
+        }
+
+        // populate matrix again
+        this.populateMatrix();
     }
 
     /**

@@ -21,6 +21,15 @@ window.onload = (e) => {
  * Loads the contents of the page on page load
  */
 const loadContents = async () => {
+    // stats paragraphs
+    const levelP = document.querySelector("#stats #level");
+    const scoreP = document.querySelector("#stats #score");
+    const movesP = document.querySelector("#stats #moves");
+    const timerP = document.querySelector("#stats #timer");
+
+    // create class instances
+    game = new Game(levelP, scoreP, movesP, timerP);
+
     // get move buttons
     const swap = document.querySelector("#swap");
     const scale = document.querySelector("#scale");
@@ -32,6 +41,8 @@ const loadContents = async () => {
     swap.addEventListener('click', handleSelected);
     scale.addEventListener('click', handleSelected);
     pivot.addEventListener('click', handleSelected);
+    reset.addEventListener('click', () => game.reset());
+    autoRREF.addEventListener('click', () => game.autoRREF());
 
     // // get powerup buttons
     // const powerups = document.querySelectorAll(".powerup:not(.empty)");
@@ -43,15 +54,6 @@ const loadContents = async () => {
 
     // get info popup
     popup = document.querySelector("#popup");
-
-    // stats paragraphs
-    const levelP = document.querySelector("#stats #level");
-    const scoreP = document.querySelector("#stats #score");
-    const movesP = document.querySelector("#stats #moves");
-    const timerP = document.querySelector("#stats #timer");
-
-    // create class instances
-    game = new Game(levelP, scoreP, movesP, timerP);
 };
 
 /**
@@ -240,15 +242,13 @@ document.querySelectorAll(".move").forEach(element => {
         // close previous popup
         closePopup();
 
-        if (type === "reset") {
-            game.reset();
-        }
-        else {
+        if (type != "reset" && type != "auto") {
+            // show new popup
             showPopup(type, e.target);
         }
-
     });
 
+    // add correct message when hovering over move
     element.addEventListener('mouseover', (e) => {
 
         // get info message from data.js file
@@ -258,6 +258,7 @@ document.querySelectorAll(".move").forEach(element => {
         messagePanel.textContent = text;
     })
 
+    // reset to default if leaving move element
     element.addEventListener('mouseout', (e) => {
         messagePanel.textContent = InfoMessages["default"];
     })
